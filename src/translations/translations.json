@@ -1,0 +1,250 @@
+{
+  "navbar": {
+    "home": {
+      "it": "Home",
+      "en": "Home",
+      "es": "Home"
+    },
+    "timeline": {
+      "it": "Timeline",
+      "en": "Timeline",
+      "es": "Timeline"
+    },
+    "blog": {
+      "it": "Blog",
+      "en": "Blog",
+      "es": "Blog"
+    },
+    "services": {
+      "it": "Servizi",
+      "en": "Services",
+      "es": "Servicios"
+    }
+  },
+  "home": {
+    "tagline": {
+      "it": "Sviluppatore Full Stack & Digital Nomad. Costruisco software ovunque mi porti il mondo.",
+      "en": "Full Stack Developer & Digital Nomad. I build software wherever the world takes me.",
+      "es": "Desarrollador Full Stack y Nómada Digital. Construyo software donde sea que me lleve el mundo."
+    },
+    "bio": {
+      "it": "Developer 24enne nato ad Ancona e ora di base a Tenerife. Vivo con il mio gatto Holly e trasformo caffè in codice: specializzato in React, Angular e .NET, integro l'Intelligenza Artificiale per creare software che fa la differenza. Credo nel lavoro che libera, non che lega.",
+      "en": "24-year-old developer born in Ancona and now based in Tenerife. I live with my cat Holly and turn coffee into code: specialized in React, Angular and .NET, I integrate Artificial Intelligence to create software that makes a difference. I believe in work that frees, not binds.",
+      "es": "Desarrollador de 24 años nacido en Ancona y ahora radicado en Tenerife. Vivo con mi gato Holly y transformo café en código: especializado en React, Angular y .NET, integro Inteligencia Artificial para crear software que marca la diferencia. Creo en el trabajo que libera, no que ata."
+    },
+    "ctaTimeline": {
+      "it": "Scopri la mia storia",
+      "en": "Discover my story",
+      "es": "Descubre mi historia"
+    },
+    "ctaServices": {
+      "it": "I miei servizi",
+      "en": "My services",
+      "es": "Mis servicios"
+    }
+  },
+  "timeline": {
+    "title": {
+      "it": "Il Mio Percorso",
+      "en": "My Journey",
+      "es": "Mi Trayectoria"
+    },
+    "travels": {
+      "it": "Viaggi",
+      "en": "Travels",
+      "es": "Viajes"
+    },
+    "milestones": {
+      "it": "Traguardi",
+      "en": "Milestones",
+      "es": "Logros"
+    },
+    "work": {
+      "it": "Lavoro",
+      "en": "Work",
+      "es": "Trabajo"
+    },
+    "viewPost": {
+      "it": "Vedi Post",
+      "en": "View Post",
+      "es": "Ver Publicación"
+    },
+    "website": {
+      "it": "Sito Web",
+      "en": "Website",
+      "es": "Sitio Web"
+    },
+    "profile": {
+      "it": "Profilo",
+      "en": "Profile",
+      "es": "Perfil"
+    }
+  },
+  "blog": {
+    "title": {
+      "it": "Blog",
+      "en": "Blog",
+      "es": "Blog"
+    },
+    "subtitle": {
+      "it": "Il mio viaggio personale e professionale.",
+      "en": "My personal and professional journey.",
+      "es": "Mi viaje personal y profesional."
+    },
+    "readMore": {
+      "it": "Leggi di più",
+      "en": "Read more",
+      "es": "Leer más"
+    },
+    "readFull": {
+      "it": "Leggi la storia completa",
+      "en": "Read the full story",
+      "es": "Lee la historia completa"
+    },
+    "published": {
+      "it": "Pubblicato il",
+      "en": "Published on",
+      "es": "Publicado el"
+    }
+  },
+  "services": {
+    "title": {
+      "it": "I Miei Servizi",
+      "en": "My Services",
+      "es": "Mis Servicios"
+    },
+    "subtitle": {
+      "it": "Soluzioni digitali su misura per il tuo business",
+      "en": "Tailored digital solutions for your business",
+      "es": "Soluciones digitales a medida para tu negocio"
+    },
+    "contactPopup": {
+      "title": {
+        "it": "💬 Hai bisogno di info?",
+        "en": "💬 Need information?",
+        "es": "💬 ¿Necesitas información?"
+      },
+      "description": {
+        "it": "Contattami tramite uno dei canali social qui a destra!",
+        "en": "Contact me through one of the social channels on the right!",
+        "es": "¡Contáctame a través de uno de los canales sociales de la derecha!"
+      }
+    },
+    "mobileContact": {
+      "it": "Scegli il tuo canale preferito e parliamo del tuo progetto!",
+      "en": "Choose your preferred channel and let's talk about your project!",
+      "es": "¡Elige tu canal preferido y hablemos de tu proyecto!"
+    },
+    "items": {
+      "web-app": {
+        "title": {
+          "it": "Sviluppo Web App & Software",
+          "en": "Web App & Software Development",
+          "es": "Desarrollo de Web App y Software"
+        },
+        "description": {
+          "it": "Creo applicazioni web veloci, sicure e scalabili. Non semplici siti vetrina, ma veri e propri software in cloud che ottimizzano i tuoi processi aziendali.",
+          "en": "I create fast, secure and scalable web applications. Not just showcase websites, but real cloud software that optimizes your business processes.",
+          "es": "Creo aplicaciones web rápidas, seguras y escalables. No simples sitios de presentación, sino verdadero software en la nube que optimiza tus procesos empresariales."
+        },
+        "features": {
+          "0": {
+            "it": "Architetture moderne (Next.js, Angular, .NET)",
+            "en": "Modern architectures (Next.js, Angular, .NET)",
+            "es": "Arquitecturas modernas (Next.js, Angular, .NET)"
+          },
+          "1": {
+            "it": "Dashboard amministrative intuitive",
+            "en": "Intuitive admin dashboards",
+            "es": "Paneles administrativos intuitivos"
+          },
+          "2": {
+            "it": "Performance ottimizzate e SEO-friendly",
+            "en": "Optimized performance and SEO-friendly",
+            "es": "Rendimiento optimizado y SEO-friendly"
+          },
+          "3": {
+            "it": "Sicurezza e scalabilità enterprise",
+            "en": "Enterprise security and scalability",
+            "es": "Seguridad y escalabilidad empresarial"
+          }
+        }
+      },
+      "mobile": {
+        "title": {
+          "it": "Sviluppo Mobile (iOS & Android)",
+          "en": "Mobile Development (iOS & Android)",
+          "es": "Desarrollo Móvil (iOS y Android)"
+        },
+        "description": {
+          "it": "Porto la tua idea sugli store di Apple e Google. Sviluppo app native e cross-platform che offrono un'esperienza utente fluida e coinvolgente.",
+          "en": "I bring your idea to Apple and Google stores. I develop native and cross-platform apps that offer a smooth and engaging user experience.",
+          "es": "Llevo tu idea a las tiendas de Apple y Google. Desarrollo apps nativas y multiplataforma que ofrecen una experiencia de usuario fluida y atractiva."
+        },
+        "features": {
+          "0": {
+            "it": "Sviluppo Cross-Platform (React Native/Expo)",
+            "en": "Cross-Platform Development (React Native/Expo)",
+            "es": "Desarrollo Multiplataforma (React Native/Expo)"
+          },
+          "1": {
+            "it": "Design UI/UX curato nel dettaglio",
+            "en": "Detailed UI/UX design",
+            "es": "Diseño UI/UX cuidado al detalle"
+          },
+          "2": {
+            "it": "Pubblicazione e gestione sugli Store",
+            "en": "Publishing and Store management",
+            "es": "Publicación y gestión en las Tiendas"
+          },
+          "3": {
+            "it": "Integrazione notifiche e funzionalità native",
+            "en": "Notifications and native features integration",
+            "es": "Integración de notificaciones y funcionalidades nativas"
+          }
+        }
+      },
+      "ai": {
+        "title": {
+          "it": "Integrazione AI & Automazione",
+          "en": "AI Integration & Automation",
+          "es": "Integración de IA y Automatización"
+        },
+        "description": {
+          "it": "Il futuro è ora. Integro modelli di Intelligenza Artificiale (come GPT) nei tuoi software per automatizzare task ripetitivi e offrire funzionalità avanzate ai tuoi utenti.",
+          "en": "The future is now. I integrate Artificial Intelligence models (like GPT) into your software to automate repetitive tasks and offer advanced features to your users.",
+          "es": "El futuro es ahora. Integro modelos de Inteligencia Artificial (como GPT) en tu software para automatizar tareas repetitivas y ofrecer funcionalidades avanzadas a tus usuarios."
+        },
+        "features": {
+          "0": {
+            "it": "Chatbot e Assistenti Virtuali intelligenti",
+            "en": "Intelligent Chatbots and Virtual Assistants",
+            "es": "Chatbots y Asistentes Virtuales inteligentes"
+          },
+          "1": {
+            "it": "Analisi dati automatizzata",
+            "en": "Automated data analysis",
+            "es": "Análisis de datos automatizado"
+          },
+          "2": {
+            "it": "Generazione contenuti via AI",
+            "en": "AI-powered content generation",
+            "es": "Generación de contenidos mediante IA"
+          },
+          "3": {
+            "it": "Ottimizzazione flussi di lavoro",
+            "en": "Workflow optimization",
+            "es": "Optimización de flujos de trabajo"
+          }
+        }
+      }
+    }
+  },
+  "footer": {
+    "rights": {
+      "it": "Tutti i diritti riservati",
+      "en": "All rights reserved",
+      "es": "Todos los derechos reservados"
+    }
+  }
+}

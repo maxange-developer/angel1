@@ -1,0 +1,63 @@
+{
+  "slug": "la-mia-storia",
+  "title": "Il Silenzio, il Rumore e la Rinascita: La mia storia",
+  "date": "2025-12-08",
+  "excerpt": "Tutto è iniziato a due anni. Un errore medico, una diagnosi mancata e il silenzio che è sceso improvviso. Questa è la storia di come ho trasformato un ostacolo insormontabile nella mia più grande forza.",
+  "coverImage": "/images/me-5.PNG",
+  "category": "Personal",
+  "chapters": [
+    {
+      "title": "Il Silenzio Improvviso",
+      "content": "Tutto è iniziato a due anni. Un errore medico, una diagnosi mancata di adenoidi infiammate, e il muco che, silenzioso e inesorabile, mi ha perforato entrambi i timpani. La sentenza dei dottori fu brutale e definitiva: \"Vostro figlio diventerà sordo\".\n\nMentre i miei coetanei imparavano ad ascoltare il mondo, io imparavo a convivere con il silenzio e con le otiti continue. Niente acqua nelle orecchie, capelli rasati a zero per evitare il sudore, e un senso di isolamento che cresceva giorno dopo giorno.",
+      "images": [
+        {
+          "src": "/images/babyme.jpg",
+          "alt": "Baby Me"
+        },
+        {
+          "src": "/images/family-5.jpg",
+          "alt": "Famiglia"
+        }
+      ]
+    },
+    {
+      "title": "L'Isolamento",
+      "content": "Non sentivo, eppure la mia mente correva veloce. Ho imparato a scrivere prestissimo e la logica è diventata il mio rifugio: in prima elementare vinsi il torneo di scacchi contro bambini di quarta e quinta, senza aver mai studiato il gioco.\n\nMa la scuola non perdona chi è diverso. Venivo messo in un angolo perché le mie orecchie, malate, emanavano cattivo odore. Venivo sgridato perché chiedevo continuamente di ripetere. \"Non ho capito\", dicevo. Ma non era disattenzione, era impossibilità.\n\nHo perso le basi della grammatica, ho faticato a comunicare, e il mio percorso scolastico ne ha risentito pesantemente. Bocciato al secondo anno di liceo, mi sono sentito sconfitto dal sistema.",
+      "images": [
+        {
+          "src": "/images/babyme-4.JPG",
+          "alt": "Famiglia"
+        },
+        {
+          "src": "/images/family-3.JPG",
+          "alt": "Famiglia"
+        }
+      ]
+    },
+    {
+      "title": "La Speranza",
+      "content": "I miei genitori, i miei eroi, non si sono mai arresi. Abbiamo girato l'Italia intera. A 11 anni, a Padova, un anziano dottore ci propose un intervento sperimentale. Ricordo il freddo di quell'ospedale, ma ricordo anche la mia calma. Ero un bambino, ma avevo la forza di un adulto.\n\nL'intervento fallì. Il dottore andò in pensione. Eravamo punto a capo. Ma prima di lasciare, ci diede un nome: Dottor Trabalzini. Un giovane dottore agli inizi e suo braccio destro.",
+      "images": []
+    },
+    {
+      "title": "Il Miracolo",
+      "content": "Trabalzini provò la stessa tecnica. Fallì di nuovo. Un anno dopo, ero ancora sotto i ferri. Il tessuto non reggeva. Tornammo a casa distrutti.\n\nMa la resilienza è contagiosa. Il dottore studiò una nuova soluzione: usare la cartilagine, un tessuto più rigido, per ricostruire il timpano. Nessuno lo aveva mai fatto in Italia.\n\nUn anno dopo, ero di nuovo in sala operatoria. Sorridevo. Sapevo che quella era la volta buona. E lo fu.\n\nA 14 anni, dopo 12 anni di silenzio parziale, il mondo tornò ad avere un suono chiaro e limpido. Ho fatto il mio primo bagno con la testa sott'acqua. Ho imparato a nuotare insieme ai bambini piccoli. Ho lasciato crescere i miei capelli. Ero libero.",
+      "images": []
+    },
+    {
+      "title": "Creare la Propria Realtà",
+      "content": "Oggi quel dottore è primario al Meyer di Firenze e salva l'udito a centinaia di bambini con quella stessa tecnica. Ho avuto l'onore di ringraziarlo poco tempo fa, e lui ha ringraziato me. Io ho salvato la sua carriera, lui ha salvato la mia vita.\n\nQuesta esperienza mi ha insegnato che la realtà non è fissa: la creiamo noi. Se avessi ascoltato la prima diagnosi, oggi sarei sordo. Invece sono qui, a Tenerife, a costruire il mio futuro.\n\nHo capito che il sistema tradizionale \"casa-lavoro-casa\" non fa per me. Ho scelto di inseguire il benessere, le relazioni e la libertà. Ho scelto di diventare sviluppatore per creare, ovunque io sia.\n\nTuttavia, nulla di tutto questo è stato immediato o gratuito. Ci sono voluti anni di sacrifici, tentativi falliti e notti insonni per arrivare dove sono oggi. La libertà che vivo ora è il frutto di una lunga semina, non di un colpo di fortuna.",
+      "images": [
+        {
+          "src": "/images/me.jpg",
+          "alt": "Me"
+        }
+      ]
+    },
+    {
+      "title": "Oggi",
+      "content": "Oggi scrivo codice, viaggio con Holly e vivo la vita che mi ero promesso. Le cicatrici restano, ma non fanno più male: mi ricordano solo che tutto è possibile, se hai la forza di non ascoltare chi ti dice \"non si può fare\".",
+      "images": []
+    }
+  ]
+}

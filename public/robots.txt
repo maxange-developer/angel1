@@ -1,0 +1,10 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+Disallow: /api/
+
+# Crawl-delay
+Crawl-delay: 0
+
+# Sitemap
+Sitemap: https://massimilianoangelone.com/sitemap.xml
