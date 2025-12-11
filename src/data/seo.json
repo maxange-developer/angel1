@@ -1,0 +1,95 @@
+{
+  "it": {
+    "home": {
+      "title": "Massimiliano Angelone | Full Stack Developer | Italia & Tenerife",
+      "description": "Full Stack Developer specializzato in React, Next.js e Node.js. Creo soluzioni web moderne e performanti. Disponibile per progetti in Italia e Tenerife.",
+      "keywords": "full stack developer, sviluppatore web, React developer, Next.js, Node.js, Italia, Tenerife, Ancona, sviluppo web, programmatore, freelance developer",
+      "og:title": "Massimiliano Angelone - Full Stack Developer",
+      "og:description": "Sviluppatore Full Stack con esperienza in React, Next.js e tecnologie moderne. Portfolio e servizi di sviluppo web.",
+      "location": "Italia, Tenerife"
+    },
+    "services": {
+      "title": "Servizi di Sviluppo Web | Full Stack Developer | Massimiliano Angelone",
+      "description": "Offro servizi di sviluppo web professionale: applicazioni web, app mobile, chatbot AI. Tecnologie moderne, soluzioni su misura per la tua azienda in Italia e Tenerife.",
+      "keywords": "servizi sviluppo web, applicazioni web, sviluppo app mobile, chatbot AI, React, Next.js, sviluppatore freelance, Italia, Tenerife, sviluppo software",
+      "og:title": "Servizi di Sviluppo Web - Massimiliano Angelone",
+      "og:description": "Sviluppo applicazioni web, app mobile e chatbot AI con tecnologie moderne. Soluzioni professionali per la tua azienda."
+    },
+    "blog": {
+      "title": "La Mia Storia | Da Ancona a Tenerife | Massimiliano Angelone",
+      "description": "La mia storia personale: dall'infanzia ad Ancona al trasferimento a Tenerife, passando per Vietnam e Barcellona. Un viaggio di crescita, scoperta e trasformazione personale.",
+      "keywords": "la mia storia, storia personale, Ancona, Tenerife, Vietnam, Barcellona, crescita personale, viaggio di vita, nomade digitale, trasferimento Tenerife",
+      "og:title": "La Mia Storia - Da Ancona a Tenerife",
+      "og:description": "Il mio viaggio personale: dall'infanzia ad Ancona ai viaggi che hanno cambiato la mia vita, fino al trasferimento a Tenerife."
+    },
+    "timeline": {
+      "title": "Timeline | Il Mio Percorso Professionale | Massimiliano Angelone",
+      "description": "Esplora la mia timeline professionale: esperienze lavorative, viaggi formativi, progetti e traguardi raggiunti come Full Stack Developer.",
+      "keywords": "timeline professionale, esperienza lavorativa, portfolio sviluppatore, percorso professionale, progetti web, Italia, Tenerife",
+      "og:title": "Timeline Professionale - Massimiliano Angelone",
+      "og:description": "Il mio percorso professionale: esperienze, progetti e viaggi che hanno formato chi sono oggi."
+    }
+  },
+  "en": {
+    "home": {
+      "title": "Massimiliano Angelone | Full Stack Developer | Italy & Tenerife",
+      "description": "Full Stack Developer specialized in React, Next.js and Node.js. Creating modern and performant web solutions. Available for projects in Italy and Tenerife.",
+      "keywords": "full stack developer, web developer, React developer, Next.js, Node.js, Italy, Tenerife, Ancona, web development, programmer, freelance developer",
+      "og:title": "Massimiliano Angelone - Full Stack Developer",
+      "og:description": "Full Stack Developer with experience in React, Next.js and modern technologies. Portfolio and web development services.",
+      "location": "Italy, Tenerife"
+    },
+    "services": {
+      "title": "Web Development Services | Full Stack Developer | Massimiliano Angelone",
+      "description": "Professional web development services: web applications, mobile apps, AI chatbots. Modern technologies, tailored solutions for your business in Italy and Tenerife.",
+      "keywords": "web development services, web applications, mobile app development, AI chatbot, React, Next.js, freelance developer, Italy, Tenerife, software development",
+      "og:title": "Web Development Services - Massimiliano Angelone",
+      "og:description": "Web applications, mobile apps and AI chatbots development with modern technologies. Professional solutions for your business."
+    },
+    "blog": {
+      "title": "My Story | From Ancona to Tenerife | Massimiliano Angelone",
+      "description": "My personal story: from childhood in Ancona to moving to Tenerife, through Vietnam and Barcelona. A journey of growth, discovery and personal transformation.",
+      "keywords": "my story, personal story, Ancona, Tenerife, Vietnam, Barcelona, personal growth, life journey, digital nomad, moving to Tenerife",
+      "og:title": "My Story - From Ancona to Tenerife",
+      "og:description": "My personal journey: from childhood in Ancona to the travels that changed my life, up to moving to Tenerife."
+    },
+    "timeline": {
+      "title": "Timeline | My Professional Journey | Massimiliano Angelone",
+      "description": "Explore my professional timeline: work experiences, formative travels, projects and achievements as a Full Stack Developer.",
+      "keywords": "professional timeline, work experience, developer portfolio, career path, web projects, Italy, Tenerife",
+      "og:title": "Professional Timeline - Massimiliano Angelone",
+      "og:description": "My professional journey: experiences, projects and travels that shaped who I am today."
+    }
+  },
+  "es": {
+    "home": {
+      "title": "Massimiliano Angelone | Desarrollador Full Stack | Italia y Tenerife",
+      "description": "Desarrollador Full Stack especializado en React, Next.js y Node.js. Creo soluciones web modernas y eficientes. Disponible para proyectos en Italia y Tenerife.",
+      "keywords": "desarrollador full stack, desarrollador web, React developer, Next.js, Node.js, Italia, Tenerife, Ancona, desarrollo web, programador, freelance developer",
+      "og:title": "Massimiliano Angelone - Desarrollador Full Stack",
+      "og:description": "Desarrollador Full Stack con experiencia en React, Next.js y tecnologías modernas. Portfolio y servicios de desarrollo web.",
+      "location": "Italia, Tenerife"
+    },
+    "services": {
+      "title": "Servicios de Desarrollo Web | Desarrollador Full Stack | Massimiliano Angelone",
+      "description": "Servicios profesionales de desarrollo web: aplicaciones web, apps móviles, chatbots IA. Tecnologías modernas, soluciones a medida para tu empresa en Italia y Tenerife.",
+      "keywords": "servicios desarrollo web, aplicaciones web, desarrollo app móvil, chatbot IA, React, Next.js, desarrollador freelance, Italia, Tenerife, desarrollo software",
+      "og:title": "Servicios de Desarrollo Web - Massimiliano Angelone",
+      "og:description": "Desarrollo de aplicaciones web, apps móviles y chatbots IA con tecnologías modernas. Soluciones profesionales para tu empresa."
+    },
+    "blog": {
+      "title": "Mi Historia | De Ancona a Tenerife | Massimiliano Angelone",
+      "description": "Mi historia personal: desde la infancia en Ancona hasta la mudanza a Tenerife, pasando por Vietnam y Barcelona. Un viaje de crecimiento, descubrimiento y transformación personal.",
+      "keywords": "mi historia, historia personal, Ancona, Tenerife, Vietnam, Barcelona, crecimiento personal, viaje de vida, nómada digital, mudanza a Tenerife",
+      "og:title": "Mi Historia - De Ancona a Tenerife",
+      "og:description": "Mi viaje personal: desde la infancia en Ancona a los viajes que cambiaron mi vida, hasta la mudanza a Tenerife."
+    },
+    "timeline": {
+      "title": "Timeline | Mi Trayectoria Profesional | Massimiliano Angelone",
+      "description": "Explora mi timeline profesional: experiencias laborales, viajes formativos, proyectos y logros como Desarrollador Full Stack.",
+      "keywords": "timeline profesional, experiencia laboral, portfolio desarrollador, trayectoria profesional, proyectos web, Italia, Tenerife",
+      "og:title": "Timeline Profesional - Massimiliano Angelone",
+      "og:description": "Mi trayectoria profesional: experiencias, proyectos y viajes que formaron quien soy hoy."
+    }
+  }
+}

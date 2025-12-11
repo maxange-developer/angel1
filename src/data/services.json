@@ -1,0 +1,38 @@
+[
+  {
+    "id": "web-app",
+    "title": "Sviluppo Web App & Software",
+    "description": "Creo applicazioni web veloci, sicure e scalabili. Non semplici siti vetrina, ma veri e propri software in cloud che ottimizzano i tuoi processi aziendali.",
+    "features": [
+      "Architetture moderne (Next.js, Angular, .NET)",
+      "Dashboard amministrative intuitive",
+      "Performance ottimizzate e SEO-friendly",
+      "Sicurezza e scalabilità enterprise"
+    ],
+    "icon": "Code"
+  },
+  {
+    "id": "mobile",
+    "title": "Sviluppo Mobile (iOS & Android)",
+    "description": "Porto la tua idea sugli store di Apple e Google. Sviluppo app native e cross-platform che offrono un'esperienza utente fluida e coinvolgente.",
+    "features": [
+      "Sviluppo Cross-Platform (React Native/Expo)",
+      "Design UI/UX curato nel dettaglio",
+      "Pubblicazione e gestione sugli Store",
+      "Integrazione notifiche e funzionalità native"
+    ],
+    "icon": "Smartphone"
+  },
+  {
+    "id": "ai",
+    "title": "Integrazione AI & Automazione",
+    "description": "Il futuro è ora. Integro modelli di Intelligenza Artificiale (come GPT) nei tuoi software per automatizzare task ripetitivi e offrire funzionalità avanzate ai tuoi utenti.",
+    "features": [
+      "Chatbot e Assistenti Virtuali intelligenti",
+      "Analisi dati automatizzata",
+      "Generazione contenuti via AI",
+      "Ottimizzazione flussi di lavoro"
+    ],
+    "icon": "Bot"
+  }
+]

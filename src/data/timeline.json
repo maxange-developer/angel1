@@ -1,0 +1,157 @@
+[
+  {
+    "id": "ancona",
+    "type": "travel",
+    "date": "23 Aprile 2001",
+    "title": "Ancona: Dove tutto è iniziato",
+    "description": "Non è solo il luogo dove sono nato, è la base di tutto ciò che sono. Qui ho costruito le mie prime relazioni, ho imparato il valore della famiglia e ho acquisito le competenze che oggi mi permettono di girare il mondo.",
+    "images": [
+      "/images/ancona-3.jpg",
+      "/images/ancona-2.jpg",
+      "/images/ancona-4.jpg",
+      "/images/ancona-10.jpg"
+    ],
+    "slug": "ancona-le-radici"
+  },
+  {
+    "id": "start2impact",
+    "type": "work",
+    "date": "Dic 2022 - Gen 2024",
+    "title": "Start2Impact University",
+    "role": "Studente Full Stack Development",
+    "description": "Un percorso intensivo pratico che ha spaziato dalle basi del web (HTML/CSS/JS) fino ad architetture complesse. Ho completato moduli su React, Angular, Node.js, PHP e MySQL, superando esami teorici e realizzando progetti pratici valutati da professionisti del settore.",
+    "stack": ["React", "Angular", "Node.js", "PHP", "MySQL"],
+    "images": ["/images/start2impact-logo.webp"],
+    "url": "https://www.start2impact.it/"
+  },
+  {
+    "id": "tenerife-2023",
+    "type": "travel",
+    "date": "Set 2023",
+    "title": "Tenerife: La Prima Visita",
+    "description": "Viaggio di quasi un mese, ho visitato tutta l'isola. Era la prima volta ed è stato stupendo: paesaggi fantastici, persone sorridenti. Mi sono promesso che un giorno mi ci sarei trasferito.",
+    "images": [
+      "/images/tn23-1.jpg",
+      "/images/tn23-7.jpg",
+      "/images/tn23-8.jpg",
+      "/images/tn23-4.jpg",
+      "/images/tn23-5.jpg"
+    ],
+    "slug": "tenerife-nuova-casa"
+  },
+  {
+    "id": "altesia",
+    "type": "work",
+    "date": "Gen 2024 - Dic 2024",
+    "title": "Altesia - Gruppo Fileni",
+    "role": "Full Stack Developer (.NET / Angular)",
+    "description": "Ho lavorato alla modernizzazione dell'infrastruttura aziendale, convertendo legacy app (VB6) in moderne WebApp Angular con backend .NET. In un team Agile di 7 persone, ho gestito l'intero ciclo di vita del software.",
+    "stack": ["Angular", "C#", ".NET Framework", "SQL Server", "GitLab"],
+    "images": ["/images/logo_ALTESIA.svg"],
+    "url": "https://www.altesia.it/"
+  },
+  {
+    "id": "barcellona",
+    "type": "travel",
+    "date": "Set 2024",
+    "title": "Barcellona: Reset & Ripartenza",
+    "description": "Una settimana ospite di mio cugino Miki. Tra 15km di camminate giornaliere, bagni ghiacciati e discorsi profondi, ho ritrovato la forza in un momento difficile.",
+    "images": [
+      "/images/ioe&miki-after.jpg",
+      "/images/io&miki-before.jpg",
+      "/images/barcellona-3.jpg",
+      "/images/barcellona-7.jpg",
+      "/images/barcellona-8.jpg",
+      "/images/barcellona-2.jpg"
+    ],
+    "slug": "barcellona-reset"
+  },
+  {
+    "id": "vietnam",
+    "type": "travel",
+    "date": "Dic 2024",
+    "title": "Vietnam: Il Risveglio",
+    "description": "20 giorni a Phu Quoc, un viaggio in solitaria dall'altra parte del mondo. Ho toccato con mano la serenità della filosofia buddista, trovando una pace interiore che mi ha cambiato per sempre.",
+    "images": [
+      "/images/vietnam-20.jpg",
+      "/images/vietnam-18.jpg",
+      "/images/vietnam-19.jpg",
+      "/images/vietnam-21.jpg",
+      "/images/vietnam-7.jpg",
+      "/images/vietnam-6.jpg",
+      "/images/vietnam-3.jpg",
+      "/images/vietnam-11.jpg",
+      "/images/vietnam-4.jpg"
+    ],
+    "slug": "vietnam-il-risveglio"
+  },
+  {
+    "id": "airplay",
+    "type": "work",
+    "date": "Gen 2025 - Presente",
+    "title": "Airplay Control - RAI",
+    "role": "Software Engineer (Broadcasting & AI)",
+    "description": "Sviluppo soluzioni critiche per il broadcasting in un team internazionale. Mi occupo di creare nuove WebApp in Angular e .NET, manutenere sistemi esistenti e sviluppare tool in Python per l'automazione dei processi.",
+    "stack": ["Angular", "React", ".NET", "Python", "AI Integration"],
+    "images": ["/images/airplay-logo.png"],
+    "url": "https://www.airplaycontrol.com/"
+  },
+  {
+    "id": "holly",
+    "type": "milestone",
+    "date": "Apr 2025",
+    "title": "Holly: Il Compagno di Viaggio",
+    "description": "Trovato sotto un'auto, ora esplora il Mondo con me. Nonostante abbia sempre preferito i cani, Holly mi ha scelto. Gli ho promesso che avremmo visto il mondo insieme.",
+    "images": [
+      "/images/holly-2.jpg",
+      "/images/holly-1.JPG",
+      "/images/holly-8.jpg",
+      "/images/holly-5.jpg",
+      "/images/holly-3.jpg"
+    ]
+  },
+  {
+    "id": "freelance",
+    "type": "work",
+    "date": "Apr 2025 - Presente",
+    "title": "Freelance - Angel1",
+    "role": "Mobile & Web Developer / AI Specialist",
+    "description": "Aiuto aziende e privati a realizzare la loro visione digitale. Offro sviluppo di App Mobile e Web su misura, con un forte focus sulla User Experience (UI/UX) e sull'integrazione di agenti AI.",
+    "stack": ["React Native", "Expo", "WebApp", "AI"],
+    "images": ["/images/logo/logo-black.png"]
+  },
+  {
+    "id": "spain-roadtrip",
+    "type": "travel",
+    "date": "Ott 2025",
+    "title": "Road Trip Spagna",
+    "description": "10 giorni in macchina per tutta la costa spagnola con Holly. Da Barcellona a Cadice, passando per Alicante, Marbella e Malaga. Un viaggio verso la libertà.",
+    "images": [
+      "/images/spain-6.jpg",
+      "/images/spain-3.jpg",
+      "/images/spain-4.jpg",
+      "/images/spain-5.jpg",
+      "/images/spain-1.jpg"
+    ],
+    "slug": "road-trip-spagna"
+  },
+  {
+    "id": "tenerife-trasferimento",
+    "type": "travel",
+    "date": "Ott 2025",
+    "title": "Trasferimento a Tenerife",
+    "description": "Ora vivo a Tenerife. Mi sono trasferito con il mio gatto e sono venuto qua perché è un posto in cui mi trovo benissimo. Voglio concentrarmi sul mio lavoro da developer e sul mio benessere.",
+    "images": [
+      "/images/tn25-8.jpg",
+      "/images/tn25-12.jpg",
+      "/images/tn25-7.jpg",
+      "/images/tn25-6.jpg",
+      "/images/tn25-3.jpg",
+      "/images/tn25-10.jpg",
+      "/images/tn25-5.jpg",
+      "/images/tn25-2.JPG",
+      "/images/me-15.jpg"
+    ],
+    "slug": "tenerife-nuova-casa"
+  }
+]

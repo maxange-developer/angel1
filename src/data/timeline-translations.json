@@ -1,0 +1,154 @@
+{
+  "ancona": {
+    "title": {
+      "it": "Ancona: Dove tutto è iniziato",
+      "en": "Ancona: Where It All Began",
+      "es": "Ancona: Donde Todo Comenzó"
+    },
+    "description": {
+      "it": "Non è solo il luogo dove sono nato, è la base di tutto ciò che sono. Qui ho costruito le mie prime relazioni, ho imparato il valore della famiglia e ho acquisito le competenze che oggi mi permettono di girare il mondo.",
+      "en": "It's not just where I was born, it's the foundation of everything I am. Here I built my first relationships, learned the value of family, and acquired the skills that allow me to travel the world today.",
+      "es": "No es solo el lugar donde nací, es la base de todo lo que soy. Aquí construí mis primeras relaciones, aprendí el valor de la familia y adquirí las habilidades que hoy me permiten viajar por el mundo."
+    }
+  },
+  "start2impact": {
+    "title": {
+      "it": "Start2Impact University",
+      "en": "Start2Impact University",
+      "es": "Start2Impact University"
+    },
+    "role": {
+      "it": "Studente Full Stack Development",
+      "en": "Full Stack Development Student",
+      "es": "Estudiante de Desarrollo Full Stack"
+    },
+    "description": {
+      "it": "Un percorso intensivo pratico che ha spaziato dalle basi del web (HTML/CSS/JS) fino ad architetture complesse. Ho completato moduli su React, Angular, Node.js, PHP e MySQL, superando esami teorici e realizzando progetti pratici valutati da professionisti del settore.",
+      "en": "An intensive hands-on program spanning from web basics (HTML/CSS/JS) to complex architectures. I completed modules on React, Angular, Node.js, PHP and MySQL, passing theoretical exams and building practical projects evaluated by industry professionals.",
+      "es": "Un programa intensivo práctico que abarcó desde los fundamentos de la web (HTML/CSS/JS) hasta arquitecturas complejas. Completé módulos sobre React, Angular, Node.js, PHP y MySQL, superando exámenes teóricos y realizando proyectos prácticos evaluados por profesionales del sector."
+    }
+  },
+  "tenerife-2023": {
+    "title": {
+      "it": "Tenerife: La Prima Visita",
+      "en": "Tenerife: The First Visit",
+      "es": "Tenerife: La Primera Visita"
+    },
+    "description": {
+      "it": "Viaggio di quasi un mese, ho visitato tutta l'isola. Era la prima volta ed è stato stupendo: paesaggi fantastici, persone sorridenti. Mi sono promesso che un giorno mi ci sarei trasferito.",
+      "en": "A nearly month-long trip, I visited the entire island. It was my first time and it was wonderful: fantastic landscapes, smiling people. I promised myself I would move there one day.",
+      "es": "Un viaje de casi un mes, visité toda la isla. Era la primera vez y fue maravilloso: paisajes fantásticos, gente sonriente. Me prometí que algún día me mudaría allí."
+    }
+  },
+  "altesia": {
+    "title": {
+      "it": "Altesia - Gruppo Fileni",
+      "en": "Altesia - Fileni Group",
+      "es": "Altesia - Grupo Fileni"
+    },
+    "role": {
+      "it": "Full Stack Developer (.NET / Angular)",
+      "en": "Full Stack Developer (.NET / Angular)",
+      "es": "Desarrollador Full Stack (.NET / Angular)"
+    },
+    "description": {
+      "it": "Ho lavorato alla modernizzazione dell'infrastruttura aziendale, convertendo legacy app (VB6) in moderne WebApp Angular con backend .NET. In un team Agile di 7 persone, ho gestito l'intero ciclo di vita del software.",
+      "en": "I worked on modernizing the company infrastructure, converting legacy apps (VB6) into modern Angular WebApps with .NET backend. In an Agile team of 7, I managed the entire software lifecycle.",
+      "es": "Trabajé en la modernización de la infraestructura empresarial, convirtiendo aplicaciones legacy (VB6) en modernas WebApps Angular con backend .NET. En un equipo Ágil de 7 personas, gestioné todo el ciclo de vida del software."
+    }
+  },
+  "barcellona": {
+    "title": {
+      "it": "Barcellona: Reset & Ripartenza",
+      "en": "Barcelona: Reset & Restart",
+      "es": "Barcelona: Reinicio y Nueva Partida"
+    },
+    "description": {
+      "it": "Una settimana ospite di mio cugino Miki. Tra 15km di camminate giornaliere, bagni ghiacciati e discorsi profondi, ho ritrovato la forza in un momento difficile.",
+      "en": "A week staying with my cousin Miki. Between 15km daily walks, ice baths and deep conversations, I found strength in a difficult time.",
+      "es": "Una semana como invitado de mi primo Miki. Entre caminatas diarias de 15km, baños helados y conversaciones profundas, encontré fuerza en un momento difícil."
+    }
+  },
+  "vietnam": {
+    "title": {
+      "it": "Vietnam: Il Risveglio",
+      "en": "Vietnam: The Awakening",
+      "es": "Vietnam: El Despertar"
+    },
+    "description": {
+      "it": "20 giorni a Phu Quoc, un viaggio in solitaria dall'altra parte del mondo. Ho toccato con mano la serenità della filosofia buddista, trovando una pace interiore che mi ha cambiato per sempre.",
+      "en": "20 days in Phu Quoc, a solo journey to the other side of the world. I experienced firsthand the serenity of Buddhist philosophy, finding an inner peace that changed me forever.",
+      "es": "20 días en Phu Quoc, un viaje en solitario al otro lado del mundo. Experimenté de primera mano la serenidad de la filosofía budista, encontrando una paz interior que me cambió para siempre."
+    }
+  },
+  "airplay": {
+    "title": {
+      "it": "Airplay Control - RAI",
+      "en": "Airplay Control - RAI",
+      "es": "Airplay Control - RAI"
+    },
+    "role": {
+      "it": "Software Engineer (Broadcasting & AI)",
+      "en": "Software Engineer (Broadcasting & AI)",
+      "es": "Ingeniero de Software (Broadcasting e IA)"
+    },
+    "description": {
+      "it": "Sviluppo soluzioni critiche per il broadcasting in un team internazionale. Mi occupo di creare nuove WebApp in Angular e .NET, manutenere sistemi esistenti e sviluppare tool in Python per l'automazione dei processi.",
+      "en": "I develop critical broadcasting solutions in an international team. I create new WebApps in Angular and .NET, maintain existing systems, and develop Python tools for process automation.",
+      "es": "Desarrollo soluciones críticas para broadcasting en un equipo internacional. Me encargo de crear nuevas WebApps en Angular y .NET, mantener sistemas existentes y desarrollar herramientas en Python para la automatización de procesos."
+    }
+  },
+  "holly": {
+    "title": {
+      "it": "Holly: Il Compagno di Viaggio",
+      "en": "Holly: The Travel Companion",
+      "es": "Holly: El Compañero de Viaje"
+    },
+    "description": {
+      "it": "Trovato sotto un'auto, ora esplora il Mondo con me. Nonostante abbia sempre preferito i cani, Holly mi ha scelto. Gli ho promesso che avremmo visto il mondo insieme.",
+      "en": "Found under a car, now exploring the World with me. Despite always preferring dogs, Holly chose me. I promised him we would see the world together.",
+      "es": "Encontrado debajo de un auto, ahora explora el Mundo conmigo. A pesar de que siempre preferí los perros, Holly me eligió. Le prometí que veríamos el mundo juntos."
+    }
+  },
+  "freelance": {
+    "title": {
+      "it": "Freelance - Angel1",
+      "en": "Freelance - Angel1",
+      "es": "Freelance - Angel1"
+    },
+    "role": {
+      "it": "Mobile & Web Developer / AI Specialist",
+      "en": "Mobile & Web Developer / AI Specialist",
+      "es": "Desarrollador Mobile y Web / Especialista en IA"
+    },
+    "description": {
+      "it": "Aiuto aziende e privati a realizzare la loro visione digitale. Offro sviluppo di App Mobile e Web su misura, con un forte focus sulla User Experience (UI/UX) e sull'integrazione di agenti AI.",
+      "en": "I help businesses and individuals realize their digital vision. I offer custom Mobile and Web App development, with a strong focus on User Experience (UI/UX) and AI agent integration.",
+      "es": "Ayudo a empresas y particulares a realizar su visión digital. Ofrezco desarrollo de aplicaciones móviles y web a medida, con un fuerte enfoque en la experiencia de usuario (UI/UX) y la integración de agentes de IA."
+    }
+  },
+  "spain-roadtrip": {
+    "title": {
+      "it": "Road Trip Spagna",
+      "en": "Spain Road Trip",
+      "es": "Viaje por Carretera en España"
+    },
+    "description": {
+      "it": "10 giorni in macchina per tutta la costa spagnola con Holly. Da Barcellona a Cadice, passando per Alicante, Marbella e Malaga. Un viaggio verso la libertà.",
+      "en": "10 days driving along the entire Spanish coast with Holly. From Barcelona to Cadiz, through Alicante, Marbella and Malaga. A journey towards freedom.",
+      "es": "10 días en coche por toda la costa española con Holly. De Barcelona a Cádiz, pasando por Alicante, Marbella y Málaga. Un viaje hacia la libertad."
+    }
+  },
+  "tenerife-trasferimento": {
+    "title": {
+      "it": "Trasferimento a Tenerife",
+      "en": "Moving to Tenerife",
+      "es": "Mudanza a Tenerife"
+    },
+    "description": {
+      "it": "Ora vivo a Tenerife. Mi sono trasferito con il mio gatto e sono venuto qua perché è un posto in cui mi trovo benissimo. Voglio concentrarmi sul mio lavoro da developer e sul mio benessere.",
+      "en": "Now I live in Tenerife. I moved with my cat and came here because it's a place where I feel great. I want to focus on my developer work and my well-being.",
+      "es": "Ahora vivo en Tenerife. Me mudé con mi gato y vine aquí porque es un lugar donde me siento genial. Quiero concentrarme en mi trabajo como desarrollador y en mi bienestar."
+    }
+  }
+}
