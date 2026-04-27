@@ -13,19 +13,19 @@ export default function SEO({
   page,
   customTitle,
   customDescription,
-  image = "/images/me-5.PNG",
+  image = "/images/me-5.webp",
 }: SEOProps) {
   const { currentLang } = useTranslation();
   const seo = (seoData as any)[currentLang][page];
 
   const title = customTitle || seo.title;
   const description = customDescription || seo.description;
-  const url = `https://massimilianoangeli.com/${
+  const url = `https://wwww.massimilianoangelone.com/${
     currentLang === "it" ? "" : currentLang
   }`;
   const imageUrl = image.startsWith("http")
     ? image
-    : `https://massimilianoangeli.com${image}`;
+    : `https://massimilianoangelone.com${image}`;
 
   // JSON-LD Schema for Person (homepage)
   const personSchema = {
@@ -33,11 +33,11 @@ export default function SEO({
     "@type": "Person",
     name: "Massimiliano Angelone",
     jobTitle: "Full Stack Developer",
-    url: "https://massimilianoangelone.com",
-    image: "https://massimilianoangelone.com/images/me-5.PNG",
+    url: "https://wwww.massimilianoangelone.com",
+    image: "https://wwww.massimilianoangelone.com/images/me-5.webp",
     sameAs: [
-      "https://www.linkedin.com/in/massimiliano-angelone",
-      "https://www.instagram.com/massimiliano.angelone",
+      "https://www.linkedin.com/in/massiangelone",
+      "https://www.instagram.com/massi_angelone",
     ],
     knowsAbout: [
       "React",
@@ -67,7 +67,7 @@ export default function SEO({
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Massimiliano Angelone",
-    url: "https://massimilianoangelone.com",
+    url: "https://www.massimilianoangelone.com",
     description: description,
     inLanguage: [
       currentLang === "it" ? "it-IT" : currentLang === "en" ? "en-US" : "es-ES",
@@ -139,22 +139,22 @@ export default function SEO({
       <link
         rel="alternate"
         hrefLang="it"
-        href="https://massimilianoangelone.com/"
+        href="https://www.massimilianoangelone.com/"
       />
       <link
         rel="alternate"
         hrefLang="en"
-        href="https://massimilianoangelone.com/en"
+        href="https://www.massimilianoangelone.com/en"
       />
       <link
         rel="alternate"
         hrefLang="es"
-        href="https://massimilianoangelone.com/es"
+        href="https://www.massimilianoangelone.com/es"
       />
       <link
         rel="alternate"
         hrefLang="x-default"
-        href="https://massimilianoangelone.com/"
+        href="https://www.massimilianoangelone.com/"
       />
 
       {/* Favicon */}

@@ -13,6 +13,20 @@
 # production
 /build
 
+# original images backup (excluded from repo and build)
+/images-original
+
+# local working images folder (root level)
+/images
+
+# local files (not tracked in git)
+/files
+# local monetization drafts and assets
+/monetization
+
+# growth & content planning (not tracked in git)
+/growth-plan/
+
 # misc
 .DS_Store
 *.pem
@@ -34,7 +48,9 @@ next-env.d.ts
 
 # Project assets not to be committed
 /planning/
-/images/
+
+# Interview prep (personal notes)
+COLLOQUIO.md
 
 # IDE
 .vscode/
@@ -44,7 +60,6 @@ next-env.d.ts
 *~
 
 # OS
-.DS_Store
 Thumbs.db
 
 # Logs
@@ -55,8 +70,3 @@ logs/
 *.tmp
 *.temp
 .cache/
-
-# Documentation (optional - rimuovi se vuoi committare le guide)
-DOMINIO_GUIDA.md
-DEPLOYMENT.md
-SEO_GUIDE.md

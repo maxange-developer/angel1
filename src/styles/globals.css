@@ -51,9 +51,39 @@ body {
 
 /* Glass Morphism */
 .glass {
-  background: rgba(255, 255, 255, 0.03);
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.01)
+  );
   backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+/* Fallback for browsers without backdrop-filter support */
+@supports not (backdrop-filter: blur(10px)) {
+  .glass {
+    background: rgba(0, 0, 0, 0.7);
+  }
+}
+
+/* Glass Morphism for dropdown menu with blue fallback */
+.glass-menu {
+  background: linear-gradient(
+    135deg,
+    rgba(255, 255, 255, 0.05),
+    rgba(255, 255, 255, 0.01)
+  );
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+@supports not (backdrop-filter: blur(10px)) {
+  .glass-menu {
+    background: rgba(0, 0, 0, 0.85);
+  }
 }
 
 /* Smooth Page Transitions */

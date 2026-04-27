@@ -1,9 +1,9 @@
 {
   "slug": "la-mia-storia",
   "title": "Il Silenzio, il Rumore e la Rinascita: La mia storia",
-  "date": "2025-12-08",
+  "date": "2025-12-12",
   "excerpt": "Tutto è iniziato a due anni. Un errore medico, una diagnosi mancata e il silenzio che è sceso improvviso. Questa è la storia di come ho trasformato un ostacolo insormontabile nella mia più grande forza.",
-  "coverImage": "/images/me-5.PNG",
+  "coverImage": "/images/me-5.webp",
   "category": "Personal",
   "chapters": [
     {
@@ -11,11 +11,11 @@
       "content": "Tutto è iniziato a due anni. Un errore medico, una diagnosi mancata di adenoidi infiammate, e il muco che, silenzioso e inesorabile, mi ha perforato entrambi i timpani. La sentenza dei dottori fu brutale e definitiva: \"Vostro figlio diventerà sordo\".\n\nMentre i miei coetanei imparavano ad ascoltare il mondo, io imparavo a convivere con il silenzio e con le otiti continue. Niente acqua nelle orecchie, capelli rasati a zero per evitare il sudore, e un senso di isolamento che cresceva giorno dopo giorno.",
       "images": [
         {
-          "src": "/images/babyme.jpg",
+          "src": "/images/babyme.webp",
           "alt": "Baby Me"
         },
         {
-          "src": "/images/family-5.jpg",
+          "src": "/images/family-5.webp",
           "alt": "Famiglia"
         }
       ]
@@ -25,11 +25,11 @@
       "content": "Non sentivo, eppure la mia mente correva veloce. Ho imparato a scrivere prestissimo e la logica è diventata il mio rifugio: in prima elementare vinsi il torneo di scacchi contro bambini di quarta e quinta, senza aver mai studiato il gioco.\n\nMa la scuola non perdona chi è diverso. Venivo messo in un angolo perché le mie orecchie, malate, emanavano cattivo odore. Venivo sgridato perché chiedevo continuamente di ripetere. \"Non ho capito\", dicevo. Ma non era disattenzione, era impossibilità.\n\nHo perso le basi della grammatica, ho faticato a comunicare, e il mio percorso scolastico ne ha risentito pesantemente. Bocciato al secondo anno di liceo, mi sono sentito sconfitto dal sistema.",
       "images": [
         {
-          "src": "/images/babyme-4.JPG",
+          "src": "/images/babyme-4.webp",
           "alt": "Famiglia"
         },
         {
-          "src": "/images/family-3.JPG",
+          "src": "/images/family-3.webp",
           "alt": "Famiglia"
         }
       ]
@@ -49,7 +49,7 @@
       "content": "Oggi quel dottore è primario al Meyer di Firenze e salva l'udito a centinaia di bambini con quella stessa tecnica. Ho avuto l'onore di ringraziarlo poco tempo fa, e lui ha ringraziato me. Io ho salvato la sua carriera, lui ha salvato la mia vita.\n\nQuesta esperienza mi ha insegnato che la realtà non è fissa: la creiamo noi. Se avessi ascoltato la prima diagnosi, oggi sarei sordo. Invece sono qui, a Tenerife, a costruire il mio futuro.\n\nHo capito che il sistema tradizionale \"casa-lavoro-casa\" non fa per me. Ho scelto di inseguire il benessere, le relazioni e la libertà. Ho scelto di diventare sviluppatore per creare, ovunque io sia.\n\nTuttavia, nulla di tutto questo è stato immediato o gratuito. Ci sono voluti anni di sacrifici, tentativi falliti e notti insonni per arrivare dove sono oggi. La libertà che vivo ora è il frutto di una lunga semina, non di un colpo di fortuna.",
       "images": [
         {
-          "src": "/images/me.jpg",
+          "src": "/images/me.webp",
           "alt": "Me"
         }
       ]

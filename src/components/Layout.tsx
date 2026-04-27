@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
+import Image from "next/image";
 import Header from "./Header";
-import Footer from "./Footer";
 import { Instagram, Linkedin, Mail } from "lucide-react";
 import { useLanguage } from "@/contexts/LanguageContext";
 
@@ -16,7 +16,6 @@ export default function Layout({ children }: LayoutProps) {
     <div className="min-h-screen flex flex-col">
       <Header />
       <main className="flex-1 pt-20">{children}</main>
-      <Footer />
 
       {/* Language Selector - Global (Desktop Only) */}
       <div className="hidden md:flex fixed bottom-6 right-6 flex-col gap-3 z-50">
@@ -26,7 +25,7 @@ export default function Layout({ children }: LayoutProps) {
             className="w-12 h-12 glass rounded-full flex items-center justify-center border border-white/30 hover:border-white/50 transition-all duration-300 overflow-hidden p-2"
             aria-label="Select Language"
           >
-            <img
+            <Image
               src={`https://flagcdn.com/w40/${
                 currentLang === "it" ? "it" : currentLang === "en" ? "gb" : "es"
               }.png`}
@@ -37,7 +36,10 @@ export default function Layout({ children }: LayoutProps) {
                   ? "English"
                   : "Español"
               }
+              width={40}
+              height={40}
               className="w-full h-full object-cover rounded-full"
+              unoptimized
             />
           </button>
 
@@ -52,10 +54,13 @@ export default function Layout({ children }: LayoutProps) {
                   className="w-12 h-12 glass rounded-full flex items-center justify-center border border-white/30 hover:border-white/50 transition-all duration-300 overflow-hidden p-2"
                   aria-label="English"
                 >
-                  <img
+                  <Image
                     src="https://flagcdn.com/w40/gb.png"
                     alt="English"
+                    width={40}
+                    height={40}
                     className="w-full h-full object-cover rounded-full"
+                    unoptimized
                   />
                 </button>
               )}
@@ -68,10 +73,13 @@ export default function Layout({ children }: LayoutProps) {
                   className="w-12 h-12 glass rounded-full flex items-center justify-center border border-white/30 hover:border-white/50 transition-all duration-300 overflow-hidden p-2"
                   aria-label="Spanish"
                 >
-                  <img
+                  <Image
                     src="https://flagcdn.com/w40/es.png"
                     alt="Español"
+                    width={40}
+                    height={40}
                     className="w-full h-full object-cover rounded-full"
+                    unoptimized
                   />
                 </button>
               )}
@@ -84,10 +92,13 @@ export default function Layout({ children }: LayoutProps) {
                   className="w-12 h-12 glass rounded-full flex items-center justify-center border border-white/30 hover:border-white/50 transition-all duration-300 overflow-hidden p-2"
                   aria-label="Italian"
                 >
-                  <img
+                  <Image
                     src="https://flagcdn.com/w40/it.png"
                     alt="Italiano"
+                    width={40}
+                    height={40}
                     className="w-full h-full object-cover rounded-full"
+                    unoptimized
                   />
                 </button>
               )}
@@ -99,7 +110,7 @@ export default function Layout({ children }: LayoutProps) {
           href="https://www.instagram.com/massi_angelone/"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-12 h-12 glass rounded-full flex items-center justify-center border border-neon-pink/50 hover:border-neon-pink hover:bg-neon-pink/20 transition-all duration-300 group"
+          className="w-12 h-12 glass rounded-full flex items-center justify-center border border-neon-pink hover:border-neon-pink bg-neon-pink/20 hover:bg-neon-pink/30 md:bg-transparent md:border-neon-pink/50 md:hover:bg-neon-pink/20 transition-all duration-300 group"
           aria-label="Instagram"
         >
           <Instagram className="text-neon-pink" size={20} />
@@ -108,14 +119,14 @@ export default function Layout({ children }: LayoutProps) {
           href="https://www.linkedin.com/in/massiangelone/"
           target="_blank"
           rel="noopener noreferrer"
-          className="w-12 h-12 glass rounded-full flex items-center justify-center border border-neon-blue/50 hover:border-neon-blue hover:bg-neon-blue/20 transition-all duration-300 group"
+          className="w-12 h-12 glass rounded-full flex items-center justify-center border border-neon-blue hover:border-neon-blue bg-neon-blue/20 hover:bg-neon-blue/30 md:bg-transparent md:border-neon-blue/50 md:hover:bg-neon-blue/20 transition-all duration-300 group"
           aria-label="LinkedIn"
         >
           <Linkedin className="text-neon-blue" size={20} />
         </a>
         <a
           href="mailto:massiangelone01@gmail.com"
-          className="w-12 h-12 glass rounded-full flex items-center justify-center border border-neon-green/50 hover:border-neon-green hover:bg-neon-green/20 transition-all duration-300 group"
+          className="w-12 h-12 glass rounded-full flex items-center justify-center border border-neon-green hover:border-neon-green bg-neon-green/20 hover:bg-neon-green/30 md:bg-transparent md:border-neon-green/50 md:hover:bg-neon-green/20 transition-all duration-300 group"
           aria-label="Email"
         >
           <Mail className="text-neon-green" size={20} />
