@@ -3,7 +3,6 @@ import { useState } from "react";
 import dynamic from "next/dynamic";
 import SEO from "@/components/SEO";
 import servicesData from "@/data/services.json";
-import Footer from "@/components/Footer";
 import { useTranslation } from "@/hooks/useTranslation";
 
 const ThreeBackground = dynamic(() => import("@/components/ThreeBackground"), {
@@ -101,7 +100,7 @@ export default function Services({ services }: ServicesProps) {
                       {service.features.map((feature, featureIndex) => (
                         <li
                           key={featureIndex}
-                          className="flex items-start gap-3 md:gap-2 lg:gap-3 tablet-compact:gap-1 text-sm md:text-xs lg:text-sm tablet-compact:text-[10px] text-white/80"
+                          className="flex items-start gap-3 md:gap-2 lg:gap-3 tablet-compact:gap-1 text-sm md:text-md lg:text-md tablet-compact:text-[10px] text-white/80"
                         >
                           <Check
                             className="text-neon-green flex-shrink-0 mt-0.5"
@@ -129,7 +128,7 @@ export default function Services({ services }: ServicesProps) {
             <p className="text-sm text-white/70 mb-6">
               {t("services.mobileContact")}
             </p>
-            <div className="flex flex-col gap-3 max-w-xs mx-auto">
+            <div className="flex flex-col gap-3 max-w-xs mx-auto mb-12 sm:mb-0">
               <a
                 href="https://www.instagram.com/massi_angelone/"
                 target="_blank"
@@ -159,7 +158,6 @@ export default function Services({ services }: ServicesProps) {
           </div>
         </div>
       </section>
-      <Footer />
 
       {/* Contact Popup - Fixed Left of Social Buttons (Desktop Only) */}
       {showPopup && (

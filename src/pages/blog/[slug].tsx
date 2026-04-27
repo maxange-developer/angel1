@@ -6,7 +6,8 @@ import React from "react";
 import SEO from "@/components/SEO";
 import blogPosts from "@/data/blog-posts.json";
 import storyData from "@/data/la-mia-storia.json";
-import Footer from "@/components/Footer";
+import blogTranslations from "@/data/blog-translations.json";
+import { useTranslation } from "@/hooks/useTranslation";
 import {
   Calendar,
   ArrowLeft,
@@ -53,12 +54,39 @@ interface BlogPost {
   pinned?: boolean;
 }
 
+interface TranslatedStoryPost
+  extends Omit<BlogPost | StoryPost, "title" | "excerpt" | "category"> {
+  title: string;
+  excerpt: string;
+  category: string;
+  content?: string;
+}
+
 interface BlogPostProps {
   post: BlogPost | StoryPost;
 }
 
 export default function BlogPost({ post }: BlogPostProps) {
   const isStory = post.slug === "la-mia-storia";
+  const { currentLang } = useTranslation();
+
+  // Get translated content for story
+  const getTranslatedStory = (): TranslatedStoryPost => {
+    if (!isStory) return post as BlogPost;
+    const translations = blogTranslations as any;
+    const storyTranslation = translations["la-mia-storia"];
+    if (!storyTranslation) return post as StoryPost;
+
+    return {
+      ...post,
+      title: storyTranslation.title?.[currentLang] || post.title,
+      excerpt: storyTranslation.excerpt?.[currentLang] || post.excerpt,
+      category: storyTranslation.category?.[currentLang] || post.category,
+      content: storyTranslation.content?.[currentLang] || "",
+    };
+  };
+
+  const translatedPost = getTranslatedStory();
 
   return (
     <>
@@ -88,7 +116,7 @@ export default function BlogPost({ post }: BlogPostProps) {
             {/* Category - Center */}
             <span className="px-2 max-[400px]:px-1.5 sm:px-4 py-1 max-[400px]:py-0.5 bg-neon-pink/20 border border-neon-pink/50 rounded-full text-neon-pink text-xs max-[400px]:text-[9px] sm:text-sm flex items-center gap-1 max-[400px]:gap-0.5">
               <Tag className="max-[400px]:w-2.5 max-[400px]:h-2.5" size={12} />
-              {post.category}
+              {isStory ? translatedPost.category : post.category}
             </span>
 
             {/* Date - Right */}
@@ -108,11 +136,13 @@ export default function BlogPost({ post }: BlogPostProps) {
           {/* Header */}
           <header className="mb-8 sm:mb-12">
             <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 sm:mb-6 leading-tight">
-              <span className="neon-text">{post.title}</span>
+              <span className="neon-text">
+                {isStory ? translatedPost.title : post.title}
+              </span>
             </h1>
 
             <p className="text-base sm:text-lg md:text-xl text-white/70 leading-relaxed">
-              {post.excerpt}
+              {isStory ? translatedPost.excerpt : post.excerpt}
             </p>
           </header>
 
@@ -131,56 +161,141 @@ export default function BlogPost({ post }: BlogPostProps) {
           {/* Content */}
           {isStory ? (
             <div className="max-w-none mb-8 sm:mb-12">
-              {(post as StoryPost).chapters.map((chapter, index) => (
-                <div key={index} className="mb-12">
-                  <h3 className="text-2xl sm:text-3xl font-bold mb-6 text-white">
-                    {chapter.title}
-                  </h3>
+              {translatedPost.content ? (
+                <>
+                  {translatedPost.content
+                    .split(/^###\s+/m)
+                    .filter((section: string) => section.trim())
+                    .map((section: string, index: number) => {
+                      const lines = section.trim().split("\n");
+                      const title = lines[0];
+                      const contentText = lines.slice(1).join("\n");
 
-                  {chapter.content.split("\n\n").map((paragraph, pIndex) => (
-                    <p
-                      key={pIndex}
-                      className="text-white/80 leading-relaxed mb-6 text-base sm:text-lg"
-                    >
-                      {paragraph}
-                    </p>
-                  ))}
+                      return (
+                        <div key={index} className="mb-12">
+                          <h3 className="text-2xl sm:text-3xl font-bold mb-6 text-white">
+                            {title}
+                          </h3>
 
-                  {chapter.images.length > 0 && (
-                    <div
-                      className={`my-8 ${
-                        chapter.images.length > 1
-                          ? "grid grid-cols-2 gap-4"
-                          : ""
-                      }`}
-                    >
-                      {chapter.images.map((image, imgIndex) => (
-                        <Image
-                          key={imgIndex}
-                          src={image.src}
-                          alt={image.alt}
-                          width={800}
-                          height={600}
-                          style={
-                            imgIndex === 1 && chapter.images.length > 1
-                              ? { objectPosition: "center 40%" }
-                              : chapter.images.length === 1
-                              ? { objectPosition: "center 55%" }
-                              : undefined
-                          }
-                          className={`w-full rounded-lg ${
-                            chapter.images.length === 1
-                              ? "h-[500px] object-cover"
-                              : imgIndex === 0
-                              ? "h-64 object-cover"
-                              : "h-64 object-cover object-top"
+                          {contentText
+                            .split("\n\n")
+                            .filter((p: string) => p.trim())
+                            .map((paragraph: string, pIndex: number) => (
+                              <p
+                                key={pIndex}
+                                className="text-white/80 leading-relaxed mb-6 text-base sm:text-lg"
+                              >
+                                {paragraph}
+                              </p>
+                            ))}
+
+                          {/* Story chapter images */}
+                          {(post as StoryPost).chapters[index]?.images &&
+                            (post as StoryPost).chapters[index].images.length >
+                              0 && (
+                              <div
+                                className={`my-8 ${
+                                  (post as StoryPost).chapters[index].images
+                                    .length > 1
+                                    ? "grid grid-cols-2 gap-4"
+                                    : ""
+                                }`}
+                              >
+                                {(post as StoryPost).chapters[index].images.map(
+                                  (image, imgIndex) => (
+                                    <Image
+                                      key={imgIndex}
+                                      src={image.src}
+                                      alt={image.alt}
+                                      width={800}
+                                      height={600}
+                                      priority={index === 0 && imgIndex === 0}
+                                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
+                                      style={
+                                        imgIndex === 1 &&
+                                        (post as StoryPost).chapters[index]
+                                          .images.length > 1
+                                          ? { objectPosition: "center 40%" }
+                                          : (post as StoryPost).chapters[index]
+                                              .images.length === 1
+                                          ? { objectPosition: "center 55%" }
+                                          : undefined
+                                      }
+                                      className={`w-full rounded-lg ${
+                                        (post as StoryPost).chapters[index]
+                                          .images.length === 1
+                                          ? "h-[500px] object-cover"
+                                          : imgIndex === 0
+                                          ? "h-64 object-cover"
+                                          : "h-64 object-cover object-top"
+                                      }`}
+                                    />
+                                  )
+                                )}
+                              </div>
+                            )}
+                        </div>
+                      );
+                    })}
+                </>
+              ) : (
+                <>
+                  {(post as StoryPost).chapters.map((chapter, index) => (
+                    <div key={index} className="mb-12">
+                      <h3 className="text-2xl sm:text-3xl font-bold mb-6 text-white">
+                        {chapter.title}
+                      </h3>
+
+                      {chapter.content
+                        .split("\n\n")
+                        .map((paragraph, pIndex) => (
+                          <p
+                            key={pIndex}
+                            className="text-white/80 leading-relaxed mb-6 text-base sm:text-lg"
+                          >
+                            {paragraph}
+                          </p>
+                        ))}
+
+                      {chapter.images.length > 0 && (
+                        <div
+                          className={`my-8 ${
+                            chapter.images.length > 1
+                              ? "grid grid-cols-2 gap-4"
+                              : ""
                           }`}
-                        />
-                      ))}
+                        >
+                          {chapter.images.map((image, imgIndex) => (
+                            <Image
+                              key={imgIndex}
+                              src={image.src}
+                              alt={image.alt}
+                              width={800}
+                              height={600}
+                              priority={index === 0 && imgIndex === 0}
+                              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 800px"
+                              style={
+                                imgIndex === 1 && chapter.images.length > 1
+                                  ? { objectPosition: "center 40%" }
+                                  : chapter.images.length === 1
+                                  ? { objectPosition: "center 55%" }
+                                  : undefined
+                              }
+                              className={`w-full rounded-lg ${
+                                chapter.images.length === 1
+                                  ? "h-[500px] object-cover"
+                                  : imgIndex === 0
+                                  ? "h-64 object-cover"
+                                  : "h-64 object-cover object-top"
+                              }`}
+                            />
+                          ))}
+                        </div>
+                      )}
                     </div>
-                  )}
-                </div>
-              ))}
+                  ))}
+                </>
+              )}
             </div>
           ) : (
             <div className="prose prose-invert prose-sm sm:prose-base md:prose-lg max-w-none mb-8 sm:mb-12">
@@ -254,8 +369,6 @@ export default function BlogPost({ post }: BlogPostProps) {
           <Mail className="text-neon-green" size={20} />
         </a>
       </div>
-
-      <Footer />
     </>
   );
 }

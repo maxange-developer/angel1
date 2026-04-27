@@ -34,18 +34,26 @@ export default function Header() {
   return (
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled ? "glass backdrop-blur-lg" : "bg-transparent"
+        isScrolled ? "bg-black/90 backdrop-blur-lg" : "bg-transparent"
       }`}
+      style={
+        isScrolled
+          ? {
+              backgroundColor: "rgba(0, 0, 0, 0.9)",
+            }
+          : {}
+      }
     >
       <nav className="container mx-auto px-6 py-4 max-md:landscape:py-2 flex items-center justify-between">
         {/* Logo */}
         <Link href="/" className="flex items-center gap-3">
           <Image
-            src="/images/logo/logo-white.PNG"
+            src="/images/logo/logo-white.webp"
             alt="Angel1"
             width={80}
             height={80}
             priority
+            loading="eager"
             className="h-12 sm:h-16 md:h-20 max-md:landscape:h-10 w-auto"
           />
         </Link>
@@ -56,6 +64,7 @@ export default function Header() {
             <li key={item.href}>
               <Link
                 href={item.href}
+                prefetch={true}
                 className={`text-xl uppercase tracking-wide transition-colors duration-300 hover:text-[#00f0ff] ${
                   router.pathname === item.href
                     ? "text-[#00f0ff]"
@@ -80,12 +89,13 @@ export default function Header() {
 
       {/* Mobile Menu */}
       {isMobileMenuOpen && (
-        <div className="md:hidden glass backdrop-blur-lg border-t border-white/10">
+        <div className="md:hidden glass-menu border-t border-white/10">
           <ul className="flex flex-col gap-4 px-6 py-6">
             {navItems.map((item) => (
               <li key={item.href}>
                 <Link
                   href={item.href}
+                  prefetch={true}
                   onClick={() => setIsMobileMenuOpen(false)}
                   className={`block text-lg uppercase tracking-wide transition-all duration-300 ${
                     router.pathname === item.href
@@ -108,7 +118,7 @@ export default function Header() {
                 className="w-10 h-10 glass rounded-full flex items-center justify-center border border-white/30 hover:border-white/50 transition-all duration-300 overflow-hidden p-1.5"
                 aria-label="Select Language"
               >
-                <img
+                <Image
                   src={`https://flagcdn.com/w40/${
                     currentLang === "it"
                       ? "it"
@@ -123,7 +133,10 @@ export default function Header() {
                       ? "English"
                       : "Español"
                   }
+                  width={40}
+                  height={40}
                   className="w-full h-full object-cover rounded-full"
+                  unoptimized
                 />
               </button>
 
@@ -139,10 +152,13 @@ export default function Header() {
                       className="w-10 h-10 glass rounded-full flex items-center justify-center border border-white/30 hover:border-white/50 transition-all duration-300 overflow-hidden p-1.5"
                       aria-label="English"
                     >
-                      <img
+                      <Image
                         src="https://flagcdn.com/w40/gb.png"
                         alt="English"
+                        width={40}
+                        height={40}
                         className="w-full h-full object-cover rounded-full"
+                        unoptimized
                       />
                     </button>
                   )}
@@ -155,10 +171,13 @@ export default function Header() {
                       className="w-10 h-10 glass rounded-full flex items-center justify-center border border-white/30 hover:border-white/50 transition-all duration-300 overflow-hidden p-1.5"
                       aria-label="Spanish"
                     >
-                      <img
+                      <Image
                         src="https://flagcdn.com/w40/es.png"
                         alt="Español"
+                        width={40}
+                        height={40}
                         className="w-full h-full object-cover rounded-full"
+                        unoptimized
                       />
                     </button>
                   )}
@@ -171,10 +190,13 @@ export default function Header() {
                       className="w-10 h-10 glass rounded-full flex items-center justify-center border border-white/30 hover:border-white/50 transition-all duration-300 overflow-hidden p-1.5"
                       aria-label="Italian"
                     >
-                      <img
+                      <Image
                         src="https://flagcdn.com/w40/it.png"
                         alt="Italiano"
+                        width={40}
+                        height={40}
                         className="w-full h-full object-cover rounded-full"
+                        unoptimized
                       />
                     </button>
                   )}
@@ -188,19 +210,20 @@ export default function Header() {
                 href="https://www.instagram.com/massi_angelone/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/70 hover:text-neon-pink transition-all duration-300"
+                className="w-10 h-10 rounded-full flex items-center justify-center bg-neon-pink/20 border border-neon-pink hover:bg-neon-pink/40 transition-all duration-300"
                 aria-label="Instagram"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
+                  width="20"
+                  height="20"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
+                  className="text-neon-pink"
                 >
                   <rect x="2" y="2" width="20" height="20" rx="5" ry="5"></rect>
                   <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"></path>
@@ -211,19 +234,20 @@ export default function Header() {
                 href="https://www.linkedin.com/in/massiangelone/"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-white/70 hover:text-neon-blue transition-all duration-300"
+                className="w-10 h-10 rounded-full flex items-center justify-center bg-neon-blue/20 border border-neon-blue hover:bg-neon-blue/40 transition-all duration-300"
                 aria-label="LinkedIn"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
+                  width="20"
+                  height="20"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
+                  className="text-neon-blue"
                 >
                   <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"></path>
                   <rect x="2" y="9" width="4" height="12"></rect>
@@ -232,19 +256,20 @@ export default function Header() {
               </a>
               <a
                 href="mailto:massiangelone01@gmail.com"
-                className="text-white/70 hover:text-neon-green transition-all duration-300"
+                className="w-10 h-10 rounded-full flex items-center justify-center bg-neon-green/20 border border-neon-green hover:bg-neon-green/40 transition-all duration-300"
                 aria-label="Email"
               >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
+                  width="20"
+                  height="20"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
                   strokeWidth="2"
                   strokeLinecap="round"
                   strokeLinejoin="round"
+                  className="text-neon-green"
                 >
                   <rect x="2" y="4" width="20" height="16" rx="2"></rect>
                   <path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"></path>

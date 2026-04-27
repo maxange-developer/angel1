@@ -6,7 +6,6 @@ import dynamic from "next/dynamic";
 import SEO from "@/components/SEO";
 import timelineData from "@/data/timeline.json";
 import timelineTranslations from "@/data/timeline-translations.json";
-import Footer from "@/components/Footer";
 import { useTranslation } from "@/hooks/useTranslation";
 
 const ThreeBackground = dynamic(() => import("@/components/ThreeBackground"), {
@@ -111,26 +110,6 @@ export default function Timeline({ events }: TimelineProps) {
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [lineHeight, setLineHeight] = useState({ top: 16, height: 0 });
 
-  // Preload all timeline images on component mount for smoother experience
-  useEffect(() => {
-    const preloadAllImages = () => {
-      events.forEach((event) => {
-        event.images.forEach((url) => {
-          const link = document.createElement("link");
-          link.rel = "prefetch";
-          link.as = "image";
-          link.href = url;
-          document.head.appendChild(link);
-        });
-      });
-    };
-
-    // Delay preload to not block initial render
-    const timer = setTimeout(preloadAllImages, 1000);
-    return () => clearTimeout(timer);
-  }, [events]);
-
-  // Helper function to get translated content
   const getTranslatedContent = (
     eventId: string,
     field: "title" | "role" | "description"
@@ -246,7 +225,7 @@ export default function Timeline({ events }: TimelineProps) {
         </div>
 
         {/* Mobile + Tablet (768-1024) + Low Height (<948px): Vertical Timeline - Scrollable */}
-        <div className="lg:hidden timeline-vertical:!flex flex-1 timeline-vertical:overflow-visible px-4 md:px-28 timeline-vertical:md:px-28 pb-20 scrollbar-hide">
+        <div className="lg:hidden timeline-vertical:!flex flex-1 timeline-vertical:overflow-visible px-4 md:px-32 timeline-vertical:md:px-32 pb-20 scrollbar-hide">
           <div
             ref={containerRef}
             className="relative pt-2 pb-12 timeline-vertical:mb-32"
@@ -316,6 +295,7 @@ export default function Timeline({ events }: TimelineProps) {
                             src={event.images[0]}
                             alt={event.title}
                             fill
+                            sizes="(max-width: 768px) 100vw, 400px"
                             className={`transition-all duration-300 ${
                               isWork || event.id === "airplay"
                                 ? "object-contain"
@@ -325,7 +305,6 @@ export default function Timeline({ events }: TimelineProps) {
                               objectPosition:
                                 event.id === "holly" ? "center 10%" : "center",
                             }}
-                            unoptimized
                           />
                         </div>
                       )}
@@ -498,6 +477,7 @@ export default function Timeline({ events }: TimelineProps) {
                                   src={event.images[0]}
                                   alt={event.title}
                                   fill
+                                  sizes="(max-width: 768px) 50vw, 300px"
                                   className={`transition-all duration-300 ${
                                     isWork || event.id === "airplay"
                                       ? "object-contain p-2"
@@ -712,6 +692,7 @@ export default function Timeline({ events }: TimelineProps) {
                       alt={`${selectedTravel.title} - ${currentImageIndex + 1}`}
                       fill
                       sizes="(max-width: 768px) 100vw, 50vw"
+                      priority
                       className="object-cover transition-opacity duration-300"
                       style={{
                         objectPosition:
@@ -722,14 +703,11 @@ export default function Timeline({ events }: TimelineProps) {
                               ? "center 90%"
                               : "center"
                             : selectedTravel.id === "spain-roadtrip"
-                            ? selectedTravel.images[currentImageIndex] ===
-                              "/images/spain-3.jpg"
+                            ? currentImageIndex === 1
                               ? "center 80%"
-                              : selectedTravel.images[currentImageIndex] ===
-                                "/images/spain-4.jpg"
+                              : currentImageIndex === 2
                               ? "center 90%"
-                              : selectedTravel.images[currentImageIndex] ===
-                                "/images/spain-5.jpg"
+                              : currentImageIndex === 3
                               ? "center 80%"
                               : "center"
                             : selectedTravel.id === "vietnam"
@@ -763,25 +741,27 @@ export default function Timeline({ events }: TimelineProps) {
                     {selectedTravel.images.length > 1 && (
                       <>
                         <button
-                          onClick={() =>
+                          onClick={(e) => {
+                            e.stopPropagation();
                             setCurrentImageIndex((prev) =>
                               prev === 0
                                 ? selectedTravel.images.length - 1
                                 : prev - 1
-                            )
-                          }
+                            );
+                          }}
                           className="absolute left-2 top-1/2 -translate-y-1/2 p-2 glass border border-neon-green/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
                         >
                           <ChevronLeft className="text-neon-green" size={24} />
                         </button>
                         <button
-                          onClick={() =>
+                          onClick={(e) => {
+                            e.stopPropagation();
                             setCurrentImageIndex((prev) =>
                               prev === selectedTravel.images.length - 1
                                 ? 0
                                 : prev + 1
-                            )
-                          }
+                            );
+                          }}
                           className="absolute right-2 top-1/2 -translate-y-1/2 p-2 glass border border-neon-green/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
                         >
                           <ChevronRight className="text-neon-green" size={24} />
@@ -926,15 +906,15 @@ export default function Timeline({ events }: TimelineProps) {
               } w-full h-auto max-h-[90vh] md:max-h-[85vh] lg:max-h-[95vh] max-md:landscape:max-h-[95vh] overflow-y-auto border border-neon-blue/30`}
               onClick={(e) => e.stopPropagation()}
             >
-              <div className="grid grid-cols-1 max-md:landscape:grid-cols-2 gap-3 max-md:landscape:gap-2 portrait:gap-4 sm:gap-6 lg:gap-8 h-auto md:h-auto">
+              <div className="grid grid-cols-1 max-md:landscape:grid-cols-2 tablet-range:grid-cols-2 gap-3 max-md:landscape:gap-2 portrait:gap-4 sm:gap-6 lg:gap-8 h-auto md:h-auto tablet-range:auto-rows-max items-start">
                 {/* Left: Image/Logo */}
-                <div className="space-y-2 max-md:landscape:space-y-1 portrait:space-y-4 max-md:landscape:row-span-2">
+                <div className="space-y-2 max-md:landscape:space-y-1 portrait:space-y-4 max-md:landscape:row-span-2 tablet-range:row-span-2">
                   <div
                     className={`relative ${
                       selectedEvent.id === "holly"
                         ? "aspect-[4/5]"
                         : "aspect-video"
-                    } md:aspect-[4/3] lg:aspect-auto md:h-auto lg:h-96 rounded overflow-hidden flex items-center justify-center ${
+                    } md:aspect-[4/3] lg:aspect-auto md:h-auto lg:h-96 tablet-range:h-64 rounded overflow-hidden flex items-center justify-center ${
                       selectedEvent.id === "airplay" ? "bg-black" : "bg-white"
                     }`}
                   >
@@ -950,6 +930,7 @@ export default function Timeline({ events }: TimelineProps) {
                           fill
                           sizes="(max-width: 768px) 100vw, 50vw"
                           className="object-cover"
+                          priority
                           style={{
                             objectPosition:
                               currentImageIndex === 0
@@ -958,31 +939,32 @@ export default function Timeline({ events }: TimelineProps) {
                                 ? "center 60%"
                                 : "center",
                           }}
-                          unoptimized
                         />
                         {/* Slideshow Controls */}
                         <div className="absolute inset-0 group">
                           <button
-                            onClick={() =>
+                            onClick={(e) => {
+                              e.stopPropagation();
                               setCurrentImageIndex((prev) =>
                                 prev === 0
                                   ? selectedEvent.images.length - 1
                                   : prev - 1
-                              )
-                            }
-                            className="absolute left-2 top-1/2 -translate-y-1/2 p-2 glass border border-neon-pink/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                              );
+                            }}
+                            className="absolute left-2 top-1/2 -translate-y-1/2 p-2 glass border border-neon-pink/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity max-md:opacity-100"
                           >
                             <ChevronLeft className="text-neon-pink" size={24} />
                           </button>
                           <button
-                            onClick={() =>
+                            onClick={(e) => {
+                              e.stopPropagation();
                               setCurrentImageIndex((prev) =>
                                 prev === selectedEvent.images.length - 1
                                   ? 0
                                   : prev + 1
-                              )
-                            }
-                            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 glass border border-neon-pink/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity"
+                              );
+                            }}
+                            className="absolute right-2 top-1/2 -translate-y-1/2 p-2 glass border border-neon-pink/50 rounded-full opacity-0 group-hover:opacity-100 transition-opacity max-md:opacity-100"
                           >
                             <ChevronRight
                               className="text-neon-pink"
@@ -1011,21 +993,21 @@ export default function Timeline({ events }: TimelineProps) {
                 </div>
 
                 {/* Right: Content */}
-                <div className="space-y-2 max-md:landscape:space-y-1 portrait:space-y-4 md:block">
+                <div className="space-y-2 max-md:landscape:space-y-1 portrait:space-y-4 md:block tablet-range:flex tablet-range:flex-col tablet-range:justify-between">
                   <div className="flex items-center justify-between max-md:landscape:mb-1">
-                    <div className="flex items-center gap-1 max-md:landscape:gap-1 portrait:gap-2">
+                    <div className="flex items-center gap-1 max-md:landscape:gap-1 portrait:gap-2 tablet-range:gap-2">
                       {selectedEvent.type === "work" ? (
                         <Briefcase
-                          className="text-neon-blue max-md:landscape:hidden"
+                          className="text-neon-blue max-md:landscape:hidden tablet-range:w-4 tablet-range:h-4"
                           size={20}
                         />
                       ) : (
                         <Star
-                          className="text-neon-pink max-md:landscape:hidden"
+                          className="text-neon-pink max-md:landscape:hidden tablet-range:w-4 tablet-range:h-4"
                           size={20}
                         />
                       )}
-                      <h2 className="text-base max-md:landscape:text-lg portrait:text-xl sm:text-2xl md:text-3xl font-bold neon-text">
+                      <h2 className="text-base max-md:landscape:text-lg portrait:text-xl sm:text-2xl md:text-3xl tablet-range:text-lg font-bold neon-text">
                         {getTranslatedContent(selectedEvent.id, "title")}
                       </h2>
                     </div>
@@ -1041,7 +1023,7 @@ export default function Timeline({ events }: TimelineProps) {
                   </div>
 
                   <p
-                    className={`text-xs max-md:landscape:text-[10px] portrait:text-xs sm:text-sm font-semibold ${
+                    className={`text-xs max-md:landscape:text-[10px] portrait:text-xs sm:text-sm tablet-range:text-[10px] font-semibold ${
                       selectedEvent.type === "work"
                         ? "text-neon-blue/80"
                         : "text-neon-pink/80"
@@ -1062,9 +1044,9 @@ export default function Timeline({ events }: TimelineProps) {
                 </div>
 
                 {/* Bottom left: Stack pills and buttons */}
-                <div className="space-y-3 max-md:landscape:space-y-2 max-md:landscape:col-start-1">
+                <div className="space-y-3 max-md:landscape:space-y-2 max-md:landscape:col-start-1 tablet-range:col-start-1 tablet-range:row-start-3 tablet-range:space-y-2">
                   {selectedEvent.stack && selectedEvent.stack.length > 0 && (
-                    <div className="flex flex-wrap gap-2 max-md:landscape:gap-1.5 justify-center md:justify-start">
+                    <div className="flex flex-wrap gap-2 max-md:landscape:gap-1.5 justify-center md:justify-start tablet-range:hidden">
                       {selectedEvent.stack.map((tech) => (
                         <span
                           key={tech}
@@ -1076,7 +1058,7 @@ export default function Timeline({ events }: TimelineProps) {
                     </div>
                   )}
 
-                  {/* Button to website or services page */}
+                  {/* Buttons section - only show on non-tablet */}
                   {selectedEvent.type === "work" &&
                     (selectedEvent.id === "start2impact" ? (
                       <div className="flex flex-wrap gap-3 max-md:landscape:gap-2">
@@ -1194,6 +1176,22 @@ export default function Timeline({ events }: TimelineProps) {
                       )
                     ))}
                 </div>
+
+                {/* Tablet: Right side chips */}
+                {selectedEvent.stack && selectedEvent.stack.length > 0 && (
+                  <div className="hidden tablet-range:flex tablet-range:flex-col tablet-range:col-start-2 tablet-range:row-start-3 tablet-range:justify-start">
+                    <div className="flex flex-wrap gap-2 justify-start">
+                      {selectedEvent.stack.map((tech) => (
+                        <span
+                          key={tech}
+                          className="px-3 py-1 text-xs bg-neon-blue/20 border border-neon-blue/50 rounded-full text-neon-blue"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
+                  </div>
+                )}
               </div>
             </div>
           </div>
@@ -1229,8 +1227,6 @@ export default function Timeline({ events }: TimelineProps) {
           <Mail className="text-neon-green" size={20} />
         </a>
       </div>
-
-      <Footer />
     </>
   );
 }

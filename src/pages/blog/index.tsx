@@ -5,7 +5,6 @@ import dynamic from "next/dynamic";
 import SEO from "@/components/SEO";
 import blogPosts from "@/data/blog-posts.json";
 import blogTranslations from "@/data/blog-translations.json";
-import Footer from "@/components/Footer";
 import { useTranslation } from "@/hooks/useTranslation";
 
 const ThreeBackground = dynamic(() => import("@/components/ThreeBackground"), {
@@ -151,8 +150,6 @@ export default function Blog({ pinnedPost, posts }: BlogProps) {
           <Mail className="text-neon-green" size={20} />
         </a>
       </div>
-
-      <Footer />
     </>
   );
 }
