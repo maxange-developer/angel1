@@ -5,93 +5,104 @@ import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
 import { MotionSection } from "@/components/MotionSection";
 import { getAllJournalPosts, type JournalPost } from "@/lib/journal";
-import { STAGGER_CONTAINER, STAGGER_ITEM } from "@/lib/motion";
+import { STAGGER_CONTAINER, STAGGER_ITEM, FADE_UP } from "@/lib/motion";
 
 interface JournalIndexProps {
   pinned: JournalPost | null;
   others: JournalPost[];
+  total: number;
 }
 
-export default function JournalIndex({ pinned, others }: JournalIndexProps) {
+export default function JournalIndex({ pinned, others, total }: JournalIndexProps) {
   return (
     <>
       <SEO page="journal" canonicalPath="/journal" />
 
-      <section className="page-hero container">
-        <MotionSection>
-          <p className="eyebrow">Journal</p>
-          <h1>Long-form writing.</h1>
-          <p className="q">
-            On building AI products, the freelance craft, and things I&apos;m
-            figuring out as I go.
-          </p>
+      <section className="container page-hero">
+        <MotionSection as="div">
+          <motion.div className="top" variants={FADE_UP}>
+            <div>
+              <span className="eyebrow">Writing</span>
+              <h1>
+                Notes<span className="q">.</span>
+              </h1>
+            </div>
+            <span className="meta">{String(total).padStart(2, "0")} pieces</span>
+          </motion.div>
+          <motion.p className="sub" variants={FADE_UP}>
+            Long-form pieces on engineering, freelancing and the personal story
+            most people read first.
+          </motion.p>
         </MotionSection>
       </section>
 
       <div className="container blog-index">
-        {/* Pinned */}
+        {/* PINNED */}
         {pinned && (
-          <MotionSection className="blog-pinned" as="div">
-            <Link href={`/journal/${pinned.slug}`} className="blog-pinned-inner">
+          <MotionSection className="blog-pinned" as="article">
+            <div className="img-ph">
               {pinned.frontmatter.coverImage && (
-                <div className="blog-pinned-cover">
-                  <div className="img-ph">
-                    <Image
-                      src={pinned.frontmatter.coverImage}
-                      alt={pinned.frontmatter.title}
-                      fill
-                      sizes="(max-width: 768px) 100vw, 600px"
-                      className="photo"
-                      priority
-                    />
-                  </div>
-                </div>
+                <Image
+                  src={pinned.frontmatter.coverImage}
+                  alt={pinned.frontmatter.title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 600px"
+                  style={{ objectFit: "cover" }}
+                  priority
+                />
               )}
-              <div className="blog-pinned-copy">
-                <p className="eyebrow acc">{pinned.frontmatter.category} · {pinned.frontmatter.readTime}</p>
-                <h2>{pinned.frontmatter.title}</h2>
-                <p>{pinned.frontmatter.excerpt}</p>
-                <span className="link-acc">Read story →</span>
+              <span className="corner">PINNED</span>
+              <span className="lab">{pinned.frontmatter.coverImage}</span>
+            </div>
+            <div>
+              <span className="pin">★ Pinned · {pinned.frontmatter.category}</span>
+              <div className="meta">
+                {pinned.frontmatter.date} · {pinned.frontmatter.category} ·{" "}
+                {pinned.frontmatter.readTime}
               </div>
-            </Link>
+              <h2>
+                {pinned.frontmatter.title}
+                <span className="acc">.</span>
+              </h2>
+              <p className="excerpt">{pinned.frontmatter.excerpt}</p>
+              <Link
+                href={`/journal/${pinned.slug}`}
+                className="btn btn-secondary cta"
+              >
+                Read full story <span className="arr">→</span>
+              </Link>
+            </div>
           </MotionSection>
         )}
 
-        {/* Others */}
+        {/* OTHERS */}
         {others.length > 0 && (
-          <MotionSection className="blog-other" as="div">
-            <motion.div
-              className="blog-tile-grid"
-              variants={STAGGER_CONTAINER}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
-              {others.map((post) => (
-                <motion.div key={post.slug} variants={STAGGER_ITEM}>
-                  <Link href={`/journal/${post.slug}`} className="blog-tile">
-                    {post.frontmatter.coverImage && (
-                      <div className="img-ph">
-                        <Image
-                          src={post.frontmatter.coverImage}
-                          alt={post.frontmatter.title}
-                          fill
-                          sizes="400px"
-                          className="photo"
-                        />
-                      </div>
-                    )}
-                    <div className="blog-tile-copy">
-                      <p className="chip">{post.frontmatter.category}</p>
-                      <h3>{post.frontmatter.title}</h3>
-                      <p>{post.frontmatter.excerpt}</p>
-                      <span className="link-acc">Read →</span>
-                    </div>
-                  </Link>
-                </motion.div>
-              ))}
-            </motion.div>
-          </MotionSection>
+          <motion.div
+            className="blog-other"
+            variants={STAGGER_CONTAINER}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+          >
+            {others.map((post) => (
+              <motion.div key={post.slug} variants={STAGGER_ITEM}>
+                <Link href={`/journal/${post.slug}`} className="card blog-tile">
+                  <div className="meta">
+                    {post.frontmatter.date} · {post.frontmatter.category} ·{" "}
+                    {post.frontmatter.readTime}
+                  </div>
+                  <h3>
+                    {post.frontmatter.title}
+                    <span className="q">.</span>
+                  </h3>
+                  <p>{post.frontmatter.excerpt}</p>
+                  <span className="more link-acc">
+                    Read <span>→</span>
+                  </span>
+                </Link>
+              </motion.div>
+            ))}
+          </motion.div>
         )}
       </div>
     </>
@@ -102,5 +113,5 @@ export const getStaticProps: GetStaticProps = async () => {
   const posts = getAllJournalPosts();
   const pinned = posts.find((p) => p.frontmatter.pinned) ?? posts[0] ?? null;
   const others = posts.filter((p) => p !== pinned);
-  return { props: { pinned, others } };
+  return { props: { pinned, others, total: posts.length } };
 };

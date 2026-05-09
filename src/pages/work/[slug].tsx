@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import type { GetStaticPaths, GetStaticProps } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -7,10 +7,9 @@ import { serialize } from "next-mdx-remote/serialize";
 import rehypeHighlight from "rehype-highlight";
 import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
-import { MotionSection } from "@/components/MotionSection";
 import MermaidDiagram from "@/components/MermaidDiagram";
 import { getAllWorkSlugs, getWorkPost, type WorkFrontmatter } from "@/lib/mdx";
-import { PULL_QUOTE, STAGGER_CONTAINER, STAGGER_ITEM } from "@/lib/motion";
+import { PULL_QUOTE, STAGGER_CONTAINER, STAGGER_ITEM, FADE_UP } from "@/lib/motion";
 
 interface RelatedPost {
   slug: string;
@@ -44,10 +43,19 @@ const MDX_COMPONENTS = {
 
 function TableOfContents({ slug }: { slug: string }) {
   const [activeId, setActiveId] = useState("");
+  const [items, setItems] = useState<Array<{ id: string; text: string; level: number }>>([]);
 
   useEffect(() => {
     const headings = document.querySelectorAll(".case-body h2[id], .case-body h3[id]");
     if (!headings.length) return;
+
+    setItems(
+      Array.from(headings).map((h) => ({
+        id: h.id,
+        text: h.textContent ?? "",
+        level: h.tagName === "H2" ? 2 : 3,
+      }))
+    );
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -64,26 +72,13 @@ function TableOfContents({ slug }: { slug: string }) {
     return () => observer.disconnect();
   }, [slug]);
 
-  const [items, setItems] = useState<Array<{ id: string; text: string; level: number }>>([]);
-
-  useEffect(() => {
-    const headings = document.querySelectorAll(".case-body h2[id], .case-body h3[id]");
-    setItems(
-      Array.from(headings).map((h) => ({
-        id: h.id,
-        text: h.textContent ?? "",
-        level: h.tagName === "H2" ? 2 : 3,
-      }))
-    );
-  }, [slug]);
-
   if (!items.length) return null;
 
   return (
-    <nav className="case-toc">
-      <p className="eyebrow">Contents</p>
+    <aside className="case-toc">
+      <div className="lbl">Contents</div>
       <ul>
-        {items.map((item) => (
+        {items.map((item, i) => (
           <li key={item.id} style={{ paddingLeft: item.level === 3 ? "0.75rem" : undefined }}>
             <a
               href={`#${item.id}`}
@@ -93,16 +88,31 @@ function TableOfContents({ slug }: { slug: string }) {
                 document.getElementById(item.id)?.scrollIntoView({ behavior: "smooth" });
               }}
             >
+              <span className="num">{String(i + 1).padStart(2, "0")}</span>
               {item.text}
             </a>
           </li>
         ))}
       </ul>
-    </nav>
+    </aside>
   );
 }
 
-export default function WorkSlug({ frontmatter: fm, mdxSource, relatedPosts, slug }: WorkSlugProps) {
+function splitStatValue(value: string): { num: string; unit: string } {
+  // Heuristic: split trailing non-digit suffix as unit (e.g. "85s" → "85"+"s", "4.7/5" → "4.7"+"/5")
+  const match = value.match(/^([\d.,+]+)([^\d.,+].*)?$/);
+  if (match) {
+    return { num: match[1], unit: match[2] ?? "" };
+  }
+  return { num: value, unit: "" };
+}
+
+export default function WorkSlug({
+  frontmatter: fm,
+  mdxSource,
+  relatedPosts,
+  slug,
+}: WorkSlugProps) {
   return (
     <>
       <SEO
@@ -114,71 +124,124 @@ export default function WorkSlug({ frontmatter: fm, mdxSource, relatedPosts, slu
       />
 
       {/* CASE HERO */}
-      <section className="case-hero container">
-        <MotionSection>
-          <p className="eyebrow">{fm.client} · {fm.date}</p>
-          <h1>{fm.title}</h1>
-          <p className="q">{fm.tagline}</p>
-          <div className="case-hero-meta">
-            <span className="chip">{fm.package}</span>
-            <span className="chip">{fm.duration}</span>
-            {fm.stack.map((s) => (
-              <span key={s} className="chip">{s}</span>
-            ))}
+      <section className="container case-hero">
+        <motion.span
+          className="crumbs"
+          variants={FADE_UP}
+          initial="hidden"
+          animate="visible"
+        >
+          Work / {fm.title}
+        </motion.span>
+        <motion.h1 variants={FADE_UP} initial="hidden" animate="visible">
+          {fm.title}
+        </motion.h1>
+        <motion.p
+          className="tagline"
+          variants={FADE_UP}
+          initial="hidden"
+          animate="visible"
+        >
+          {fm.tagline}
+        </motion.p>
+        <div className="meta">
+          <div>
+            <div className="k">Engagement</div>
+            <div className="v">{fm.package}</div>
           </div>
-          <div className="case-hero-links">
+          <div>
+            <div className="k">Duration</div>
+            <div className="v">{fm.duration}</div>
+          </div>
+          <div>
+            <div className="k">Stack</div>
+            <div className="v">{fm.stack.slice(0, 3).join(" · ")}</div>
+          </div>
+          <div>
+            <div className="k">Shipped</div>
+            <div className="v">{fm.date}</div>
+          </div>
+          <div>
+            <div className="k">Status</div>
+            <div className="v">{fm.demo ? "Live" : "Shipped"}</div>
+          </div>
+        </div>
+        {(fm.demo || fm.github) && (
+          <div className="ctas">
             {fm.demo && (
-              <a href={fm.demo} target="_blank" rel="noopener noreferrer" className="btn btn-primary">
-                Live demo →
+              <a
+                href={fm.demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-primary"
+              >
+                Live demo <span className="arr">→</span>
               </a>
             )}
             {fm.github && (
-              <a href={fm.github} target="_blank" rel="noopener noreferrer" className="btn btn-ghost">
-                GitHub →
+              <a
+                href={fm.github}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn btn-secondary"
+              >
+                GitHub
               </a>
             )}
           </div>
-        </MotionSection>
+        )}
       </section>
 
       {/* CASE COVER */}
       {fm.hero && (
-        <div className="case-cover container">
+        <div className="case-cover">
           <div className="img-ph">
             <Image
               src={fm.hero}
               alt={fm.title}
               fill
-              sizes="(max-width: 1280px) 100vw, 1200px"
-              className="photo"
+              sizes="100vw"
+              style={{ objectFit: "cover" }}
               priority
             />
+            <span className="corner">COVER · 21:9</span>
+            <span className="lab">[ {slug} · cover ]</span>
           </div>
         </div>
       )}
 
       {/* CASE STATS */}
       {fm.stats && fm.stats.length > 0 && (
-        <MotionSection className="container" as="div">
+        <div className="container case-stats">
           <motion.div
-            className="case-stats"
+            className="grid"
             variants={STAGGER_CONTAINER}
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true, margin: "-60px" }}
           >
-            {fm.stats.map((stat) => (
-              <motion.div key={stat.label} className="case-stat" variants={STAGGER_ITEM}>
-                <strong>{stat.value}</strong>
-                <span>{stat.label}</span>
-              </motion.div>
-            ))}
+            {fm.stats.map((stat) => {
+              const { num, unit } = splitStatValue(stat.value);
+              return (
+                <motion.div
+                  key={stat.label}
+                  className="card case-stat"
+                  variants={STAGGER_ITEM}
+                >
+                  <div className="v">
+                    {num}
+                    {unit && <span className="unit">{unit}</span>}
+                  </div>
+                  <div className="k">{stat.label}</div>
+                </motion.div>
+              );
+            })}
           </motion.div>
-        </MotionSection>
+        </div>
       )}
 
       {/* CASE BODY */}
-      <div className="case-body-wrap container">
+      <div className="container case-body-wrap">
         <TableOfContents slug={slug} />
         <article className="case-body">
           <MDXRemote {...mdxSource} components={MDX_COMPONENTS} />
@@ -187,11 +250,13 @@ export default function WorkSlug({ frontmatter: fm, mdxSource, relatedPosts, slu
 
       {/* RELATED */}
       {relatedPosts.length > 0 && (
-        <MotionSection className="case-related container" as="section">
-          <p className="eyebrow">More work</p>
-          <h2>Related projects</h2>
+        <section className="container case-related">
+          <div className="lbl">Continue exploring</div>
+          <h2>
+            Related work<span className="acc">.</span>
+          </h2>
           <motion.div
-            className="related-grid"
+            className="grid"
             variants={STAGGER_CONTAINER}
             initial="hidden"
             whileInView="visible"
@@ -199,30 +264,28 @@ export default function WorkSlug({ frontmatter: fm, mdxSource, relatedPosts, slu
           >
             {relatedPosts.map((post) => (
               <motion.div key={post.slug} variants={STAGGER_ITEM}>
-                <Link href={`/work/${post.slug}`} className="related-card">
-                  {post.hero && (
-                    <div className="img-ph">
-                      <Image src={post.hero} alt={post.title} fill sizes="400px" className="photo" />
-                    </div>
-                  )}
-                  <div className="related-card-copy">
-                    <p className="chip">{post.package}</p>
+                <Link href={`/work/${post.slug}`} className="card related-card">
+                  <div className="img-ph">
+                    {post.hero && (
+                      <Image
+                        src={post.hero}
+                        alt={post.title}
+                        fill
+                        sizes="440px"
+                        style={{ objectFit: "cover" }}
+                      />
+                    )}
+                  </div>
+                  <div className="body">
                     <h4>{post.title}</h4>
                     <p>{post.tagline}</p>
-                    <span className="link-acc">View →</span>
                   </div>
                 </Link>
               </motion.div>
             ))}
           </motion.div>
-        </MotionSection>
+        </section>
       )}
-
-      <MotionSection className="final-cta container">
-        <p className="eyebrow">Start something</p>
-        <h2>Want results like these?</h2>
-        <Link href="/contact" className="btn btn-primary">Start a project →</Link>
-      </MotionSection>
     </>
   );
 }

@@ -6,13 +6,27 @@ import { serialize } from "next-mdx-remote/serialize";
 import rehypeHighlight from "rehype-highlight";
 import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
-import { MotionSection } from "@/components/MotionSection";
-import { getAllJournalPosts, getJournalPost, type JournalFrontmatter } from "@/lib/journal";
-import { PULL_QUOTE } from "@/lib/motion";
+import {
+  getAllJournalPosts,
+  getJournalPost,
+  type JournalFrontmatter,
+} from "@/lib/journal";
+import { PULL_QUOTE, STAGGER_CONTAINER, STAGGER_ITEM } from "@/lib/motion";
+
+interface RelatedJournal {
+  slug: string;
+  title: string;
+  excerpt: string;
+  date: string;
+  category: string;
+  readTime: string;
+  coverImage: string;
+}
 
 interface JournalSlugProps {
   frontmatter: JournalFrontmatter;
   mdxSource: MDXRemoteSerializeResult;
+  related: RelatedJournal[];
   slug: string;
 }
 
@@ -29,7 +43,12 @@ const MDX_COMPONENTS = {
   ),
 };
 
-export default function JournalSlug({ frontmatter: fm, mdxSource, slug }: JournalSlugProps) {
+export default function JournalSlug({
+  frontmatter: fm,
+  mdxSource,
+  related,
+  slug,
+}: JournalSlugProps) {
   return (
     <>
       <SEO
@@ -40,49 +59,88 @@ export default function JournalSlug({ frontmatter: fm, mdxSource, slug }: Journa
         canonicalPath={`/journal/${slug}`}
       />
 
-      {/* ARTICLE COVER */}
-      {fm.coverImage && (
-        <div className="article-cover container">
-          <div className="img-ph">
+      {/* ARTICLE COVER — edge-to-edge with overlay */}
+      <div className="article-cover">
+        <div className="img-ph">
+          {fm.coverImage && (
             <Image
               src={fm.coverImage}
               alt={fm.title}
               fill
-              sizes="(max-width: 1280px) 100vw, 1200px"
-              className="photo"
+              sizes="100vw"
+              style={{ objectFit: "cover" }}
               priority
             />
+          )}
+          <span className="corner">COVER · 21:10</span>
+          <span className="lab">{fm.coverImage}</span>
+        </div>
+        <div className="overlay">
+          <div className="container">
+            <span className="crumbs">Blog / {fm.title}</span>
+            <h1>
+              {fm.title}
+              <span className="acc">.</span>
+            </h1>
+            <div className="meta">
+              <span>{fm.category}</span>
+              <span>{fm.readTime}</span>
+              <span>{fm.date}</span>
+            </div>
+            <div className="byline">
+              By Massimiliano Angelone — Tenerife
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* ARTICLE BODY */}
+      <article className="article-body">
+        <MDXRemote {...mdxSource} components={MDX_COMPONENTS} />
+      </article>
+
+      {/* ARTICLE FOOTER */}
+      {related.length > 0 && (
+        <div className="article-footer">
+          <div className="container">
+            <h3>
+              Continue reading<span className="acc">.</span>
+            </h3>
+            <motion.div
+              className="grid"
+              variants={STAGGER_CONTAINER}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+            >
+              {related.map((post) => (
+                <motion.div key={post.slug} variants={STAGGER_ITEM}>
+                  <Link
+                    href={`/journal/${post.slug}`}
+                    className="card related-card"
+                  >
+                    <div className="img-ph">
+                      {post.coverImage && (
+                        <Image
+                          src={post.coverImage}
+                          alt={post.title}
+                          fill
+                          sizes="400px"
+                          style={{ objectFit: "cover" }}
+                        />
+                      )}
+                    </div>
+                    <div className="body">
+                      <h4>{post.title}</h4>
+                      <p>{post.excerpt}</p>
+                    </div>
+                  </Link>
+                </motion.div>
+              ))}
+            </motion.div>
           </div>
         </div>
       )}
-
-      {/* ARTICLE HEADER */}
-      <MotionSection className="container article-header" as="div">
-        <p className="eyebrow acc">{fm.category} · {fm.readTime} · {fm.date}</p>
-        <h1>{fm.title}</h1>
-        <p className="q">{fm.excerpt}</p>
-      </MotionSection>
-
-      {/* ARTICLE BODY */}
-      <div className="container">
-        <article className="article-body">
-          <MDXRemote {...mdxSource} components={MDX_COMPONENTS} />
-        </article>
-
-        {/* ARTICLE FOOTER */}
-        <footer className="article-footer">
-          <div className="article-footer-author">
-            <div className="img-ph">
-              <Image src="/images/me-5.webp" alt="Massimiliano Angelone" fill sizes="64px" className="photo" />
-            </div>
-            <div>
-              <strong>Massimiliano Angelone</strong>
-              <p>AI-Enhanced MVP Developer · Tenerife</p>
-            </div>
-          </div>
-          <Link href="/journal" className="link-acc">← Back to Journal</Link>
-        </footer>
-      </div>
     </>
   );
 }
@@ -105,5 +163,20 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
     },
   });
 
-  return { props: { frontmatter: post.frontmatter, mdxSource, slug } };
+  const related: RelatedJournal[] = getAllJournalPosts()
+    .filter((p) => p.slug !== slug)
+    .slice(0, 3)
+    .map((p) => ({
+      slug: p.slug,
+      title: p.frontmatter.title,
+      excerpt: p.frontmatter.excerpt,
+      date: p.frontmatter.date,
+      category: p.frontmatter.category,
+      readTime: p.frontmatter.readTime,
+      coverImage: p.frontmatter.coverImage,
+    }));
+
+  return {
+    props: { frontmatter: post.frontmatter, mdxSource, related, slug },
+  };
 };
