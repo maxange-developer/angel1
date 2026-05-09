@@ -3,7 +3,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence, useScroll, useTransform } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 
 const NAV_ITEMS = [
   { label: "Work", href: "/work" },
@@ -17,11 +17,6 @@ const NAV_ITEMS = [
 export default function Header() {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const router = useRouter();
-  const { scrollY } = useScroll();
-
-  /* Scroll-based background — dynamic computed value, inline style justified */
-  const bgOpacity = useTransform(scrollY, [0, 80], [0, 0.85]);
-  const borderOpacity = useTransform(scrollY, [0, 80], [0, 1]);
 
   useEffect(() => {
     setIsMobileMenuOpen(false);
@@ -29,16 +24,9 @@ export default function Header() {
 
   return (
     <>
-      <motion.header
-        className="nav-shell"
-        style={{
-          backgroundColor: useTransform(bgOpacity, (v) => `rgba(0,0,0,${v})`),
-          borderBottom: useTransform(borderOpacity, (v) => `1px solid rgba(255,255,255,${v * 0.10})`),
-        }}
-      >
+      <header className="nav-shell">
         <div className="container">
           <nav className="nav">
-            {/* Logo */}
             <Link href="/" className="brand">
               <Image
                 src="/images/logo-a1-w.webp"
@@ -49,7 +37,6 @@ export default function Header() {
               />
             </Link>
 
-            {/* Desktop nav links */}
             <ul className="links">
               {NAV_ITEMS.map((item) => {
                 const isActive =
@@ -65,25 +52,27 @@ export default function Header() {
               })}
             </ul>
 
-            {/* Desktop CTA */}
             <Link href="/contact" className="cta hidden md:inline-flex">
               Start a project →
             </Link>
 
-            {/* Mobile hamburger */}
             <button
               className="md:hidden"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              style={{ color: "var(--text)", background: "none", border: "none", cursor: "pointer" }}
+              style={{
+                color: "var(--text)",
+                background: "none",
+                border: "none",
+                cursor: "pointer",
+              }}
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
             </button>
           </nav>
         </div>
-      </motion.header>
+      </header>
 
-      {/* Mobile menu */}
       <AnimatePresence>
         {isMobileMenuOpen && (
           <motion.div
@@ -98,10 +87,6 @@ export default function Header() {
                 <li key={item.href}>
                   <Link
                     href={item.href}
-                    style={{
-                      color: router.pathname === item.href ? "var(--text)" : "var(--text-2)",
-                      fontWeight: router.pathname === item.href ? 500 : 400,
-                    }}
                     onClick={() => setIsMobileMenuOpen(false)}
                   >
                     {item.label}
@@ -110,7 +95,11 @@ export default function Header() {
               ))}
             </ul>
             <div className="bottom">
-              <Link href="/contact" className="cta" onClick={() => setIsMobileMenuOpen(false)}>
+              <Link
+                href="/contact"
+                className="cta"
+                onClick={() => setIsMobileMenuOpen(false)}
+              >
                 Start a project →
               </Link>
             </div>

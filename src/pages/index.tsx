@@ -15,6 +15,7 @@ import {
 } from "@/lib/motion";
 import { useCountUp } from "@/hooks/useCountUp";
 import Testimonial from "@/components/Testimonial";
+import PageBreak from "@/components/PageBreak";
 
 interface WorkPreview {
   slug: string;
@@ -389,6 +390,9 @@ export default function Home({ featuredWork }: HomeProps) {
         role="QA Tester @ Aethra Telecommunications · ex-colleague at Altesia"
         linkedinUrl="https://www.linkedin.com/in/alex-sopranzetti-b16689218/"
       />
+
+      {/* PAGE BREAK → ABOUT */}
+      <PageBreak num="05" label="ABOUT" name="angel1.dev — about" />
 
       {/* ABOUT SPLIT */}
       <div className="container sec" style={{ paddingTop: 0 }}>
