@@ -59,7 +59,7 @@ export default function Contact() {
       <section className="page-hero container">
         <MotionSection>
           <p className="eyebrow">Get in touch</p>
-          <h1>Start a project.</h1>
+          <h1>Start a project</h1>
           <p className="q">
             Tell me what you&apos;re building. I&apos;ll confirm scope, timeline, and price within 48 hours.
           </p>

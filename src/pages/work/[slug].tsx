@@ -251,7 +251,7 @@ export default function WorkSlug({
         <section className="container case-related">
           <div className="lbl">Continue exploring</div>
           <h2>
-            Related work<span className="acc">.</span>
+            Related work
           </h2>
           <motion.div
             className="grid"

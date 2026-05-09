@@ -106,7 +106,7 @@ export default function About() {
           <span className="lbl">06 / TIMELINE</span>
           <div>
             <h2>
-              Timeline<span className="q">.</span>
+              Timeline
             </h2>
             <p className="sub">
               Twenty-four years of compounding. Eleven moments that shaped the
@@ -140,7 +140,7 @@ export default function About() {
         <div className="curr-head">
           <span className="lbl">07 / CURRENTLY</span>
           <h2>
-            Currently<span className="q">.</span>
+            Currently
           </h2>
         </div>
 

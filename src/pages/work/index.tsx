@@ -36,7 +36,7 @@ export default function WorkIndex({ posts }: WorkIndexProps) {
             <div>
               <span className="eyebrow">Portfolio</span>
               <h1>
-                Work<span className="q">.</span>
+                Work<span className="acc">.</span>
               </h1>
             </div>
             <span className="meta">{String(total).padStart(2, "0")} projects</span>
@@ -82,10 +82,7 @@ export default function WorkIndex({ posts }: WorkIndexProps) {
                 {post.stack.length > 0 && (
                   <div className="stack">
                     {post.stack.slice(0, 4).map((s) => (
-                      <span key={s} className="chip">
-                        <span className="ddot" />
-                        {s.toUpperCase()}
-                      </span>
+                      <span key={s} className="chip">{s.toUpperCase()}</span>
                     ))}
                   </div>
                 )}

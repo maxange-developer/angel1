@@ -229,7 +229,7 @@ export default function Services() {
       <MotionSection className="container compare" as="div">
         <div className="lbl">Side by side</div>
         <h2>
-          Compare engagements<span className="acc">.</span>
+          Compare engagements
         </h2>
         <table>
           <thead>
@@ -260,7 +260,7 @@ export default function Services() {
         <div className="head">
           <div className="lbl">Track record · verified</div>
           <h2>
-            What&apos;s actually shipped<span className="acc">.</span>
+            What&apos;s actually shipped
           </h2>
         </div>
         <motion.div
@@ -287,7 +287,7 @@ export default function Services() {
       {/* FAQ */}
       <MotionSection className="container faq" as="div">
         <h2>
-          Frequently asked<span className="acc">.</span>
+          Frequently asked
         </h2>
         {FAQ.map((item) => (
           <details key={item.q}>
@@ -304,7 +304,7 @@ export default function Services() {
       <section className="custom-cta">
         <div className="container">
           <h3>
-            Need something custom<span className="acc">?</span>
+            Need something custom?
           </h3>
           <p>
             Long-term retainer, an existing codebase to harden, or something

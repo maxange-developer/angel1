@@ -105,7 +105,7 @@ export default function JournalSlug({
         <div className="article-footer">
           <div className="container">
             <h3>
-              Continue reading<span className="acc">.</span>
+              Continue reading
             </h3>
             <motion.div
               className="grid"

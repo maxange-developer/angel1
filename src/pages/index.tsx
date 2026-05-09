@@ -154,7 +154,10 @@ export default function Home({ featuredWork }: HomeProps) {
             <div className="photo-cap">[ portrait · tenerife · 2025 ]</div>
             <div className="right-trust">
               <span className="status">Available · 2026</span>
-              <span className="chip">★ 5.0 · 100% JSR</span>
+              <div className="right-trust-meta">
+                <span className="rt-line">★ 5.0 · 100% JSR</span>
+                <span className="rt-line">3 shipped projects</span>
+              </div>
             </div>
           </motion.div>
         </motion.div>
@@ -238,7 +241,7 @@ export default function Home({ featuredWork }: HomeProps) {
           <span className="lbl">02 / SERVICES</span>
           <div>
             <h2>
-              Productized engagements<span className="acc">.</span>
+              Productized engagements
             </h2>
             <p className="sub">
               Three fixed-scope tracks. Same workflow, same engineering rigor —
@@ -288,7 +291,7 @@ export default function Home({ featuredWork }: HomeProps) {
             <span className="lbl">03 / SELECTED WORK</span>
             <div>
               <h2>
-                Recent work<span className="acc">.</span>
+                Recent work
               </h2>
               <p className="sub">
                 Three projects shipped end-to-end in the last twelve months. Same
@@ -324,27 +327,15 @@ export default function Home({ featuredWork }: HomeProps) {
                 </div>
                 <div className="body">
                   <div className="meta-line">
-                    <span className="chip">
-                      <span className="ddot" />
-                      FEATURED · {featured.date}
-                    </span>
-                    <span className="chip">
-                      <span className="ddot" />
-                      {featured.package.toUpperCase()}
-                    </span>
+                    <span className="chip">FEATURED · {featured.date}</span>
+                    <span className="chip">{featured.package.toUpperCase()}</span>
                   </div>
-                  <h3>
-                    {featured.title}
-                    <span className="q">.</span>
-                  </h3>
+                  <h3>{featured.title}</h3>
                   <p className="tagline">{featured.tagline}</p>
                   {featured.stack && featured.stack.length > 0 && (
                     <div className="stack">
                       {featured.stack.slice(0, 4).map((s) => (
-                        <span key={s} className="chip chip-acc">
-                          <span className="ddot" />
-                          {s.toUpperCase()}
-                        </span>
+                        <span key={s} className="chip">{s.toUpperCase()}</span>
                       ))}
                     </div>
                   )}
@@ -380,10 +371,7 @@ export default function Home({ featuredWork }: HomeProps) {
                       />
                     )}
                   </div>
-                  <h4>
-                    {w.title}
-                    <span className="q">.</span>
-                  </h4>
+                  <h4>{w.title}</h4>
                   <p className="tag">{w.tagline}</p>
                   <div className="meta">
                     <span>{w.package.toUpperCase()}</span>
@@ -451,7 +439,7 @@ export default function Home({ featuredWork }: HomeProps) {
           <h2>
             Have an idea
             <br />
-            worth shipping<span className="acc">?</span>
+            worth shipping?
           </h2>
           <p>Three projects per quarter. Calendar open through 2026.</p>
           <div className="ctas">

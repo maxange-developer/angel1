@@ -76,7 +76,7 @@ export default function Footer() {
                 <Link href="/contact">Book a call</Link>
               </li>
               <li>
-                <Link href="/contact" style={{ color: "var(--accent)" }}>
+                <Link href="/contact" className="link-acc">
                   Start a project →
                 </Link>
               </li>

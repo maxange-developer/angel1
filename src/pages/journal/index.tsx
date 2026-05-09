@@ -24,7 +24,7 @@ export default function JournalIndex({ pinned, others, total }: JournalIndexProp
             <div>
               <span className="eyebrow">Writing</span>
               <h1>
-                Notes<span className="q">.</span>
+                Notes<span className="acc">.</span>
               </h1>
             </div>
             <span className="meta">{String(total).padStart(2, "0")} pieces</span>
@@ -58,10 +58,7 @@ export default function JournalIndex({ pinned, others, total }: JournalIndexProp
                 {pinned.frontmatter.date} · {pinned.frontmatter.category} ·{" "}
                 {pinned.frontmatter.readTime}
               </div>
-              <h2>
-                {pinned.frontmatter.title}
-                <span className="acc">.</span>
-              </h2>
+              <h2>{pinned.frontmatter.title}</h2>
               <p className="excerpt">{pinned.frontmatter.excerpt}</p>
               <Link
                 href={`/journal/${pinned.slug}`}
@@ -89,10 +86,7 @@ export default function JournalIndex({ pinned, others, total }: JournalIndexProp
                     {post.frontmatter.date} · {post.frontmatter.category} ·{" "}
                     {post.frontmatter.readTime}
                   </div>
-                  <h3>
-                    {post.frontmatter.title}
-                    <span className="q">.</span>
-                  </h3>
+                  <h3>{post.frontmatter.title}</h3>
                   <p>{post.frontmatter.excerpt}</p>
                   <span className="more link-acc">
                     Read <span>→</span>
