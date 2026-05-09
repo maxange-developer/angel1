@@ -14,6 +14,7 @@ import {
   HERO_STAGGER,
 } from "@/lib/motion";
 import { useCountUp } from "@/hooks/useCountUp";
+import Testimonial from "@/components/Testimonial";
 
 interface WorkPreview {
   slug: string;
@@ -142,7 +143,7 @@ export default function Home({ featuredWork }: HomeProps) {
       <MotionSection className="trusted container">
         <p className="trusted-label eyebrow">Trusted by &amp; shipped for</p>
         <div className="trusted-logos">
-          {["RAI", "Fileni", "Altesia", "Upwork", "Freelancer.com", "npm"].map((name) => (
+          {["RAI", "La7", "Fileni", "Upwork", "Freelancer.com", "npm"].map((name) => (
             <span key={name} className="trusted-logo">{name}</span>
           ))}
         </div>
@@ -231,6 +232,17 @@ export default function Home({ featuredWork }: HomeProps) {
         </MotionSection>
       )}
 
+      {/* TESTIMONIAL */}
+      <Testimonial
+        quote={[
+          "For an entire year I worked alongside Massimiliano as he was making his first official steps as a developer. What struck me — and still does — is his complete refusal of the word 'impossible'. No matter how unreasonable a feature request was, I never once heard him say 'it can't be done'. He'd quietly find a way. That's why, when I had a private web app to build, I hired him myself.",
+          "He's the kind of person you actually have a conversation with — who listens before he writes code. For me, that human dimension makes all the difference."
+        ]}
+        name="Alex Sopranzetti"
+        role="QA Tester @ Aethra Telecommunications · ex-colleague at Altesia"
+        linkedinUrl="TODO_ALEX_LINKEDIN_URL"
+      />
+
       {/* ABOUT SPLIT + FINAL CTA */}
       <MotionSection className="about-split container">
         <div className="about-split-copy">
@@ -238,8 +250,9 @@ export default function Home({ featuredWork }: HomeProps) {
           <h2>24. Tenerife.<br />Shipped to production.</h2>
           <p>
             I&apos;ve been building software since 14 — went through a 12-year stretch of
-            hearing loss, emerged with sharper focus. Today I work with founders worldwide
-            to turn AI ideas into real products.
+            hearing loss, emerged with sharper focus. Two+ years building production
+            systems for clients including RAI, La7 and Fileni Group. Today I work with
+            founders worldwide to turn AI ideas into real products.
           </p>
           <Link href="/about" className="btn btn-ghost">Read my story →</Link>
         </div>
