@@ -29,7 +29,7 @@ const PACKAGES = [
     name: "AI MVP Lite",
     cur: "€",
     price: "5,000",
-    duration: "2–3 weeks",
+    duration: "2 weeks",
     ideal:
       "A real MVP — auth, data, AI, payments-ready. The version you raise on, the version you sell.",
     deliv: [
@@ -49,7 +49,7 @@ const PACKAGES = [
     name: "AI MVP Full",
     cur: "€",
     price: "9,500",
-    duration: "4–6 weeks",
+    duration: "4 weeks",
     ideal:
       "Production-grade. Multi-tenant, observability baked in, ready for the first 1,000 paying users.",
     deliv: [
@@ -76,7 +76,7 @@ interface CompareRow {
 }
 
 const COMPARE_ROWS: CompareRow[] = [
-  { feature: "Timeline", sprint: "1 week", lite: "2–3 weeks", full: "4–6 weeks" },
+  { feature: "Timeline", sprint: "1 week", lite: "2 weeks", full: "4 weeks" },
   { feature: "Investment", sprint: "€2,500", lite: "€5,000", full: "€9,500" },
   { feature: "Discovery", sprint: true, lite: true, full: true },
   { feature: "Auth + DB scaffolding", sprint: true, lite: true, full: true },

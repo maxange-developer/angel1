@@ -61,7 +61,10 @@ export default function JournalSlug({
 
       {/* ARTICLE COVER — edge-to-edge with overlay */}
       <div className="article-cover">
-        <div className="img-ph">
+        <div
+          className="img-ph"
+          style={{ maxHeight: "600px", position: "relative", overflow: "hidden" }}
+        >
           {fm.coverImage && (
             <Image
               src={fm.coverImage}

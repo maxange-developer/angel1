@@ -2,10 +2,6 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { Resend } from "resend";
 import { z } from "zod";
 
-const apiKey = process.env.RESEND_API_KEY;
-if (!apiKey) throw new Error("[contact API] RESEND_API_KEY is not set");
-const resend = new Resend(apiKey);
-
 const FROM_ADDRESS = "Angel1 <noreply@massimilianoangelone.com>";
 const TO_ADDRESS = "massiangelone01@gmail.com";
 
@@ -17,10 +13,11 @@ const contactSchema = z.object({
 });
 
 const TYPE_LABELS: Record<string, string> = {
-  "web-app": "Web App / Dashboard",
-  mobile: "Mobile App",
-  "ai-integration": "AI Integration",
-  other: "Other",
+  "ai-sprint": "AI Sprint — €2,500",
+  "mvp-lite": "MVP Lite — €5,000",
+  "mvp-full": "MVP Full — €9,500",
+  custom: "Custom scope",
+  other: "Just exploring",
 };
 
 function buildNotificationHtml(data: z.infer<typeof contactSchema>): string {
@@ -60,6 +57,13 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   if (req.method !== "POST") {
     return res.status(405).json({ error: "Method not allowed" });
   }
+
+  const apiKey = process.env.RESEND_API_KEY;
+  if (!apiKey) {
+    console.error("[contact API] RESEND_API_KEY is not set");
+    return res.status(500).json({ error: "Email service not configured" });
+  }
+  const resend = new Resend(apiKey);
 
   const parsed = contactSchema.safeParse(req.body);
   if (!parsed.success) {

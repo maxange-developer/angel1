@@ -201,6 +201,9 @@ p { margin: 0; }
   color: rgba(245,245,247,0.50); transition: color var(--dur) var(--ease); }
 .trusted .logo:hover { color: var(--text); }
 .trusted .logo.mono { font-family: var(--font-mono); font-size: 16px; letter-spacing: 0; }
+.trusted-logo-link { display: inline-flex; align-items: center; opacity: 0.50; transition: opacity var(--dur) var(--ease); }
+.trusted-logo-link:hover { opacity: 1; }
+.trusted-logo-img { filter: invert(1); height: 22px; width: auto; object-fit: contain; }
 
 /* ─── Section Head ─── */
 .sec { padding: var(--pad-y) 0; }
@@ -524,6 +527,40 @@ p { margin: 0; }
   .hero-index .col:last-child { border-bottom: 0; }
   .nav .links { display: none; }
   :root { --pad-y: 80px; --container-pad: 24px; }
+}
+
+@media (max-width: 768px) {
+  :root { --pad-y: 64px; --container-pad: 20px; }
+  .home-hero h1 { font-size: clamp(40px, 10vw, 64px); }
+  .page-hero h1 { font-size: clamp(40px, 10vw, 80px); }
+  h2 { font-size: clamp(32px, 8vw, 48px); }
+  .svc-grid { grid-template-columns: 1fr; }
+  .compare { overflow-x: auto; }
+  .compare table { min-width: 560px; }
+  .case-hero .meta { grid-template-columns: repeat(2, 1fr); }
+  .case-body-wrap { grid-template-columns: 1fr; }
+  .case-toc { display: none; }
+  .article-cover .overlay h1 { font-size: clamp(32px, 8vw, 56px); }
+  .blog-pinned { grid-template-columns: 1fr; }
+  .final-cta h2 { font-size: clamp(40px, 8vw, 56px); }
+  .timeline-row { gap: 16px; }
+}
+
+@media (max-width: 480px) {
+  :root { --pad-y: 48px; --container-pad: 16px; }
+  .home-hero h1 { font-size: 36px; }
+  .page-hero h1 { font-size: 36px; }
+  h2 { font-size: 28px; }
+  h3 { font-size: 24px; }
+  .btn { padding: 12px 20px; font-size: 13px; }
+  .ctas { flex-direction: column; align-items: flex-start; gap: 12px; }
+  .hero-index .col { padding: 20px 0; }
+  .hero-index .v { font-size: 32px; }
+  .card.svc-card { padding: 24px; }
+  .final-cta h2 { font-size: 32px; }
+  .article-cover .overlay h1 { font-size: 28px; }
+  .about-hero .grid { gap: 32px; }
+  .contact-wrap { grid-template-columns: 1fr; }
 }
 
 @media (max-width: 600px) {

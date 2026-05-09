@@ -52,7 +52,7 @@ const SVC_CARDS = [
     name: "AI MVP Lite",
     cur: "€",
     price: "5,000",
-    duration: "2–3 weeks",
+    duration: "2 weeks",
     desc: "A real MVP — auth, data, AI, payments-ready. The version you raise on, the version you sell.",
     deliv: [
       "Full Supabase schema + RLS",
@@ -65,7 +65,7 @@ const SVC_CARDS = [
     name: "AI MVP Full",
     cur: "€",
     price: "9,500",
-    duration: "4–6 weeks",
+    duration: "4 weeks",
     desc: "A production system. Multi-tenant, observability baked in, ready for the first 1,000 paying users.",
     deliv: [
       "Multi-tenant + RBAC + billing",
@@ -114,7 +114,7 @@ export default function Home({ featuredWork }: HomeProps) {
           <div>
             <motion.span className="eyebrow" variants={FADE_UP}>
               <span className="dot" />
-              AI-Enhanced MVP Developer · Available Q3 2026
+              AI-Enhanced MVP Developer · Available 2026
             </motion.span>
             <motion.h1 variants={HERO_TITLE}>
               Ship AI-powered
@@ -155,7 +155,7 @@ export default function Home({ featuredWork }: HomeProps) {
             </div>
             <div className="photo-cap">[ portrait · tenerife · 2025 ]</div>
             <div className="right-trust">
-              <span className="status">Available · Q3 2026</span>
+              <span className="status">Available · 2026</span>
               <span className="chip">★ 5.0 · 100% JSR</span>
             </div>
           </motion.div>
@@ -196,18 +196,39 @@ export default function Home({ featuredWork }: HomeProps) {
           <div className="grid">
             <span className="label">Trusted by teams at</span>
             <div className="logos">
-              {[
-                { name: "RAI", mono: false },
-                { name: "La7", mono: false },
-                { name: "Fileni", mono: false },
-                { name: "Upwork", mono: false },
-                { name: "Freelancer", mono: false },
-                { name: "npm", mono: true },
-              ].map((l) => (
-                <span key={l.name} className={`logo${l.mono ? " mono" : ""}`}>
-                  {l.name}
-                </span>
+              {["RAI", "La7", "Fileni", "Upwork", "Freelancer"].map((name) => (
+                <span key={name} className="logo">{name}</span>
               ))}
+              <a
+                href="https://altesia.it"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="trusted-logo-link"
+                aria-label="Altesia"
+              >
+                <Image
+                  src="/images/logo_ALTESIA.svg"
+                  alt="Altesia"
+                  width={88}
+                  height={22}
+                  className="trusted-logo-img"
+                />
+              </a>
+              <a
+                href="https://airplaycontrol.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="trusted-logo-link"
+                aria-label="Airplay Control"
+              >
+                <Image
+                  src="/images/airplay-logo.webp"
+                  alt="Airplay Control"
+                  width={120}
+                  height={22}
+                  className="trusted-logo-img"
+                />
+              </a>
             </div>
           </div>
         </div>
@@ -439,7 +460,7 @@ export default function Home({ featuredWork }: HomeProps) {
             <br />
             worth shipping<span className="acc">?</span>
           </h2>
-          <p>Three projects per quarter. Calendar open through Q3 2026.</p>
+          <p>Three projects per quarter. Calendar open through 2026.</p>
           <div className="ctas">
             <Link href="/contact" className="btn btn-primary">
               Start a project <span className="arr">→</span>

@@ -26,7 +26,7 @@ export default function Now() {
             end of June 2026.
           </p>
           <p>
-            Not taking on new projects until Q3 2026. If you&apos;d like to book a
+            Not taking on new projects until mid-2026. If you&apos;d like to book a
             discovery call for a project starting in July or later,{" "}
             <Link href="/contact" className="link-acc">get in touch</Link>.
           </p>

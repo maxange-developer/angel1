@@ -9,7 +9,7 @@ const NAV_ITEMS = [
   { label: "Work", href: "/work" },
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
-  { label: "Journal", href: "/journal" },
+  { label: "Notes", href: "/journal" },
   { label: "Now", href: "/now" },
   { label: "Contact", href: "/contact" },
 ];
