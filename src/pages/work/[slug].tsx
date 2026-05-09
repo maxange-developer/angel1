@@ -204,8 +204,6 @@ export default function WorkSlug({
               style={{ objectFit: "cover" }}
               priority
             />
-            <span className="corner">COVER · 21:9</span>
-            <span className="lab">[ {slug} · cover ]</span>
           </div>
         </div>
       )}

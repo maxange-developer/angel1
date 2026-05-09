@@ -51,8 +51,6 @@ export default function JournalIndex({ pinned, others, total }: JournalIndexProp
                   priority
                 />
               )}
-              <span className="corner">PINNED</span>
-              <span className="lab">{pinned.frontmatter.coverImage}</span>
             </div>
             <div>
               <span className="pin">★ Pinned · {pinned.frontmatter.category}</span>

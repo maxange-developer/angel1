@@ -72,10 +72,6 @@ export default function WorkIndex({ posts }: WorkIndexProps) {
                     style={{ objectFit: "cover" }}
                   />
                 )}
-                <span className="corner">
-                  {String(i + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-                </span>
-                <span className="lab">[ {post.slug} · 16:10 ]</span>
               </div>
               <div>
                 <span className="meta-row">

@@ -71,12 +71,10 @@ export default function About() {
               src="/images/me-15.webp"
               alt="Massimiliano Angelone"
               fill
-              sizes="(max-width: 1024px) 100vw, 480px"
-              style={{ objectFit: "cover" }}
+              sizes="(max-width: 768px) 100vw, 480px"
+              style={{ objectFit: "cover", objectPosition: "center top" }}
               priority
             />
-            <span className="corner">PORTRAIT</span>
-            <span className="lab">/images/me-15.webp</span>
           </motion.div>
           <MotionSection as="div">
             <motion.span className="role" variants={FADE_UP}>

@@ -146,12 +146,10 @@ export default function Home({ featuredWork }: HomeProps) {
                 src="/images/me-5.webp"
                 alt="Massimiliano Angelone"
                 fill
-                sizes="(max-width: 1024px) 100vw, 480px"
-                style={{ objectFit: "cover" }}
+                sizes="(max-width: 768px) 100vw, 480px"
+                style={{ objectFit: "cover", objectPosition: "center top" }}
                 priority
               />
-              <span className="corner">01 / 01</span>
-              <span className="lab">/images/me-5.webp</span>
             </div>
             <div className="photo-cap">[ portrait · tenerife · 2025 ]</div>
             <div className="right-trust">
@@ -323,8 +321,6 @@ export default function Home({ featuredWork }: HomeProps) {
                       style={{ objectFit: "cover" }}
                     />
                   )}
-                  <span className="corner">FEATURED</span>
-                  <span className="lab">[ {featured.slug} · 4:3 ]</span>
                 </div>
                 <div className="body">
                   <div className="meta-line">
@@ -383,7 +379,6 @@ export default function Home({ featuredWork }: HomeProps) {
                         style={{ objectFit: "cover" }}
                       />
                     )}
-                    <span className="lab">[ {w.slug} · 16:10 ]</span>
                   </div>
                   <h4>
                     {w.title}
@@ -418,16 +413,14 @@ export default function Home({ featuredWork }: HomeProps) {
       {/* ABOUT SPLIT */}
       <div className="container sec" style={{ paddingTop: 0 }}>
         <MotionSection className="about-split" as="div">
-          <div className="img-ph photo" style={{ aspectRatio: "4/5" }}>
+          <div className="img-ph photo">
             <Image
               src="/images/me-5.webp"
               alt="Massimiliano Angelone"
               fill
-              sizes="(max-width: 1024px) 100vw, 480px"
-              style={{ objectFit: "cover" }}
+              sizes="(max-width: 768px) 100vw, 480px"
+              style={{ objectFit: "cover", objectPosition: "center top" }}
             />
-            <span className="corner">PORTRAIT</span>
-            <span className="lab">/images/me-5.webp</span>
           </div>
           <div className="copy">
             <span className="eyebrow">About</span>

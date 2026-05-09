@@ -75,8 +75,6 @@ export default function JournalSlug({
               priority
             />
           )}
-          <span className="corner">COVER · 21:10</span>
-          <span className="lab">{fm.coverImage}</span>
         </div>
         <div className="overlay">
           <div className="container">
