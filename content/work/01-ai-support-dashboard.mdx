@@ -1,0 +1,83 @@
+---
+title: "AI Support Dashboard per Fileni Group"
+client: "Altesia (Fileni Group)"
+tagline: "Sistema AI per la gestione ordini e supporto clienti nel food distribution"
+date: "2024-03"
+duration: "21 giorni"
+package: "AI MVP Lite"
+stack: ["Next.js 14", "Claude API", "Supabase", "Tailwind CSS", "TypeScript"]
+color: "blue"
+featured: true
+demo: ""
+github: ""
+stats:
+  - value: "85s"
+    label: "Risposta ticket"
+  - value: "90+"
+    label: "Ticket/giorno"
+  - value: "4.7/5"
+    label: "Soddisfazione"
+---
+
+## Situation
+
+Altesia, il software gestionale di Fileni Group — uno dei principali produttori avicoli italiani — gestisce migliaia di ordini B2B al giorno. Il team di supporto clienti riceveva decine di richieste identiche ogni settimana: stato ordine, date di consegna, gestione resi.
+
+Il processo era completamente manuale: un operatore apriva il CRM, cercava l'ordine, copiava le informazioni e rispondeva via email. Ogni ticket richiedeva 8-12 minuti. Con 60+ ticket al giorno, l'overhead era insostenibile.
+
+## Task
+
+Costruire una dashboard AI-enhanced che permettesse agli operatori di:
+
+- Rispondere ai ticket in **meno di 90 secondi** (vs 10 minuti)
+- Generare risposte contestualizzate automaticamente via Claude
+- Visualizzare lo stato degli ordini in tempo reale da Supabase
+- Fare escalation intelligente dei ticket complessi
+
+Il tutto in **21 giorni**, prezzo fisso, senza stravolgere il workflow esistente.
+
+## Action
+
+Ho strutturato il progetto in tre sprint da 7 giorni:
+
+**Sprint 1 — Foundation (giorni 1-7)**
+
+Audit del flusso esistente + design del database schema. Ho scelto Supabase per la velocità di setup e le Row Level Security policies, che permettevano di isolare i dati per reparto senza logica applicativa extra.
+
+```
+ordini
+  id, cliente_id, stato, data_consegna, prodotti[]
+
+ticket
+  id, ordine_id, tipo, priorita, testo_originale, risposta_ai, stato
+```
+
+**Sprint 2 — AI Layer (giorni 8-14)**
+
+Integrazione Claude API con prompt engineering specifico per il contesto Fileni:
+
+- System prompt con il catalogo prodotti, le policy di reso e il tono comunicativo del brand
+- Function calling per recuperare dati ordine in tempo reale
+- Streaming delle risposte per ridurre la perceived latency
+
+Il flusso AI:
+
+1. Operatore apre ticket
+2. Claude legge testo + dati ordine dal DB
+3. Genera bozza risposta in streaming
+4. Operatore corregge (se necessario) e invia
+
+**Sprint 3 — Dashboard + Deploy (giorni 15-21)**
+
+UI in Next.js 14 con App Router, autenticazione Supabase, filtri per stato/priorità/reparto. Deploy su Vercel con preview environments per il testing del cliente.
+
+## Risultati
+
+| Metrica | Prima | Dopo |
+|---------|-------|------|
+| Tempo medio per ticket | 10 min | 85 secondi |
+| Ticket gestiti/giorno | 60 | 90+ |
+| Soddisfazione operatori | — | 4.7/5 |
+| Errori di risposta | ~8% | ~1% |
+
+Il ROI si è manifestato nel primo mese: il team ha potuto gestire il 50% di volume in più senza assumere nuove risorse. Fileni ha esteso il contratto per una seconda fase (integrazione con il sistema di tracking logistico).

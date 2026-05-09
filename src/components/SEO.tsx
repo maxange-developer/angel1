@@ -1,186 +1,125 @@
 import Head from "next/head";
-import { useTranslation } from "@/hooks/useTranslation";
-import seoData from "@/data/seo.json";
+
+const BASE_URL = "https://massimilianoangelone.com";
+
+const SEO_DATA: Record<string, { title: string; description: string; keywords: string }> = {
+  home: {
+    title: "Massimiliano Angelone — AI-Enhanced MVP Developer",
+    description: "One engineer, fixed price, production-grade. AI-powered MVPs for founders and scale-ups. Ship in weeks, not months.",
+    keywords: "AI developer, MVP development, Next.js, TypeScript, freelance developer, production-grade, fixed price",
+  },
+  work: {
+    title: "Work — Massimiliano Angelone",
+    description: "Production-grade AI-enhanced MVPs. Case studies for real founders and real products.",
+    keywords: "portfolio, case studies, AI projects, MVP, Next.js, TypeScript",
+  },
+  services: {
+    title: "Services — Massimiliano Angelone",
+    description: "Choose your engagement: AI Sprint €2,500 · MVP Lite €5,000 · MVP Full €9,500. Fixed price, no surprises.",
+    keywords: "freelance services, MVP packages, fixed price, AI development, Next.js",
+  },
+  about: {
+    title: "About — Massimiliano Angelone",
+    description: "24, based in Tenerife. Building AI-enhanced products for founders worldwide since 2022.",
+    keywords: "about, Massimiliano Angelone, freelance developer, Tenerife, background",
+  },
+  journal: {
+    title: "Journal — Massimiliano Angelone",
+    description: "Long-form writing on AI development, product thinking, and the freelance craft.",
+    keywords: "blog, journal, AI development, freelance, product, writing",
+  },
+  contact: {
+    title: "Contact — Massimiliano Angelone",
+    description: "Start a project, book a call, or just say hello.",
+    keywords: "contact, hire, freelance, book a call, start a project",
+  },
+  now: {
+    title: "Now — Massimiliano Angelone",
+    description: "What I'm focused on right now.",
+    keywords: "now, current projects, focus, what I'm doing",
+  },
+  uses: {
+    title: "Uses — Massimiliano Angelone",
+    description: "Tools, gear, and software I use daily.",
+    keywords: "uses, tools, setup, gear, software, developer setup",
+  },
+  "404": {
+    title: "404 — Massimiliano Angelone",
+    description: "Page not found.",
+    keywords: "",
+  },
+};
 
 interface SEOProps {
-  page: "home" | "services" | "blog" | "timeline";
+  page: keyof typeof SEO_DATA;
   customTitle?: string;
   customDescription?: string;
-  image?: string;
+  ogImage?: string;
+  canonicalPath?: string;
 }
 
 export default function SEO({
   page,
   customTitle,
   customDescription,
-  image = "/images/me-5.webp",
+  ogImage,
+  canonicalPath,
 }: SEOProps) {
-  const { currentLang } = useTranslation();
-  const seo = (seoData as any)[currentLang][page];
+  const data = SEO_DATA[page] ?? SEO_DATA.home;
+  const title = customTitle ?? data.title;
+  const description = customDescription ?? data.description;
+  const canonical = `${BASE_URL}${canonicalPath ?? ""}`;
 
-  const title = customTitle || seo.title;
-  const description = customDescription || seo.description;
-  const url = `https://wwww.massimilianoangelone.com/${
-    currentLang === "it" ? "" : currentLang
-  }`;
-  const imageUrl = image.startsWith("http")
-    ? image
-    : `https://massimilianoangelone.com${image}`;
+  // Dynamic OG image via /api/og, fallback to static photo
+  const ogImageUrl = ogImage
+    ? `${BASE_URL}${ogImage}`
+    : `${BASE_URL}/api/og?title=${encodeURIComponent(title)}`;
 
-  // JSON-LD Schema for Person (homepage)
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Massimiliano Angelone",
-    jobTitle: "Full Stack Developer",
-    url: "https://wwww.massimilianoangelone.com",
-    image: "https://wwww.massimilianoangelone.com/images/me-5.webp",
+    jobTitle: "AI-Enhanced MVP Developer",
+    url: BASE_URL,
+    image: `${BASE_URL}/images/me-5.webp`,
     sameAs: [
-      "https://www.linkedin.com/in/massiangelone",
-      "https://www.instagram.com/massi_angelone",
-    ],
-    knowsAbout: [
-      "React",
-      "Next.js",
-      "Node.js",
-      "TypeScript",
-      "Full Stack Development",
-      "Mobile Development",
-      "AI Development",
-    ],
-    address: [
-      {
-        "@type": "PostalAddress",
-        addressLocality: "Ancona",
-        addressCountry: "IT",
-      },
-      {
-        "@type": "PostalAddress",
-        addressLocality: "Tenerife",
-        addressCountry: "ES",
-      },
-    ],
-  };
-
-  // JSON-LD Schema for Website
-  const websiteSchema = {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    name: "Massimiliano Angelone",
-    url: "https://www.massimilianoangelone.com",
-    description: description,
-    inLanguage: [
-      currentLang === "it" ? "it-IT" : currentLang === "en" ? "en-US" : "es-ES",
+      "https://www.linkedin.com/in/massiangelone/",
+      "https://github.com/massiangelone",
+      "https://www.instagram.com/massi_angelone/",
     ],
   };
 
   return (
     <Head>
-      {/* Primary Meta Tags */}
       <title>{title}</title>
-      <meta name="title" content={title} />
       <meta name="description" content={description} />
-      <meta name="keywords" content={seo.keywords} />
+      {data.keywords && <meta name="keywords" content={data.keywords} />}
       <meta name="author" content="Massimiliano Angelone" />
       <meta name="robots" content="index, follow" />
-      <meta
-        name="language"
-        content={
-          currentLang === "it"
-            ? "Italian"
-            : currentLang === "en"
-            ? "English"
-            : "Spanish"
-        }
-      />
-      <meta name="revisit-after" content="7 days" />
+      <link rel="canonical" href={canonical} />
 
-      {/* Geo Tags for Italy & Tenerife */}
-      <meta name="geo.region" content="IT" />
-      <meta name="geo.placename" content="Ancona, Italy" />
-      <meta name="geo.region" content="ES-CN" />
-      <meta name="geo.placename" content="Tenerife, Spain" />
-
-      {/* Open Graph / Facebook */}
+      {/* Open Graph */}
       <meta property="og:type" content="website" />
-      <meta property="og:url" content={url} />
-      <meta property="og:title" content={seo["og:title"]} />
-      <meta property="og:description" content={seo["og:description"]} />
-      <meta property="og:image" content={imageUrl} />
+      <meta property="og:url" content={canonical} />
+      <meta property="og:title" content={title} />
+      <meta property="og:description" content={description} />
+      <meta property="og:image" content={ogImageUrl} />
       <meta property="og:image:width" content="1200" />
       <meta property="og:image:height" content="630" />
-      <meta property="og:image:alt" content={title} />
-      <meta
-        property="og:locale"
-        content={
-          currentLang === "it"
-            ? "it_IT"
-            : currentLang === "en"
-            ? "en_US"
-            : "es_ES"
-        }
-      />
-      <meta property="og:locale:alternate" content="it_IT" />
-      <meta property="og:locale:alternate" content="en_US" />
-      <meta property="og:locale:alternate" content="es_ES" />
+      <meta property="og:locale" content="en_US" />
 
       {/* Twitter */}
-      <meta property="twitter:card" content="summary_large_image" />
-      <meta property="twitter:url" content={url} />
-      <meta property="twitter:title" content={seo["og:title"]} />
-      <meta property="twitter:description" content={seo["og:description"]} />
-      <meta property="twitter:image" content={imageUrl} />
-      <meta property="twitter:image:alt" content={title} />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:title" content={title} />
+      <meta name="twitter:description" content={description} />
+      <meta name="twitter:image" content={ogImageUrl} />
 
-      {/* Canonical URL */}
-      <link rel="canonical" href={url} />
-
-      {/* Alternate Languages */}
-      <link
-        rel="alternate"
-        hrefLang="it"
-        href="https://www.massimilianoangelone.com/"
-      />
-      <link
-        rel="alternate"
-        hrefLang="en"
-        href="https://www.massimilianoangelone.com/en"
-      />
-      <link
-        rel="alternate"
-        hrefLang="es"
-        href="https://www.massimilianoangelone.com/es"
-      />
-      <link
-        rel="alternate"
-        hrefLang="x-default"
-        href="https://www.massimilianoangelone.com/"
-      />
-
-      {/* Favicon */}
-      <link rel="icon" href="/favicon.ico" />
-
-      {/* Viewport */}
-      <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1, maximum-scale=5"
-      />
-
-      {/* Theme Color */}
-      <meta name="theme-color" content="#000000" />
-
-      {/* JSON-LD Structured Data */}
+      {/* JSON-LD */}
       {page === "home" && (
-        <>
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
-          />
-          <script
-            type="application/ld+json"
-            dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
-          />
-        </>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
       )}
     </Head>
   );

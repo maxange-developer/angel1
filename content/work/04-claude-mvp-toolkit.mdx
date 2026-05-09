@@ -1,0 +1,81 @@
+---
+title: "claude-mvp-toolkit — Open Source CLI"
+client: "Open Source"
+tagline: "CLI che scaffolda app Next.js + Supabase + Claude AI production-ready in 30 secondi"
+date: "2026-05"
+duration: "Ongoing (2h/week)"
+package: "Open Source"
+stack: ["Node.js", "TypeScript", "tsup", "commander", "pnpm workspaces"]
+color: "green"
+featured: true
+demo: ""
+github: "https://github.com/maxange-developer/claude-mvp-toolkit"
+stats:
+  - value: "1"
+    label: "Comando per scaffoldare"
+  - value: "5"
+    label: "Prompt interattivi"
+  - value: "npm"
+    label: "@maxange/claude-mvp-toolkit"
+---
+
+## Situation
+
+Ogni nuovo progetto AI MVP partiva sempre dagli stessi 3-4 ore di setup: inizializzare Next.js, configurare Supabase, collegare il Claude SDK, strutturare la cartella `.claude/` per lo sviluppo AI-assisted, aggiungere Tailwind, Vitest, Playwright.
+
+Setup identico, ripetuto ogni volta. Con varianti minori a seconda del cliente (Stripe sì/no, RAG sì/no, NextAuth vs Supabase Auth).
+
+## Task
+
+Costruire uno strumento pubblicato su npm che elimini completamente questo setup manuale: un CLI che in 30 secondi e 5 domande genera un progetto completamente configurato e pronto per `pnpm dev`.
+
+Requisiti non negoziabili:
+
+- **Zero configurazione post-init** — il progetto generato deve buildare senza modifiche
+- **Scelte reali** — AI provider, auth, Stripe, Resend, RAG selezionabili al momento
+- **`.claude/` pre-wired** — agenti, comandi e docs ottimizzati per sviluppo AI-assisted già inclusi
+- **Pubblicato su npm** come `@maxange/claude-mvp-toolkit` con CI automatica via GitHub Actions
+
+## Action
+
+**Architettura monorepo**
+
+pnpm workspaces con due package:
+- `packages/cli/` — CLI pubblicabile, build ESM + CJS con tsup
+- `packages/templates/base/` — template Next.js copiato durante `init`
+
+La scelta chiave: separare il template dal CLI. Il template è plain text (nessuna dipendenza installata), il CLI lo copia via `fs-extra.copy()` e poi patchca `package.json` in base alle risposte dell'utente prima di eseguire `pnpm install`.
+
+**Build pipeline**
+
+tsup genera ESM + CJS con shebang `#!/usr/bin/env node` iniettato via `banner`. L'interop `fs-extra` (modulo CJS-only) richiede import default invece di named imports per evitare crash ESM a runtime.
+
+**Error handling robusto**
+
+Tre guardie principali:
+1. Cartella già esistente → prompt di conferma sovrascrittura
+2. pnpm non installato → warning giallo + suggerimento `npm install -g pnpm`, no crash
+3. git non installato → skip con warning, no crash
+
+**CI/CD**
+
+- `.github/workflows/ci.yml` — build + verifica shebang + verifica versione su ogni push/PR
+- `.github/workflows/publish.yml` — `npm publish` automatico su tag `v*` via `NPM_TOKEN` secret
+
+## Risultati
+
+| Metrica | Prima | Dopo |
+|---------|-------|------|
+| Setup nuovo progetto AI MVP | 3-4 ore | 30 secondi |
+| Configurazione manuale richiesta | ~20 file | 0 |
+| Stack coerente tra progetti | Manuale | Automatico |
+
+Il toolkit è in sviluppo attivo (2h/settimana). Roadmap:
+
+| Versione | Feature |
+|----------|---------|
+| v0.1 ✓ | `init` — template base |
+| v0.2 | Chat UI con streaming |
+| v0.3 | RAG pipeline (pgvector + embeddings) |
+| v0.4 | Comando `add` per features post-init |
+| v1.0 | Stabile · test coverage completo |
