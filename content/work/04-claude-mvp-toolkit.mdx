@@ -1,81 +1,88 @@
 ---
-title: "claude-mvp-toolkit — Open Source CLI"
-client: "Open Source"
-tagline: "CLI che scaffolda app Next.js + Supabase + Claude AI production-ready in 30 secondi"
-date: "2026-05"
-duration: "Ongoing (2h/week)"
-package: "Open Source"
-stack: ["Node.js", "TypeScript", "tsup", "commander", "pnpm workspaces"]
-color: "green"
-featured: true
-demo: ""
-github: "https://github.com/maxange-developer/claude-mvp-toolkit"
+title: claude-mvp-toolkit
+client: Open source · Published on npm
+tagline: A CLI that scaffolds production-ready Next.js + Supabase + Claude projects in under two minutes — extracted from the workflow I run on every engagement.
+date: May 2026
+duration: 6 days · ongoing
+package: Open source
+stack:
+  - TypeScript
+  - Node.js
+  - pnpm workspaces
+  - npm registry
+  - Next.js 16 (template)
+  - Anthropic SDK
+  - OpenAI SDK
+color: blue
+hero: /images/work/claude-mvp-toolkit-cover.webp
+demo: https://www.npmjs.com/package/@massiangelone/claude-mvp-toolkit
+github: https://github.com/maxange-developer/claude-mvp-toolkit
 stats:
-  - value: "1"
-    label: "Comando per scaffoldare"
-  - value: "5"
-    label: "Prompt interattivi"
-  - value: "npm"
-    label: "@maxange/claude-mvp-toolkit"
+  - label: Version
+    value: v0.1.2-alpha
+  - label: Setup time
+    value: ~90s
+  - label: Template files
+    value: "~278"
 ---
 
-## Situation
+## Why I built it
 
-Ogni nuovo progetto AI MVP partiva sempre dagli stessi 3-4 ore di setup: inizializzare Next.js, configurare Supabase, collegare il Claude SDK, strutturare la cartella `.claude/` per lo sviluppo AI-assisted, aggiungere Tailwind, Vitest, Playwright.
+Every engagement starts the same way. New repository, Next.js 16 with App Router, TypeScript strict, Tailwind 4, Supabase or NextAuth depending on the auth model, Anthropic or OpenAI SDK depending on the model choice, Vitest and Playwright preconfigured because tests are not optional, a `CLAUDE.md` at the root because I work with Claude Code daily and that file is the difference between Claude understanding the project and Claude guessing.
 
-Setup identico, ripetuto ogni volta. Con varianti minori a seconda del cliente (Stripe sì/no, RAG sì/no, NextAuth vs Supabase Auth).
+The first three or four engagements, I copied the previous project. The fifth, I realized I was copying my own bugs forward. The sixth, I extracted the scaffolding into a CLI. That's `claude-mvp-toolkit`.
 
-## Task
+It's published on npm at `@massiangelone/claude-mvp-toolkit`, currently `v0.1.2-alpha`. One command:
 
-Costruire uno strumento pubblicato su npm che elimini completamente questo setup manuale: un CLI che in 30 secondi e 5 domande genera un progetto completamente configurato e pronto per `pnpm dev`.
+```bash
+npx @massiangelone/claude-mvp-toolkit init my-app
+```
 
-Requisiti non negoziabili:
+Ninety seconds later you have a working repository with the stack chosen, dependencies installed, environment files stubbed, git initialized, and a first commit ready.
 
-- **Zero configurazione post-init** — il progetto generato deve buildare senza modifiche
-- **Scelte reali** — AI provider, auth, Stripe, Resend, RAG selezionabili al momento
-- **`.claude/` pre-wired** — agenti, comandi e docs ottimizzati per sviluppo AI-assisted già inclusi
-- **Pubblicato su npm** come `@maxange/claude-mvp-toolkit` con CI automatica via GitHub Actions
+## What it does
 
-## Action
+The CLI is one command, `init <project-name>`, with an optional `--yes` flag for non-interactive runs. The interactive path asks five questions:
 
-**Architettura monorepo**
+- AI provider (Anthropic, OpenAI, both)
+- Auth (Supabase Auth, NextAuth, none)
+- Payments (Stripe, none)
+- Email (Resend, none)
+- RAG (pgvector + retrieval scaffold, none)
 
-pnpm workspaces con due package:
-- `packages/cli/` — CLI pubblicabile, build ESM + CJS con tsup
-- `packages/templates/base/` — template Next.js copiato durante `init`
+Each answer toggles which dependencies get installed and which template files get included. The template lives at `packages/templates/base` — roughly two hundred and seventy-eight files of Next.js 16 App Router boilerplate that has earned its place by surviving real projects. Conditional dependency injection happens in `init.ts` based on the answer set.
 
-La scelta chiave: separare il template dal CLI. Il template è plain text (nessuna dipendenza installata), il CLI lo copia via `fs-extra.copy()` e poi patchca `package.json` in base alle risposte dell'utente prima di eseguire `pnpm install`.
+## How it's structured
 
-**Build pipeline**
+It's a pnpm monorepo with two packages:
 
-tsup genera ESM + CJS con shebang `#!/usr/bin/env node` iniettato via `banner`. L'interop `fs-extra` (modulo CJS-only) richiede import default invece di named imports per evitare crash ESM a runtime.
+- **`packages/cli`** — the interactive scaffolder. Reads the user's answers, copies and templates the base, modifies `package.json` with the right deps, runs `pnpm install`, initializes git, makes the first commit. Roughly a hundred and seventy lines of TypeScript that does one thing and doesn't try to grow into a framework.
+- **`packages/templates/base`** — the actual project template. The two hundred and seventy-eight files that get copied. This is where the engineering opinions live: how the database client is structured, how the API routes are organized, how environment variables are validated at boot, what `CLAUDE.md` says.
 
-**Error handling robusto**
+The CLI is small on purpose. The interesting part of a scaffolder is never the scaffolder itself — it's the template, because that's what determines whether the projects you build on top of it succeed or rot.
 
-Tre guardie principali:
-1. Cartella già esistente → prompt di conferma sovrascrittura
-2. pnpm non installato → warning giallo + suggerimento `npm install -g pnpm`, no crash
-3. git non installato → skip con warning, no crash
+## What's actually opinionated about the template
 
-**CI/CD**
+A few decisions that aren't obvious until you've built ten of these:
 
-- `.github/workflows/ci.yml` — build + verifica shebang + verifica versione su ogni push/PR
-- `.github/workflows/publish.yml` — `npm publish` automatico su tag `v*` via `NPM_TOKEN` secret
+**Environment validation at boot, not at first use.** The template includes a Zod schema for `process.env` that runs at startup. Misconfigured deployments fail at deploy time, not three hours later when a user hits the auth endpoint.
 
-## Risultati
+**`CLAUDE.md` is a first-class file.** The template ships with a project-specific `CLAUDE.md` that describes the file structure, conventions, and the kinds of questions Claude Code should ask before changing things. It's the single highest-leverage file in the repository for working effectively with Claude Code.
 
-| Metrica | Prima | Dopo |
-|---------|-------|------|
-| Setup nuovo progetto AI MVP | 3-4 ore | 30 secondi |
-| Configurazione manuale richiesta | ~20 file | 0 |
-| Stack coerente tra progetti | Manuale | Automatico |
+**Tests are scaffolded, not promised.** Vitest config, Playwright config, and example tests in both — committed to the first commit. Empty test directories age into "we'll add tests later." Tests with one example aging into ten.
 
-Il toolkit è in sviluppo attivo (2h/settimana). Roadmap:
+**No state management library by default.** React state and URL state get you further than people expect. If you need Zustand or Jotai later, install them later. Today they're not in the template, on purpose.
 
-| Versione | Feature |
-|----------|---------|
-| v0.1 ✓ | `init` — template base |
-| v0.2 | Chat UI con streaming |
-| v0.3 | RAG pipeline (pgvector + embeddings) |
-| v0.4 | Comando `add` per features post-init |
-| v1.0 | Stabile · test coverage completo |
+## What I'd do differently (and where it's going)
+
+The CLI is at `v0.1.2-alpha` for a reason. Three honest limits today:
+
+**No template versioning.** The CLI installs the template that ships with that CLI version. That's fine for now, but eventually the template should be versioned independently from the CLI itself, so users can pin a template version while getting CLI bug fixes.
+
+**No update path for existing projects.** If I improve the template, projects scaffolded last month don't see the improvement. A `claude-mvp-toolkit upgrade` command — that diffs the current state against the latest template and offers to apply non-conflicting changes — is on the list for `v0.5`.
+
+**No agent scaffolding yet.** Today the template does Claude Code integration via `CLAUDE.md` and the file structure. It doesn't yet scaffold agent loops with tool use, evaluation harnesses, or multi-agent orchestration. That's the headline feature of `v0.5` — the version I'm working on now.
+
+## What's next
+
+`v0.5` adds three things: agent scaffolding (a working tool-use example with proper schema validation), a built-in eval harness (the thing I just admitted was missing from the AI Support Dashboard case study), and template versioning. Open-source, MIT licensed, contributions welcome — the issues tab on GitHub is the right place to start.

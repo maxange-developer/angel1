@@ -1,83 +1,86 @@
 ---
-title: "AI Support Dashboard per Fileni Group"
-client: "Altesia (Fileni Group)"
-tagline: "Sistema AI per la gestione ordini e supporto clienti nel food distribution"
-date: "2024-03"
-duration: "21 giorni"
-package: "AI MVP Lite"
-stack: ["Next.js 14", "Claude API", "Supabase", "Tailwind CSS", "TypeScript"]
-color: "blue"
+title: AI Support Dashboard
+client: Demo portfolio · B2B SaaS support
+tagline: A multi-tenant RAG copilot with embeddable widget, streaming chat, and per-message cost tracking — shipped end-to-end in nine days.
+date: May 2026
+duration: 9 days · solo
+package: AI MVP Full
+stack:
+  - Next.js 16
+  - React 19
+  - Supabase
+  - pgvector
+  - OpenAI gpt-4o-mini
+  - text-embedding-3-small
+  - shadcn / Tailwind 4
+color: blue
 featured: true
-demo: ""
-github: ""
+hero: /images/work/ai-support-dashboard-cover.webp
+demo: https://ai-support-dashboard.angel1.dev
+github: https://github.com/maxange-developer/ai-support-dashboard
 stats:
-  - value: "85s"
-    label: "Risposta ticket"
-  - value: "90+"
-    label: "Ticket/giorno"
-  - value: "4.7/5"
-    label: "Soddisfazione"
+  - label: Build duration
+    value: 9 days
+  - label: Cost per message
+    value: tracked
+  - label: Lines of TypeScript
+    value: 5.6k
 ---
 
-## Situation
+## The brief
 
-Altesia, il software gestionale di Fileni Group — uno dei principali produttori avicoli italiani — gestisce migliaia di ordini B2B al giorno. Il team di supporto clienti riceveva decine di richieste identiche ogni settimana: stato ordine, date di consegna, gestione resi.
+A B2B SaaS support team running roughly four hundred tickets a week, most of them long-tail variations of *how do I reset my SSO config* and *which webhook fires on plan downgrade*. The ask wasn't a chatbot in the marketing sense. The ask was a copilot agents could trust, and a public widget customers could query before opening a ticket.
 
-Il processo era completamente manuale: un operatore apriva il CRM, cercava l'ordine, copiava le informazioni e rispondeva via email. Ogni ticket richiedeva 8-12 minuti. Con 60+ ticket al giorno, l'overhead era insostenibile.
+The constraints arrived early. Multi-tenant from day one. Every answer grounded in the customer's own knowledge base. Citations rendered inline as clickable links. Per-message cost tracked, not estimated.
 
-## Task
+This was built as a portfolio engagement against those specs — shipped to production with full multi-tenant isolation, streaming chat, embeddable widget, and cost tracking. Not for a paying tenant. Numbers in this case study come from the eval environment unless stated otherwise.
 
-Costruire una dashboard AI-enhanced che permettesse agli operatori di:
+## Architecture
 
-- Rispondere ai ticket in **meno di 90 secondi** (vs 10 minuti)
-- Generare risposte contestualizzate automaticamente via Claude
-- Visualizzare lo stato degli ordini in tempo reale da Supabase
-- Fare escalation intelligente dei ticket complessi
+Next.js 16 App Router on Vercel for the dashboard and the embeddable widget. Supabase for Postgres, auth, and row-level security. pgvector as a Postgres extension for embeddings. OpenAI `gpt-4o-mini` for generation, `text-embedding-3-small` for vector encoding. shadcn and Tailwind 4 for the UI. No microservices. No orchestration framework. The boring choice paid for itself within a week.
 
-Il tutto in **21 giorni**, prezzo fisso, senza stravolgere il workflow esistente.
+Tenancy is enforced by Postgres RLS at the database boundary. Every query against `documents`, `chunks`, `conversations`, and `messages` is scoped to `org_id` through a policy that checks membership against `auth.uid()`. Application code never touches the scoping logic, so the entire class of bug where a misplaced `WHERE` clause leaks one tenant's data into another tenant's screen — that class of bug doesn't exist in this codebase. The widget's headless API path uses the service role specifically to bypass RLS in a controlled way, never user-facing code.
 
-## Action
+## The model decision
 
-Ho strutturato il progetto in tre sprint da 7 giorni:
+The first decision was the model, and it was decided by unit economics. Anthropic's Claude was the obvious starting point — it's what I reach for on most projects. But the math didn't close at projected volume: per-tenant inference cost on Claude put the steady state at six to eight dollars a month against a target ceiling of three.
 
-**Sprint 1 — Foundation (giorni 1-7)**
+So I started where the math worked: `gpt-4o-mini` for generation, `text-embedding-3-small` for encoding. The trade-off question was whether quality would hold for grounded retrieval with short, citation-anchored answers. For this specific shape of problem — short factual responses backed by retrieved context, not open-ended reasoning — the smaller model held. Faithfulness on test conversations stayed high, citation accuracy held above ninety percent on the hand-tested set.
 
-Audit del flusso esistente + design del database schema. Ho scelto Supabase per la velocità di setup e le Row Level Security policies, che permettevano di isolare i dati per reparto senza logica applicativa extra.
+The lesson wasn't *gpt-4o-mini beats Claude*. It doesn't, on harder reasoning tasks. The lesson was: pick the model the problem deserves, not the model the press releases prefer. The next project I build with harder reasoning — agent loops, tool use, multi-step planning — will start on Claude. This one was right where it started.
 
-```
-ordini
-  id, cliente_id, stato, data_consegna, prodotti[]
+## Retrieval: pure vector, deliberately
 
-ticket
-  id, ordine_id, tipo, priorita, testo_originale, risposta_ai, stato
-```
+Retrieval is pure vector. Embeddings stored permanently in `chunks.embedding` as `vector(1536)`, queried via a Supabase RPC `match_chunks` that does cosine similarity with the `<=>` operator and an IVFFlat index. No hybrid full-text fallback, no LLM reranker layer.
 
-**Sprint 2 — AI Layer (giorni 8-14)**
+That's a deliberate choice, not an oversight. Hybrid retrieval (BM25 + vector + rerank) would have added two days to the build and meaningful complexity to the path: more SQL, a rerank prompt, additional latency on every query, and a second tuning surface to maintain. For a portfolio engagement against a clear ceiling, pure vector with high-quality embeddings was the right starting point. The scaffolding is in place to add rerank as a pluggable step — the retrieval module is one function call. If I shipped this for a real tenant and saw retrieval failures on endpoint-name queries (the classic vector-loses-to-BM25 case), I'd add hybrid in two days. Today it doesn't.
 
-Integrazione Claude API con prompt engineering specifico per il contesto Fileni:
+The chunking strategy matters more than the retrieval algorithm at this scale. Semantic-boundary chunks — paragraph-aware, with section-header preservation — outperform naive 512-token chunks by a meaningful margin on the kind of documentation B2B SaaS support deals with. That decision lives in `src/lib/ai/chunking.ts` and has its own unit test suite.
 
-- System prompt con il catalogo prodotti, le policy di reso e il tono comunicativo del brand
-- Function calling per recuperare dati ordine in tempo reale
-- Streaming delle risposte per ridurre la perceived latency
+> Cost tracked per message at the database level, not estimated retroactively from logs.
 
-Il flusso AI:
+## Cost tracking, built in from day one
 
-1. Operatore apre ticket
-2. Claude legge testo + dati ordine dal DB
-3. Genera bozza risposta in streaming
-4. Operatore corregge (se necessario) e invia
+Every message stores `cost_cents` at the row level. The aggregator in `src/lib/db/analytics.ts` computes per-tenant, per-conversation, and per-day cost stats from those rows directly. The formula is straightforward — input tokens at $0.15 per million, output tokens at $0.60 per million for `gpt-4o-mini`, computed at write time from token counts returned by the OpenAI response.
 
-**Sprint 3 — Dashboard + Deploy (giorni 15-21)**
+This was a small early decision that paid recurring dividends. The alternative — reconstructing cost from API logs after the fact — is the kind of plumbing I've watched eat days on other projects. One column on the `messages` table, one helper that runs at write time. Done.
 
-UI in Next.js 14 con App Router, autenticazione Supabase, filtri per stato/priorità/reparto. Deploy su Vercel con preview environments per il testing del cliente.
+## Streaming and the embeddable widget
 
-## Risultati
+Streaming chat is implemented end-to-end. The `/api/chat` route returns a `ReadableStream` with Server-Sent Events (`Content-Type: text/event-stream`). Both the dashboard's PlaygroundChat and the public WidgetChat component consume the stream with `decoder.decode(value, { stream: true })`. Tokens render as they arrive. P95 first-token latency in the eval environment is under 800ms — the time-to-first-character users actually feel.
 
-| Metrica | Prima | Dopo |
-|---------|-------|------|
-| Tempo medio per ticket | 10 min | 85 secondi |
-| Ticket gestiti/giorno | 60 | 90+ |
-| Soddisfazione operatori | — | 4.7/5 |
-| Errori di risposta | ~8% | ~1% |
+The widget itself is a single `<script>` drop-in, served from `/api/embed/[orgSlug]/script.js`, which mounts an iframe pointing at `/widget/[orgSlug]`. Auth is the org slug plus a public anon key — there's no handshake, no OAuth flow, just a tag on a page. The trade-off is that key rotation has to be handled by the embedding site if it ever leaks, but for a B2B support widget served behind authenticated docs, the simplicity wins.
 
-Il ROI si è manifestato nel primo mese: il team ha potuto gestire il 50% di volume in più senza assumere nuove risorse. Fileni ha esteso il contratto per una seconda fase (integrazione con il sistema di tracking logistico).
+## What I'd do differently
+
+Three things, all small, all worth saying out loud.
+
+**No formal eval harness.** The codebase has solid unit tests on chunking, embeddings, and retrieval — the components. It does not have a labelled question set with end-to-end faithfulness and citation accuracy scoring on every commit. For a portfolio engagement nine days end-to-end this was a reasonable cut. For a paying tenant it isn't — eval is the difference between "the model usually does the right thing" and "we know the regression rate when we change the prompt." That harness is the first thing I'd add in week one of a real engagement.
+
+**No retrieval failure mode.** Pure vector retrieval works until the user asks about a specific endpoint name and BM25 would have nailed it. There's no fallback path today. The hooks are there to add hybrid + rerank — but until I see the failure mode in real traffic, I'm not building it on speculation.
+
+**Cost ceiling is projected, not measured at scale.** The per-message cost tracking is real. The "under three dollars per tenant per month" ceiling is a projection from message volume assumptions. With real adversarial users and noisy knowledge bases, that number will move. The architecture has headroom both ways.
+
+## What's next
+
+Three threads, in priority order. An agent layer that can act, not just answer — file a ticket on the user's behalf, escalate, draft a reply for an agent to ship. A formal eval harness with three hundred labelled questions running on every PR. And an export pipeline that lets a tenant pull their corpus and embeddings if they ever want to leave. The last one is non-negotiable for me — if you can't leave a system you don't trust it, and tenants who don't trust the system don't pay for it.

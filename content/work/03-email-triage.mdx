@@ -1,76 +1,70 @@
 ---
-title: "AI Email Triage — RAI Airplay Control"
-client: "Airplay Control (RAI)"
-tagline: "Sistema di monitoraggio e classificazione automatica dei report tecnici per la radio pubblica italiana"
-date: "2023-11"
-duration: "28 giorni"
-package: "AI MVP Full"
-stack: ["Next.js 14", "Claude API", "PostgreSQL", "Resend", "TypeScript", ".NET API"]
-color: "pink"
-featured: true
-demo: ""
-github: ""
+title: Email Triage Tool
+client: Demo portfolio · Solo founder workflow
+tagline: A Gmail copilot that classifies, prioritizes, and drafts replies across multiple inboxes — with localized analytics in three languages.
+date: May 2026
+duration: 9 days · solo
+package: AI MVP Lite
+stack:
+  - Next.js 16
+  - React 19
+  - NextAuth
+  - Gmail API
+  - OpenAI gpt-4o-mini
+  - Supabase
+  - Recharts
+  - i18n (EN/IT/ES)
+color: blue
+hero: /images/work/email-triage-cover.webp
+demo: https://email-triage.angel1.dev
+github: https://github.com/maxange-developer/email-triage
 stats:
-  - value: "1"
-    label: "Email al giorno (vs 300)"
-  - value: "15min"
-    label: "Smistamento mattutino"
-  - value: "0%"
-    label: "Alert critici mancati"
+  - label: Build duration
+    value: 9 days
+  - label: Categories × priorities
+    value: 8 × 4
+  - label: Languages
+    value: EN · IT · ES
 ---
 
-## Situation
+## The brief
 
-Airplay Control è il sistema con cui RAI monitora la compliance dei palinsesti radiofonici: verifica che le percentuali di musica italiana, opere straniere e spot pubblicitari rispettino le normative AGCOM.
+A solo founder running multiple email accounts — personal, work, support — drowning in tier-1 noise. Newsletters, notifications, sales pitches, real client requests, all landing in the same inbox with the same visual weight. The ask was triage: classify automatically, surface what matters, draft reply candidates for the legitimate threads, and do it across all three accounts at once.
 
-Ogni giorno, il sistema generava centinaia di alert automatici inviati via email al team tecnico: discrepanze nei log di trasmissione, anomalie nei dati di rilevamento, errori di classificazione brani. Il 70% di questi alert erano falsi positivi o duplicati.
+This was built as a portfolio engagement targeting that workflow — Gmail API integration is real, the classification pipeline is real, the streaming reply generation is real. Mock mode is available for demo without OAuth, but the production path uses live Gmail.
 
-Il team perdeva ore ogni mattina a smistare email per trovare i pochi alert critici che richiedevano intervento immediato.
+## Architecture
 
-## Task
+Next.js 16 App Router on Vercel. NextAuth with the Supabase adapter for session management. Google OAuth flow for Gmail authorization with `gmail.readonly` and `gmail.send` scopes. The googleapis library handles the actual API calls. Supabase stores accounts, settings, and the synced email metadata. OpenAI `gpt-4o-mini` for classification and reply generation. Recharts for the analytics views.
 
-Costruire un layer AI sopra il sistema esistente (che non poteva essere modificato — vincolo contrattuale RAI) che:
+Multi-account support is the architectural spine. The `gmail_accounts` table tracks each connected mailbox, scoped to the user. An `AccountContext` hook on the client manages the active account and the switch. Three mock accounts ship in the seed — `massi@angel1.dev`, `work@angel1.dev`, `support@angel1.dev` — each with localized email content. Switching account in the UI reloads the inbox view, the rules, and the analytics, all scoped to that account ID.
 
-- **Classificasse automaticamente** gli alert per priorità (critico / warning / info)
-- **Raggruppasse i duplicati** e le varianti dello stesso problema
-- **Generasse un digest mattutino** con solo gli alert che richiedevano azione
-- **Integrazione zero-disruption** con il workflow esistente via email
+## The classification pipeline
 
-## Action
+Eight categories: `client_request`, `sales_lead`, `internal`, `newsletter`, `notification`, `support`, `invoice`, `other`. Four priorities: `high`, `medium`, `low`, `spam`. The matrix gives thirty-two possible buckets, but in practice email distributes heavily into a handful — most newsletters land low, most client requests land high, most invoices land medium, and so on.
 
-**Vincolo architetturale**
+Classification rules live in `users_settings.classification_rules` as a JSONB column keyed by account ID. This was the right call: rules are inherently per-account because a sales-lead pattern that matters in the work inbox is noise in the personal one. Rules are evaluated alongside the model output — explicit rules win over model classification when both apply. That gives the user a deterministic override path for the patterns they already know about.
 
-Non potevo modificare il sistema source (sistema legacy .NET). Ho costruito un layer intermedio: un'API Next.js che si posizionava tra il sender originale e i destinatari finali.
+## Streaming reply generation
 
-Il flusso:
+The `/api/emails/[id]/suggest-reply` route returns a `ReadableStream` with Server-Sent Events. The client component `EmailDetail.tsx` consumes the stream with a `streamReply()` helper, rendering tokens as they arrive into a draft area. The user can edit the draft inline before sending — the model is suggesting, not committing.
 
-1. Sistema RAI invia email al nostro endpoint invece che ai tecnici
-2. Claude API analizza il testo dell'alert
-3. Categorizzazione + deduplication + priority scoring
-4. Gli alert critici vengono inoltrati immediatamente via Resend
-5. Gli altri vengono aggregati nel digest delle 08:00
+Streaming was the right call here for the same reason it's right in chat interfaces: a reply that takes six seconds to generate feels broken if it appears all at once at second six, and feels alive if the first words appear at second one. The cost is the same. The perceived latency is half.
 
-**Prompt Engineering per il dominio RAI**
+## Analytics in three languages
 
-Ho costruito un classificatore in-context con esempi reali di alert (forniti dal team RAI):
+The `/app/insights` page renders five views: stacked bar of daily volume by priority (high red, medium amber, low gray), pie chart of category distribution, top senders with priority-coded color, key counters (totals, percent handled, spam count, average urgency in hours), and time-window filters for seven, thirty, and ninety days. All of it on Recharts, styled to match the dark theme.
 
-- **Critico**: anomalie nei log che indicano trasmissione non conforme alle normative AGCOM
-- **Warning**: discrepanze nei dati che potrebbero richiedere verifica manuale
-- **Info**: notifiche di routine che non richiedono azione
+The localization runs deeper than the UI labels. Mock email bodies are stored with parallel columns — `subject_en`, `subject_it`, `subject_es`, `body_en`, `body_it`, `body_es` — so the demo experience in each language uses content that sounds native, not translated. That decision adds complexity to the seed pipeline but pays off the first time a Spanish-speaking founder opens the demo and sees a sales pitch in Spanish, not in awkwardly-translated English.
 
-Il modello doveva capire il gergo tecnico RAI (codici brano, identificatori palinsesto, sigle stazioni) — risolto con un glossario di 200+ termini nel system prompt.
+## What I'd do differently
 
-**Digest intelligente**
+**The rules engine is too forgiving.** Today, conflicting rules don't surface to the user — the last-defined rule wins silently. For a personal triage tool that's fine. For a tool a team would share, that's a footgun. A rule conflict viewer is on the list.
 
-Il digest delle 08:00 non era una semplice lista: Claude generava un riassunto narrativo in italiano della situazione overnight, raggruppando gli alert per stazione e tipo di problema. Il team tecnico leggeva 1 email invece di 300.
+**No reply tone control yet.** The streamed reply uses a default tone derived from the original email. There's no user control to push it formal, casual, or curt. A simple slider would do most of the work. I cut it for scope.
 
-## Risultati
+**Token usage isn't surfaced in the UI.** It's logged server-side, but there's no view that tells the user *you've consumed N tokens this week, here's the cost*. For a solo tool the accounting matters less than for a multi-tenant SaaS, but a small cost panel is a one-day add and a real piece of trust.
 
-| Metrica | Prima | Dopo |
-|---------|-------|------|
-| Email alert/giorno ricevute dal team | ~300 | 1 digest + alert critici immediati |
-| Tempo smistamento mattutino | 2-3 ore | 15 minuti |
-| Alert critici mancati | ~5% | 0% (nei 6 mesi post-launch) |
-| Falsi positivi escalati | ~70% | ~8% |
+## What's next
 
-Il progetto è diventato parte dell'infrastruttura permanente RAI. La seconda fase (in valutazione) includerà la classificazione automatica dei brani tramite AI audio fingerprinting.
+A unified inbox view that merges the three accounts into a single chronological stream with account-of-origin badges. Smart digest — once a day, the tool drafts a summary of what arrived in the low-priority bucket so it doesn't get ignored entirely. And a small Chrome extension that lets you trigger triage on a single message from the Gmail UI itself, without leaving the inbox.
