@@ -15,6 +15,7 @@ export default function Footer() {
                   alt="Angel1"
                   width={120}
                   height={36}
+                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
                 />
               </Link>
             </h3>
@@ -33,7 +34,7 @@ export default function Footer() {
                 { href: "/work", label: "Work" },
                 { href: "/services", label: "Services" },
                 { href: "/about", label: "About" },
-                { href: "/journal", label: "Notes" },
+                { href: "/journal", label: "Journal" },
                 { href: "/now", label: "Now" },
               ].map((item) => (
                 <li key={item.href}>
@@ -48,11 +49,20 @@ export default function Footer() {
             <h4>Elsewhere</h4>
             <ul>
               {[
-                { href: "https://www.linkedin.com/in/massiangelone/", label: "LinkedIn" },
-                { href: "https://www.instagram.com/massi_angelone/", label: "Instagram" },
+                {
+                  href: "https://www.linkedin.com/in/massiangelone/",
+                  label: "LinkedIn",
+                },
+                {
+                  href: "https://www.instagram.com/massi_angelone/",
+                  label: "Instagram",
+                },
                 { href: "https://github.com/massiangelone", label: "GitHub" },
                 { href: "https://www.npmjs.com/~massiangelone", label: "npm" },
-                { href: "https://www.freelancer.com/u/massiangelone", label: "Freelancer.com" },
+                {
+                  href: "https://www.freelancer.com/u/massiangel1",
+                  label: "Freelancer.com",
+                },
               ].map((item) => (
                 <li key={item.href}>
                   <a href={item.href} target="_blank" rel="noopener noreferrer">

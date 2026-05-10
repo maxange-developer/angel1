@@ -1,7 +1,7 @@
 import { ReactNode } from "react";
 import React from "react";
 import { motion, useReducedMotion, type Variants } from "framer-motion";
-import { FADE_UP } from "@/lib/motion";
+import { SECTION_REVEAL } from "@/lib/motion";
 
 interface MotionSectionProps {
   children: ReactNode;
@@ -16,7 +16,7 @@ export function MotionSection({
   children,
   className,
   style,
-  variants = FADE_UP,
+  variants = SECTION_REVEAL,
   delay = 0,
   as = "section",
 }: MotionSectionProps) {

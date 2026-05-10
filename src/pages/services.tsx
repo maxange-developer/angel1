@@ -18,7 +18,7 @@ const PACKAGES = [
       "Single core AI feature, end-to-end",
       "Next.js + Vercel deploy",
       "Auth + DB scaffolding",
-      "Handover doc + 30-day support",
+      "Handover doc + 1 month support",
     ],
     cta: "Start a Sprint",
     btn: "btn-secondary",
@@ -86,7 +86,7 @@ const COMPARE_ROWS: CompareRow[] = [
   { feature: "Evaluation harness", sprint: false, lite: true, full: true },
   { feature: "Multi-tenant + RBAC", sprint: false, lite: false, full: true },
   { feature: "Observability", sprint: false, lite: false, full: true },
-  { feature: "Post-launch support", sprint: "30 days", lite: "3 weeks", full: "6 weeks" },
+  { feature: "Post-launch support", sprint: "1 month", lite: "3 weeks", full: "6 weeks" },
 ];
 
 const RECORD = [

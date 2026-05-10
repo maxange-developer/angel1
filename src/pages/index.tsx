@@ -7,11 +7,11 @@ import { MotionSection } from "@/components/MotionSection";
 import { getAllWorkPosts } from "@/lib/mdx";
 import {
   FADE_UP,
-  FADE_IN,
   STAGGER_CONTAINER,
   STAGGER_ITEM,
   HERO_TITLE,
   HERO_STAGGER,
+  HERO_PHOTO,
 } from "@/lib/motion";
 import { useCountUp } from "@/hooks/useCountUp";
 import Testimonial from "@/components/Testimonial";
@@ -140,7 +140,7 @@ export default function Home({ featuredWork }: HomeProps) {
             </motion.div>
           </div>
 
-          <motion.div variants={FADE_IN}>
+          <motion.div variants={HERO_PHOTO}>
             <div className="img-ph photo">
               <Image
                 src="/images/me-5.webp"
@@ -197,7 +197,7 @@ export default function Home({ featuredWork }: HomeProps) {
           <div className="grid">
             <span className="label">Trusted by teams at</span>
             <div className="logos">
-              {["RAI", "La7", "Fileni", "Upwork", "Freelancer"].map((name) => (
+              {["RAI", "La7", "Fileni"].map((name) => (
                 <span key={name} className="logo">{name}</span>
               ))}
               <a
@@ -211,7 +211,7 @@ export default function Home({ featuredWork }: HomeProps) {
                   src="/images/logo_ALTESIA.svg"
                   alt="Altesia"
                   width={88}
-                  height={22}
+                  height={32}
                   className="trusted-logo-img"
                 />
               </a>
@@ -226,7 +226,37 @@ export default function Home({ featuredWork }: HomeProps) {
                   src="/images/airplay-logo.webp"
                   alt="Airplay Control"
                   width={120}
-                  height={22}
+                  height={32}
+                  className="trusted-logo-img"
+                />
+              </a>
+              <a
+                href="https://www.upwork.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="trusted-logo-link"
+                aria-label="Upwork"
+              >
+                <Image
+                  src="/images/upwork.svg"
+                  alt="Upwork"
+                  width={96}
+                  height={32}
+                  className="trusted-logo-img"
+                />
+              </a>
+              <a
+                href="https://www.freelancer.com/u/massiangel1"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="trusted-logo-link"
+                aria-label="Freelancer.com"
+              >
+                <Image
+                  src="/images/freelancer-logo.svg"
+                  alt="Freelancer.com"
+                  width={110}
+                  height={32}
                   className="trusted-logo-img"
                 />
               </a>
@@ -260,7 +290,7 @@ export default function Home({ featuredWork }: HomeProps) {
           {SVC_CARDS.map((card) => (
             <motion.div
               key={card.name}
-              className={`card svc-card${card.featured ? " featured" : ""}`}
+              className={`card svc-card${card.featured ? " featured card-featured-glow" : ""}`}
               variants={STAGGER_ITEM}
             >
               {card.featured && <span className="badge">MOST POPULAR</span>}
@@ -357,9 +387,9 @@ export default function Home({ featuredWork }: HomeProps) {
             </motion.div>
 
             {/* Side projects */}
-            {side.map((w) => (
-              <motion.div key={w.slug} variants={STAGGER_ITEM}>
-                <Link href={`/work/${w.slug}`} className="card work-side">
+            <motion.div className="work-side-col" variants={STAGGER_ITEM}>
+              {side.map((w) => (
+                <Link key={w.slug} href={`/work/${w.slug}`} className="card work-side">
                   <div className="img-ph">
                     {w.hero && (
                       <Image
@@ -378,8 +408,8 @@ export default function Home({ featuredWork }: HomeProps) {
                     <span>{w.date}</span>
                   </div>
                 </Link>
-              </motion.div>
-            ))}
+              ))}
+            </motion.div>
           </motion.div>
         </div>
       )}

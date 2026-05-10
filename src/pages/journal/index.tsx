@@ -24,7 +24,7 @@ export default function JournalIndex({ pinned, others, total }: JournalIndexProp
             <div>
               <span className="eyebrow">Writing</span>
               <h1>
-                Notes<span className="acc">.</span>
+                Journal<span className="acc">.</span>
               </h1>
             </div>
             <span className="meta">{String(total).padStart(2, "0")} pieces</span>

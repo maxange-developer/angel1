@@ -62,10 +62,6 @@ export default function Now() {
             <li>Paul Graham&apos;s essays — all of them, again</li>
           </ul>
 
-          <hr />
-          <p className="eyebrow">
-            Inspired by <a href="https://nownownow.com" target="_blank" rel="noopener noreferrer" className="link-acc">nownownow.com</a>
-          </p>
         </article>
       </div>
     </>

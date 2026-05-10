@@ -3,7 +3,7 @@ import Link from "next/link";
 import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
 import { MotionSection } from "@/components/MotionSection";
-import { STAGGER_CONTAINER, STAGGER_ITEM, FADE_IN, FADE_UP } from "@/lib/motion";
+import { STAGGER_CONTAINER, STAGGER_ITEM, HERO_PHOTO, FADE_UP } from "@/lib/motion";
 
 interface TimelineRow {
   yr: string;
@@ -63,7 +63,7 @@ export default function About() {
         <div className="grid">
           <motion.div
             className="img-ph photo"
-            variants={FADE_IN}
+            variants={HERO_PHOTO}
             initial="hidden"
             animate="visible"
           >

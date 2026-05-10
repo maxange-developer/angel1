@@ -79,3 +79,64 @@ export const PAGE_TRANSITION: Variants = {
     transition: { duration: 0.2, ease: "easeIn" } as Transition,
   },
 };
+
+export const SECTION_REVEAL: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.65, ease: EASE } as Transition,
+  },
+};
+
+export const HERO_ITEM: Variants = {
+  hidden: { opacity: 0, y: 20 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.7, ease: EASE } as Transition,
+  },
+};
+
+export const HERO_PHOTO: Variants = {
+  hidden: { opacity: 0, scale: 1.02 },
+  visible: {
+    opacity: 1,
+    scale: 1,
+    transition: { duration: 0.9, ease: EASE } as Transition,
+  },
+};
+
+export const RULE_DRAW: Variants = {
+  hidden: { scaleX: 0, originX: 0 },
+  visible: {
+    scaleX: 1,
+    transition: { duration: 0.8, ease: EASE } as Transition,
+  },
+};
+
+export const FADE_IN_SOFT: Variants = {
+  hidden: { opacity: 0 },
+  visible: {
+    opacity: 1,
+    transition: { duration: 0.7, ease: "easeOut" } as Transition,
+  },
+};
+
+export const MOBILE_MENU: Variants = {
+  hidden: { opacity: 0, y: -8 },
+  visible: {
+    opacity: 1,
+    y: 0,
+    transition: { duration: 0.2, ease: "easeOut" } as Transition,
+  },
+};
+
+export const MOBILE_MENU_ITEM: Variants = {
+  hidden: { opacity: 0, x: -12 },
+  visible: {
+    opacity: 1,
+    x: 0,
+    transition: { duration: 0.2, ease: EASE } as Transition,
+  },
+};

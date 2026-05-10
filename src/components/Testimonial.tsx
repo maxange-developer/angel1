@@ -12,7 +12,7 @@ export default function Testimonial({ quote, name, role, linkedinUrl }: Testimon
         <span className="eyebrow">Reference</span>
         <blockquote className="quote">
           {quote.map((p, i) => (
-            <p key={i}>&ldquo;{p}&rdquo;</p>
+            <p key={i}>{p}</p>
           ))}
         </blockquote>
         <div className="attribution">

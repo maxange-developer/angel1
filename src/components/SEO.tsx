@@ -24,7 +24,7 @@ const SEO_DATA: Record<string, { title: string; description: string; keywords: s
     keywords: "about, Massimiliano Angelone, freelance developer, Tenerife, background",
   },
   journal: {
-    title: "Notes — Massimiliano Angelone",
+    title: "Journal — Massimiliano Angelone",
     description: "Long-form writing on AI development, product thinking, and the freelance craft.",
     keywords: "blog, notes, AI development, freelance, product, writing",
   },

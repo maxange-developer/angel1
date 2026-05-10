@@ -56,7 +56,7 @@ export default function Contact() {
     <>
       <SEO page="contact" canonicalPath="/contact" />
 
-      <section className="page-hero container">
+      <section className="page-hero page-hero-contact container">
         <MotionSection>
           <p className="eyebrow">Get in touch</p>
           <h1>Start a project</h1>

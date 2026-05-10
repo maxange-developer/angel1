@@ -9,7 +9,7 @@ const NAV_ITEMS = [
   { label: "Work", href: "/work" },
   { label: "Services", href: "/services" },
   { label: "About", href: "/about" },
-  { label: "Notes", href: "/journal" },
+  { label: "Journal", href: "/journal" },
   { label: "Now", href: "/now" },
   { label: "Contact", href: "/contact" },
 ];
@@ -34,6 +34,7 @@ export default function Header() {
                 width={120}
                 height={28}
                 priority
+                onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
               />
             </Link>
 
