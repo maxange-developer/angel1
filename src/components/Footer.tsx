@@ -1,4 +1,3 @@
-import Image from "next/image";
 import Link from "next/link";
 
 export default function Footer() {
@@ -10,13 +9,7 @@ export default function Footer() {
           <div className="brand-col">
             <h3>
               <Link href="/">
-                <Image
-                  src="/images/logo-a1-w.webp"
-                  alt="Angel1"
-                  width={120}
-                  height={36}
-                  onError={(e) => { (e.target as HTMLImageElement).style.display = 'none'; }}
-                />
+                <span className="brand-wordmark">ANGEL<span className="brand-num">1</span></span>
               </Link>
             </h3>
             <p>

@@ -156,7 +156,6 @@ export default function Home({ featuredWork }: HomeProps) {
               <span className="status">Available · 2026</span>
               <div className="right-trust-meta">
                 <span className="rt-line">★ 5.0 · 100% JSR</span>
-                <span className="rt-line">3 shipped projects</span>
               </div>
             </div>
           </motion.div>
@@ -197,9 +196,6 @@ export default function Home({ featuredWork }: HomeProps) {
           <div className="grid">
             <span className="label">Trusted by teams at</span>
             <div className="logos">
-              {["RAI", "La7", "Fileni"].map((name) => (
-                <span key={name} className="logo">{name}</span>
-              ))}
               <a
                 href="https://altesia.it"
                 target="_blank"
@@ -324,9 +320,8 @@ export default function Home({ featuredWork }: HomeProps) {
                 Recent work
               </h2>
               <p className="sub">
-                Three projects shipped end-to-end in the last twelve months. Same
-                person designing, building, deploying — that&apos;s the
-                multiplier.
+                End-to-end work: designing, building, deploying — one person,
+                fixed price, production-grade. That&apos;s the multiplier.
               </p>
             </div>
           </MotionSection>

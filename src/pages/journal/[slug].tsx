@@ -63,7 +63,7 @@ export default function JournalSlug({
       <div className="article-cover">
         <div
           className="img-ph"
-          style={{ maxHeight: "600px", position: "relative", overflow: "hidden" }}
+          style={{ position: "relative", maxHeight: "420px", overflow: "hidden" }}
         >
           {fm.coverImage && (
             <Image
@@ -71,7 +71,7 @@ export default function JournalSlug({
               alt={fm.title}
               fill
               sizes="100vw"
-              style={{ objectFit: "cover" }}
+              style={{ objectFit: "cover", objectPosition: "center 30%" }}
               priority
             />
           )}
