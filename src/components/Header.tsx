@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { useRouter } from "next/router";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
@@ -27,7 +28,13 @@ export default function Header() {
         <div className="container">
           <nav className="nav">
             <Link href="/" className="brand">
-              <span className="brand-wordmark">ANGEL<span className="brand-num">1</span></span>
+              <Image
+                src="/logo-angel1.webp"
+                alt="Angel1"
+                width={120}
+                height={28}
+                priority
+              />
             </Link>
 
             <ul className="links">

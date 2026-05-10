@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Footer() {
   return (
@@ -9,7 +10,12 @@ export default function Footer() {
           <div className="brand-col">
             <h3>
               <Link href="/">
-                <span className="brand-wordmark">ANGEL<span className="brand-num">1</span></span>
+                <Image
+                  src="/logo-angel1.webp"
+                  alt="Angel1"
+                  width={120}
+                  height={36}
+                />
               </Link>
             </h3>
             <p>
