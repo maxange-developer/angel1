@@ -11,7 +11,7 @@ export default function PageBreak({ num, label, name }: PageBreakProps) {
         <span className="label">
           <span className="num">{num}</span> / {label}
         </span>
-        <span className="rule" />
+        <span className="rule">&nbsp;</span>
         <span className="name">{name}</span>
       </div>
     </div>

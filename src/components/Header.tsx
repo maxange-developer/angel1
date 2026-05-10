@@ -52,19 +52,13 @@ export default function Header() {
               })}
             </ul>
 
-            <Link href="/contact" className="cta hidden md:inline-flex">
+            <Link href="/contact" className="nav-cta">
               Start a project →
             </Link>
 
             <button
-              className="md:hidden"
+              className="nav-hamburger"
               onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-              style={{
-                color: "var(--text)",
-                background: "none",
-                border: "none",
-                cursor: "pointer",
-              }}
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}

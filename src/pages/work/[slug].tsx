@@ -9,7 +9,7 @@ import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
 import MermaidDiagram from "@/components/MermaidDiagram";
 import { getAllWorkSlugs, getWorkPost, type WorkFrontmatter } from "@/lib/mdx";
-import { PULL_QUOTE, STAGGER_CONTAINER, STAGGER_ITEM, FADE_UP } from "@/lib/motion";
+import { PULL_QUOTE, STAGGER_CONTAINER, STAGGER_ITEM, HERO_STAGGER, HERO_ITEM, HERO_TITLE } from "@/lib/motion";
 
 interface RelatedPost {
   slug: string;
@@ -125,71 +125,63 @@ export default function WorkSlug({
 
       {/* CASE HERO */}
       <section className="container case-hero">
-        <motion.span
-          className="crumbs"
-          variants={FADE_UP}
-          initial="hidden"
-          animate="visible"
-        >
-          Work / {fm.title}
-        </motion.span>
-        <motion.h1 variants={FADE_UP} initial="hidden" animate="visible">
-          {fm.title}
-        </motion.h1>
-        <motion.p
-          className="tagline"
-          variants={FADE_UP}
-          initial="hidden"
-          animate="visible"
-        >
-          {fm.tagline}
-        </motion.p>
-        <div className="meta">
-          <div>
-            <div className="k">Engagement</div>
-            <div className="v">{fm.package}</div>
-          </div>
-          <div>
-            <div className="k">Duration</div>
-            <div className="v">{fm.duration}</div>
-          </div>
-          <div>
-            <div className="k">Stack</div>
-            <div className="v">{fm.stack.slice(0, 3).join(" · ")}</div>
-          </div>
-          <div>
-            <div className="k">Shipped</div>
-            <div className="v">{fm.date}</div>
-          </div>
-          <div>
-            <div className="k">Status</div>
-            <div className="v">{fm.demo ? "Live" : "Shipped"}</div>
-          </div>
-        </div>
-        {(fm.demo || fm.github) && (
-          <div className="ctas">
-            {fm.demo && (
-              <a
-                href={fm.demo}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-primary"
-              >
-                Live demo <span className="arr">→</span>
-              </a>
-            )}
-            {fm.github && (
-              <a
-                href={fm.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn btn-secondary"
-              >
-                GitHub
-              </a>
-            )}
-          </div>
-        )}
+        <motion.div variants={HERO_STAGGER} initial="hidden" animate="visible">
+          <motion.span className="crumbs" variants={HERO_ITEM}>
+            Work / {fm.title}
+          </motion.span>
+          <motion.h1 variants={HERO_TITLE}>
+            {fm.title}
+          </motion.h1>
+          <motion.p className="tagline" variants={HERO_ITEM}>
+            {fm.tagline}
+          </motion.p>
+          <motion.div className="meta" variants={HERO_ITEM}>
+            <div>
+              <div className="k">Engagement</div>
+              <div className="v">{fm.package}</div>
+            </div>
+            <div>
+              <div className="k">Duration</div>
+              <div className="v">{fm.duration}</div>
+            </div>
+            <div>
+              <div className="k">Stack</div>
+              <div className="v">{fm.stack.slice(0, 3).join(" · ")}</div>
+            </div>
+            <div>
+              <div className="k">Shipped</div>
+              <div className="v">{fm.date}</div>
+            </div>
+            <div>
+              <div className="k">Status</div>
+              <div className="v">{fm.demo ? "Live" : "Shipped"}</div>
+            </div>
+          </motion.div>
+          {(fm.demo || fm.github) && (
+            <motion.div className="ctas" variants={HERO_ITEM}>
+              {fm.demo && (
+                <a
+                  href={fm.demo}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-primary"
+                >
+                  Live demo <span className="arr">→</span>
+                </a>
+              )}
+              {fm.github && (
+                <a
+                  href={fm.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn btn-secondary"
+                >
+                  GitHub
+                </a>
+              )}
+            </motion.div>
+          )}
+        </motion.div>
       </section>
 
       {/* CASE COVER */}
@@ -239,12 +231,18 @@ export default function WorkSlug({
       )}
 
       {/* CASE BODY */}
-      <div className="container case-body-wrap">
+      <motion.div
+        className="container case-body-wrap"
+        variants={STAGGER_CONTAINER}
+        initial="hidden"
+        whileInView="visible"
+        viewport={{ once: true, amount: 0.05 }}
+      >
         <TableOfContents slug={slug} />
-        <article className="case-body">
+        <motion.article className="case-body" variants={HERO_ITEM}>
           <MDXRemote {...mdxSource} components={MDX_COMPONENTS} />
-        </article>
-      </div>
+        </motion.article>
+      </motion.div>
 
       {/* RELATED */}
       {relatedPosts.length > 0 && (
