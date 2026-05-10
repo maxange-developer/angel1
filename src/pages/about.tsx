@@ -39,7 +39,7 @@ const CURRENTLY: CurrentlyItem[] = [
   {
     k: "Based in",
     v: "Tenerife, Canary Islands.",
-    x: "Co-working in La Laguna, surf in El Médano on Saturdays. Same time zone as London, ±0.",
+    x: "Co-working in La Laguna. Same time zone as London, ±0. Available for European and US East Coast hours.",
   },
   {
     k: "Working on",
@@ -49,7 +49,7 @@ const CURRENTLY: CurrentlyItem[] = [
   {
     k: "Other",
     v: "Holly the cat. Italian espresso. Long walks.",
-    x: "Reading: The Pragmatic Programmer. Listening: long-form podcasts at 1.4×. Surfing on Saturdays.",
+    x: "Reading: The Pragmatic Programmer. Weekends: surf in El Médano when the Atlantic cooperates.",
   },
 ];
 
@@ -86,10 +86,11 @@ export default function About() {
               Angelone<span className="acc">.</span>
             </motion.h1>
             <motion.p className="lead" variants={FADE_UP}>
-              Italian engineer, born in Ancona in 2001. Two+ years enterprise at
-              Fileni Group and RAI Airplay Control. Now building production-grade
-              AI MVPs for founders, scale-ups and agencies worldwide — based in
-              Tenerife with Holly the cat.
+              Italian engineer, born in Ancona in 2001. Two+ years building
+              production systems at Altesia (client: Fileni Group) and Airplay
+              Control (clients: RAI, La7, broadcasters). Now building AI MVPs
+              for founders worldwide from Tenerife — with Holly the cat and
+              Italian espresso.
             </motion.p>
             <motion.div className="cta-row" variants={FADE_UP}>
               <Link href="/journal/twelve-silent-years" className="link-acc">
@@ -109,7 +110,7 @@ export default function About() {
               Timeline
             </h2>
             <p className="sub">
-              Twenty-four years of compounding. Eleven moments that shaped the
+              Twenty-four years compounding. Fourteen moments that shaped the
               engineer.
             </p>
           </div>

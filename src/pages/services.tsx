@@ -31,7 +31,7 @@ const PACKAGES = [
     price: "5,000",
     duration: "2 weeks",
     ideal:
-      "A real MVP — auth, data, AI, payments-ready. The version you raise on, the version you sell.",
+      "A real MVP — auth, data, AI, payments-ready. The version you raise on. The version you sell.",
     deliv: [
       "Everything in AI Sprint, plus",
       "Full Supabase schema + RLS",
@@ -178,7 +178,7 @@ export default function Services() {
           </motion.h1>
           <motion.p className="sub" variants={FADE_UP}>
             Three productized tracks with public pricing. Pick the one that
-            matches your timeline; if none fit, the last section covers custom
+            matches your timeline. If none fits, the last section covers custom
             scopes.
           </motion.p>
         </MotionSection>

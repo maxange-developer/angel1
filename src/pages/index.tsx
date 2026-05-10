@@ -40,7 +40,7 @@ const SVC_CARDS = [
     cur: "€",
     price: "2,500",
     duration: "1 week",
-    desc: "A working prototype shipped end of week. For founders who need to put something in front of users on Monday.",
+    desc: "A working prototype, end of week. For founders who need to put something in front of users on Monday.",
     deliv: [
       "Scope locked day 1",
       "Single core feature, end-to-end",
@@ -53,7 +53,7 @@ const SVC_CARDS = [
     cur: "€",
     price: "5,000",
     duration: "2 weeks",
-    desc: "A real MVP — auth, data, AI, payments-ready. The version you raise on, the version you sell.",
+    desc: "A real MVP — auth, data, AI, payments-ready. The version you raise on. The version you sell.",
     deliv: [
       "Full Supabase schema + RLS",
       "AI integration (Claude / OpenAI)",
@@ -66,7 +66,7 @@ const SVC_CARDS = [
     cur: "€",
     price: "9,500",
     duration: "4 weeks",
-    desc: "A production system. Multi-tenant, observability baked in, ready for the first 1,000 paying users.",
+    desc: "Production-grade. Multi-tenant, observability, the architecture that survives the first 1,000 paying users.",
     deliv: [
       "Multi-tenant + RBAC + billing",
       "RAG + agent pipelines, evaluated",
@@ -114,7 +114,7 @@ export default function Home({ featuredWork }: HomeProps) {
           <div>
             <motion.span className="eyebrow" variants={FADE_UP}>
               <span className="dot" />
-              AI-Enhanced MVP Developer · Available 2026
+              AI-Enhanced MVP Developer · Available now
             </motion.span>
             <motion.h1 variants={HERO_TITLE}>
               Ship AI-powered
@@ -125,9 +125,9 @@ export default function Home({ featuredWork }: HomeProps) {
               <span className="acc">.</span>
             </motion.h1>
             <motion.p className="lead" variants={FADE_UP}>
-              I&apos;m Massimiliano — a freelance engineer building production-grade
-              AI MVPs with Next.js, Supabase and Claude. Two+ years enterprise at
-              RAI and Fileni. Fixed price, fixed timeline, no surprises.
+              One engineer, fixed price, production-grade.
+              <br />
+              The agency math, inverted.
             </motion.p>
             <motion.div className="ctas" variants={FADE_UP}>
               <Link href="/work" className="btn btn-primary">
@@ -136,7 +136,6 @@ export default function Home({ featuredWork }: HomeProps) {
               <Link href="/contact" className="btn btn-secondary">
                 Book a call
               </Link>
-              <span className="meta">15-min intro · Calendly</span>
             </motion.div>
           </div>
 
@@ -153,9 +152,10 @@ export default function Home({ featuredWork }: HomeProps) {
             </div>
             <div className="photo-cap">[ portrait · tenerife · 2025 ]</div>
             <div className="right-trust">
-              <span className="status">Available · 2026</span>
+              <span className="status">Available now</span>
               <div className="right-trust-meta">
-                <span className="rt-line">★ 5.0 · 100% JSR</span>
+                <span className="rt-line">★ 5.0 · 100% job success</span>
+                <span className="rt-line">Demo portfolio · Open source on npm</span>
               </div>
             </div>
           </motion.div>
@@ -168,7 +168,7 @@ export default function Home({ featuredWork }: HomeProps) {
             <div className="v">
               <StatCounter target={5300} prefix="$" />
             </div>
-            <div className="x">Freelancer.com</div>
+            <div className="x">Verified on Freelancer.com</div>
           </div>
           <div className="col">
             <div className="k">Job success</div>
@@ -180,7 +180,7 @@ export default function Home({ featuredWork }: HomeProps) {
           <div className="col">
             <div className="k">Enterprise</div>
             <div className="v">2+ years</div>
-            <div className="x">RAI · La7 · Fileni</div>
+            <div className="x">Altesia · Airplay Control</div>
           </div>
           <div className="col">
             <div className="k">Open source</div>
@@ -267,11 +267,11 @@ export default function Home({ featuredWork }: HomeProps) {
           <span className="lbl">02 / SERVICES</span>
           <div>
             <h2>
-              Productized engagements
+              Three productized tracks.
             </h2>
             <p className="sub">
-              Three fixed-scope tracks. Same workflow, same engineering rigor —
-              different surface area. You pick the timeline, I ship.
+              Same workflow, same engineering rigor — different surface area.
+              Pick the timeline that matches your stage. I ship.
             </p>
           </div>
         </MotionSection>
@@ -317,11 +317,11 @@ export default function Home({ featuredWork }: HomeProps) {
             <span className="lbl">03 / SELECTED WORK</span>
             <div>
               <h2>
-                Recent work
+                Recent work.
               </h2>
               <p className="sub">
-                End-to-end work: designing, building, deploying — one person,
-                fixed price, production-grade. That&apos;s the multiplier.
+                Three projects shipped end-to-end. Same person designing,
+                building, deploying. That&apos;s the multiplier.
               </p>
             </div>
           </MotionSection>
@@ -444,13 +444,13 @@ export default function Home({ featuredWork }: HomeProps) {
             </h2>
             <p>
               Born in Ancona in 2001. Twelve silent years before a surgery that
-              changed everything at 14. Self-taught through Start2Impact, two+
-              years enterprise at Fileni Group and RAI. Now building AI MVPs for
-              founders worldwide from Tenerife, with Holly the cat and Italian
-              espresso.
+              changed everything at 14. Self-taught through Start2Impact. Two+
+              years at Altesia (client: Fileni Group) and Airplay Control
+              (clients: RAI, La7). Now building AI MVPs for founders worldwide
+              from Tenerife, with Holly the cat.
             </p>
             <div className="cta-row">
-              <Link href="/about" className="link-acc">
+              <Link href="/journal/twelve-silent-years" className="link-acc">
                 Read my full story <span>→</span>
               </Link>
             </div>
@@ -466,7 +466,7 @@ export default function Home({ featuredWork }: HomeProps) {
             <br />
             worth shipping?
           </h2>
-          <p>Three projects per quarter. Calendar open through 2026.</p>
+          <p>Available now. Fixed price. No retainer.</p>
           <div className="ctas">
             <Link href="/contact" className="btn btn-primary">
               Start a project <span className="arr">→</span>
