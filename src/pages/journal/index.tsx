@@ -30,8 +30,8 @@ export default function JournalIndex({ pinned, others, total }: JournalIndexProp
             <span className="meta">{String(total).padStart(2, "0")} pieces</span>
           </motion.div>
           <motion.p className="sub" variants={FADE_UP}>
-            Long-form pieces on engineering, freelancing and the personal story
-            most people read first.
+            Notes on building AI products, working solo, and what I&apos;ve
+            learned shipping under constraints I didn&apos;t choose.
           </motion.p>
         </MotionSection>
       </section>

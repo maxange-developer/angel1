@@ -10,9 +10,9 @@ export default function Now() {
       <section className="page-hero container">
         <MotionSection>
           <p className="eyebrow">Now — May 2026</p>
-          <h1>What I&apos;m focused on.</h1>
+          <h1>What I&apos;m focused on<span className="acc">.</span></h1>
           <p className="q">
-            A living document. Last updated May 2026 from Tenerife.
+            A living document. Last meaningful update: May 2026, from Tenerife.
           </p>
         </MotionSection>
       </section>
@@ -21,34 +21,41 @@ export default function Now() {
         <article className="case-body now-body">
           <h2>Work</h2>
           <p>
-            Building AI-enhanced MVPs for two founders — one in London (fintech),
-            one in Berlin (HR tech). Both on the MVP Lite package. Estimated delivery:
-            end of June 2026.
+            Building portfolio engagements to bring on Upwork and
+            Freelancer.com — three production-grade AI MVPs shipped in the last
+            three weeks (AI Support Dashboard, Email Triage Tool,
+            claude-mvp-toolkit). The case studies are on{" "}
+            <Link href="/work" className="link-acc">/work</Link>. Booking new
+            client projects now.
           </p>
           <p>
-            Not taking on new projects until mid-2026. If you&apos;d like to book a
-            discovery call for a project starting in July or later,{" "}
-            <Link href="/contact" className="link-acc">get in touch</Link>.
+            If you&apos;ve got an idea worth shipping,{" "}
+            <Link href="/contact" className="link-acc">start here</Link>.
           </p>
 
           <h2>Learning</h2>
           <p>
-            Deepening knowledge of Anthropic&apos;s Claude API — particularly tool use,
-            multi-agent orchestration, and context window management at scale.
-            Working through{" "}
-            <em>The Pragmatic Programmer</em> for the third time, which still has things to say.
+            Spending most weekday mornings on Anthropic&apos;s Claude API —
+            specifically tool use, multi-agent orchestration, and how to make
+            agent loops cost-predictable at scale. Same time slot, every day.
+            The compounding is the whole point.
+          </p>
+          <p>
+            Reading <em>The Pragmatic Programmer</em> again. Third pass.
+            Different book each time.
           </p>
 
           <h2>Life</h2>
           <p>
-            Based in Tenerife. The trade winds are reliable, the coffee is good,
-            and the time zone (GMT+1) works well for both European and East Coast
-            US clients.
+            Based in Tenerife since October 2025. Co-working in La Laguna most
+            mornings, surf in El Médano on Saturdays when the Atlantic
+            cooperates. Same time zone as London, which means my calendar opens
+            for European clients in the morning and US East Coast in the
+            afternoon.
           </p>
           <p>
-            Getting into open water swimming. Finding that early mornings in the
-            ocean produce approximately the same clarity of thought as late-night
-            coding sessions, but with better vitamin D.
+            Holly the cat moved here with me. He&apos;s adapted faster than I
+            have.
           </p>
 
           <h2>Reading</h2>
@@ -59,9 +66,17 @@ export default function Now() {
             <li>
               <em>Thinking in Bets</em> — Annie Duke
             </li>
-            <li>Paul Graham&apos;s essays — all of them, again</li>
+            <li>Paul Graham&apos;s essays — slowly working back through the archive</li>
           </ul>
 
+          <h2>Open invitations</h2>
+          <ul>
+            <li>Open to retainer conversations for AI integration work</li>
+            <li>Available for short technical reviews (paid, fixed-scope)</li>
+            <li>Always interested in talking to people building useful AI products</li>
+          </ul>
+
+          <p>That&apos;s the picture.</p>
         </article>
       </div>
     </>
