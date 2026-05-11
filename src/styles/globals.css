@@ -361,17 +361,25 @@ p { margin: 0; }
 .case-body figure figcaption { margin-top: 14px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.10em; color: var(--text-3); text-transform: lowercase; }
 
 /* ─── Now / Uses body ─── */
-.now-body,
+/* /now — single-column editorial */
+.now-page .container { max-width: 760px; padding-bottom: 120px; }
+.now-section { padding: 48px 0; border-bottom: 1px solid var(--hairline); }
+.now-section:last-child { border-bottom: none; padding-bottom: 0; }
+.now-section h2 { font-size: 24px; letter-spacing: -0.025em; font-weight: 500; margin: 0 0 24px; color: var(--text); }
+.now-section p { color: var(--text-2); font-size: 17px; line-height: 1.7; margin-bottom: 16px; }
+.now-section p:last-child { margin-bottom: 0; }
+.now-section ul { color: var(--text-2); padding-left: 20px; margin-bottom: 16px; line-height: 1.7; }
+.now-section li { margin-bottom: 8px; font-size: 17px; }
+
+/* /uses — sectioned with numbered eyebrows */
 .uses-body { max-width: 680px; margin: 0 auto; padding: 64px 0 120px; }
-.now-body h2,
-.uses-body h2 { margin-top: 56px; margin-bottom: 20px; padding-top: 56px; border-top: 1px solid var(--hairline); font-size: 24px; letter-spacing: -0.025em; font-weight: 500; }
-.now-body h2:first-child,
-.uses-body h2:first-child { margin-top: 0; padding-top: 0; border-top: none; }
-.now-body p,
+.uses-body section { padding-top: 56px; border-top: 1px solid var(--hairline); }
+.uses-body section:first-child { padding-top: 0; border-top: none; }
+.uses-body .eyebrow { display: block; margin-bottom: 10px; }
+.uses-body h2 { font-size: 24px; letter-spacing: -0.025em; font-weight: 500; margin: 0 0 20px; padding: 12px 0 0; }
+.uses-body section:first-child h2 { padding-top: 0; }
 .uses-body p { color: var(--text-2); font-size: 17px; line-height: 1.7; margin-bottom: 16px; }
-.now-body ul,
 .uses-body ul { color: var(--text-2); padding-left: 20px; margin-bottom: 16px; line-height: 1.7; }
-.now-body li,
 .uses-body li { margin-bottom: 8px; font-size: 17px; }
 
 .pull-quote { margin: 48px 0; padding: 8px 0 8px 28px; border-left: 2px solid var(--accent); }
@@ -839,7 +847,7 @@ p { margin: 0; }
     max-width: 360px;
     margin: 0 auto;
   }
-  .blog-pinned .img-ph { aspect-ratio: 16 / 10; max-height: 320px; }
+  .blog-pinned .img-ph { aspect-ratio: 1 / 1; max-height: 320px; max-width: 320px; margin: 0 auto; }
 
   /* ─── Article cover + case cover ─────────── */
   .article-cover { max-height: 320px; }

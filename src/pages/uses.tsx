@@ -77,12 +77,16 @@ export default function Uses() {
       </section>
 
       <div className="container">
-        <article className="case-body uses-body">
-          {USES.map((section) => (
+        <article className="uses-body">
+          {USES.map((section, i) => (
             <section key={section.category}>
+              <span className="eyebrow acc">
+                {String(i + 1).padStart(2, "0")} /{" "}
+                {section.category.toUpperCase()}
+              </span>
               <h2>{section.category}</h2>
               {section.note && (
-                <p style={{ fontStyle: "italic", color: "var(--text-2)" }}>
+                <p style={{ fontStyle: "italic" }}>
                   {section.note}
                 </p>
               )}
