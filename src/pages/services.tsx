@@ -1,3 +1,4 @@
+import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
@@ -169,6 +170,28 @@ function renderCompareCell(cell: CompareCell, isFeatured: boolean) {
 }
 
 export default function Services() {
+  const faqRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const container = faqRef.current;
+    if (!container) return;
+
+    const details = container.querySelectorAll<HTMLDetailsElement>("details");
+
+    const onToggle = (e: Event) => {
+      const opened = e.target as HTMLDetailsElement;
+      if (!opened.open) return;
+      details.forEach((d) => {
+        if (d !== opened && d.open) d.open = false;
+      });
+    };
+
+    details.forEach((d) => d.addEventListener("toggle", onToggle));
+    return () => {
+      details.forEach((d) => d.removeEventListener("toggle", onToggle));
+    };
+  }, []);
+
   return (
     <>
       <SEO page="services" canonicalPath="/services" />
@@ -302,15 +325,17 @@ export default function Services() {
           <Link href="/contact" className="link-acc">write me</Link>
           {" "}— I&apos;ll answer it.
         </p>
-        {FAQ.map((item) => (
-          <details key={item.q}>
-            <summary>
-              <span className="qq">{item.q}</span>
-              <PlusSvg />
-            </summary>
-            <p>{item.a}</p>
-          </details>
-        ))}
+        <div ref={faqRef}>
+          {FAQ.map((item) => (
+            <details key={item.q}>
+              <summary>
+                <span className="qq">{item.q}</span>
+                <PlusSvg />
+              </summary>
+              <p>{item.a}</p>
+            </details>
+          ))}
+        </div>
       </MotionSection>
 
       {/* CUSTOM CTA */}
