@@ -46,10 +46,10 @@
 }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
-html, body { overflow-x: hidden; max-width: 100vw; }
 html { scroll-behavior: smooth; background: var(--bg); }
 body {
   width: 100%;
+  overflow-x: hidden;
   background: var(--bg); color: var(--text);
   font-family: var(--font-text);
   font-size: 17px; line-height: 1.55; letter-spacing: 0;
@@ -714,15 +714,17 @@ p { margin: 0; }
 @media (max-width: 1024px) {
   .home-hero .grid, .about-split, .about-hero .grid, .work-asym, .case-row,
   .pricing .cards, .svc-grid, .case-stats .grid, .curr-grid, .case-related .grid,
-  .case-hero .meta, .hero-index, .blog-pinned, .blog-other, .article-footer .grid,
+  .case-hero .meta, .blog-pinned, .blog-other, .article-footer .grid,
   .sec-head, .trusted .grid, .timeline-row, .footer-grid,
   .record .grid, .tl-head, .curr-head { grid-template-columns: 1fr; }
-  .hero-index { gap: 0; }
-  .hero-index .col { border-right: 0; border-bottom: 1px solid var(--hairline); }
-  .hero-index .col:last-child { border-bottom: 0; }
+  .hero-index { grid-template-columns: 1fr 1fr; gap: 0; }
+  .hero-index .col { border-right: none; border-bottom: 1px solid var(--hairline); padding: 24px; }
+  .hero-index .col:nth-child(odd) { border-right: 1px solid var(--hairline); }
+  .hero-index .col:nth-last-child(-n+2) { border-bottom: none; }
   .nav .links { display: none; }
   :root { --pad-y: 80px; --container-pad: 24px; }
-  .home-hero .photo { max-height: 420px; }
+  .home-hero .photo { max-height: 420px; max-width: 480px; margin: 0 auto; }
+  .home-hero .right-trust { justify-content: center; margin-top: 16px; }
 }
 
 @media (max-width: 768px) {
@@ -761,8 +763,118 @@ p { margin: 0; }
 }
 
 @media (max-width: 600px) {
-  .home-hero h1 { font-size: 44px; }
-  .page-hero h1 { font-size: 64px; }
+  /* ─── Mobile typography ─────────────────────── */
+  .home-hero h1 { font-size: 40px; line-height: 1.02; letter-spacing: -0.04em; }
+  .page-hero h1 { font-size: 48px; line-height: 0.98; }
+  .about-hero h1 { font-size: 44px; line-height: 0.96; }
+  .page-hero-contact h1 { font-size: 48px; }
+
+  .sec-head h2,
+  .tl-head h2,
+  .curr-head h2,
+  .record .head h2,
+  .compare h2,
+  .faq h2,
+  .case-related h2,
+  .case-body h2,
+  .article-body h2,
+  .article-footer h2 {
+    font-size: 28px;
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+  }
+
+  .final-cta h2 { font-size: 38px; line-height: 0.98; }
+  .custom-cta h3 { font-size: 28px; line-height: 1.05; }
+  .article-cover .overlay h1 { font-size: 38px; line-height: 0.95; letter-spacing: -0.04em; max-width: 100%; }
+  .case-hero h1 { font-size: 36px; line-height: 1.0; }
+
+  .svc-card .name { font-size: 20px; }
+  .pricing .name { font-size: 20px; }
+  .work-feat h3 { font-size: 26px; }
+  .work-side h4 { font-size: 18px; }
+  .case-row h3 { font-size: 26px; }
+  .blog-pinned h2 { font-size: 32px; }
+
+  .hero-index .v { font-size: 24px; }
+  .hero-index .k { font-size: 10px; }
+  .hero-index .x { font-size: 12px; }
+
+  /* ─── Body copy + lead ─────────────────────── */
+  .home-hero .lead { font-size: 17px; line-height: 1.5; margin-top: 24px; max-width: 100%; }
+  .about-hero .lead,
+  .case-hero .tagline,
+  .page-hero .sub { font-size: 16px; line-height: 1.55; margin-top: 24px; }
+
+  .article-body { padding: 56px 0; }
+  .article-body p { font-size: 17px; line-height: 1.7; }
+  .article-body .lead { font-size: 19px; line-height: 1.55; }
+  .article-body p:first-of-type::first-letter { font-size: 64px; padding: 6px 10px 0 0; }
+
+  .case-body p { font-size: 16.5px; line-height: 1.65; }
+
+  .testimonial .quote p,
+  .testimonial blockquote p { font-size: 19px; line-height: 1.45; }
+  .testimonial .quote::before { font-size: 48px; }
+
+  /* ─── Portrait images ─────────────────────── */
+  .home-hero .photo,
+  .about-hero .photo,
+  .about-split .photo {
+    aspect-ratio: 1 / 1;
+    max-height: 380px;
+    width: 100%;
+  }
+  .home-hero .photo { max-height: 340px; max-width: 100%; }
+  .blog-pinned .img-ph { aspect-ratio: 16 / 10; max-height: 320px; }
+
+  /* ─── Article cover + case cover ─────────── */
+  .article-cover { max-height: 320px; }
+  .article-cover .img-ph { max-height: 320px; aspect-ratio: 4 / 5; }
+  .article-cover .overlay { bottom: 24px; }
+  .article-cover .overlay .meta { gap: 12px; flex-wrap: wrap; font-size: 10px; }
+  .case-cover .img-ph { aspect-ratio: 16 / 10; max-height: 280px; }
+
+  /* ─── Hero-index single column ─────────── */
+  .hero-index { grid-template-columns: 1fr; }
+  .hero-index .col {
+    border-right: none !important;
+    border-bottom: 1px solid var(--hairline);
+    padding: 20px 16px;
+  }
+  .hero-index .col:last-child { border-bottom: none; }
+
+  /* ─── Home hero photo + right-trust ────── */
+  .home-hero .right-trust {
+    justify-content: flex-start;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 12px;
+  }
+
+  /* ─── CTA buttons full-width ───────────── */
+  .home-hero .ctas { flex-direction: column; gap: 12px; width: 100%; }
+  .home-hero .ctas .btn { width: 100%; max-width: 320px; justify-content: center; }
+  .final-cta .ctas { flex-direction: column; align-items: center; gap: 12px; }
+  .final-cta .ctas .btn { width: 100%; max-width: 320px; justify-content: center; }
+  .custom-cta .ctas { flex-direction: column; align-items: center; gap: 12px; }
+  .custom-cta .ctas .btn { width: 100%; max-width: 320px; justify-content: center; }
+  .svc-card .cta-wrap .btn,
+  .pricing .card .cta-wrap .btn { width: 100%; justify-content: center; }
+  .page-hero .ctas { flex-wrap: wrap; gap: 12px; }
+
+  /* ─── Trusted logos ────────────────────── */
+  .trusted .grid { grid-template-columns: 1fr; gap: 24px; }
+  .trusted .label { text-align: center; }
+  .trusted .logos { gap: 24px; justify-content: center; flex-wrap: wrap; }
+  .trusted .logo { height: 24px; flex-shrink: 0; }
+  .trusted-logo-img { height: 24px; }
+
+  /* ─── Testimonial compact ──────────────── */
+  .testimonial { padding: 64px 0; }
+  .testimonial .container { max-width: 100%; }
+  .testimonial .quote p,
+  .testimonial blockquote p { max-width: 100%; padding: 0 8px; }
 }
 
 @media (prefers-reduced-motion: reduce) {
