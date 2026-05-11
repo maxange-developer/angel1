@@ -1,8 +1,6 @@
 import Link from "next/link";
-import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
-import { MotionSection } from "@/components/MotionSection";
-import { FADE_UP } from "@/lib/motion";
+import Reveal from "@/components/Reveal";
 
 export default function Now() {
   return (
@@ -11,21 +9,21 @@ export default function Now() {
 
       <div className="now-page">
         <header className="now-hero">
-          <MotionSection as="div">
-            <motion.span className="eyebrow" variants={FADE_UP}>
+          <div className="mount-stagger">
+            <span className="eyebrow">
               Now · May 2026
-            </motion.span>
-            <motion.h1 variants={FADE_UP}>
+            </span>
+            <h1>
               What I&apos;m focused on<span className="acc">.</span>
-            </motion.h1>
-            <motion.p className="sub" variants={FADE_UP}>
+            </h1>
+            <p className="sub">
               A living document. Last meaningful update: May 2026, from
               Tenerife.
-            </motion.p>
-          </MotionSection>
+            </p>
+          </div>
         </header>
 
-        <section className="now-section">
+        <Reveal as="section" variant="fade-up" className="now-section">
           <h2>Work</h2>
           <p>
             Building portfolio engagements to bring on Upwork and
@@ -39,9 +37,9 @@ export default function Now() {
             If you&apos;ve got an idea worth shipping,{" "}
             <Link href="/contact" className="link-acc">start here</Link>.
           </p>
-        </section>
+        </Reveal>
 
-        <section className="now-section">
+        <Reveal as="section" variant="fade-up" className="now-section">
           <h2>Learning</h2>
           <p>
             Spending most weekday mornings on Anthropic&apos;s Claude API —
@@ -53,9 +51,9 @@ export default function Now() {
             Reading <em>The Pragmatic Programmer</em> again. Third pass.
             Different book each time.
           </p>
-        </section>
+        </Reveal>
 
-        <section className="now-section">
+        <Reveal as="section" variant="fade-up" className="now-section">
           <h2>Life</h2>
           <p>
             Based in Tenerife since October 2025. Co-working in La Laguna most
@@ -68,9 +66,9 @@ export default function Now() {
             Holly the cat moved here with me. He&apos;s adapted faster than I
             have.
           </p>
-        </section>
+        </Reveal>
 
-        <section className="now-section">
+        <Reveal as="section" variant="fade-up" className="now-section">
           <h2>Reading</h2>
           <ul>
             <li>
@@ -84,9 +82,9 @@ export default function Now() {
               archive
             </li>
           </ul>
-        </section>
+        </Reveal>
 
-        <section className="now-section">
+        <Reveal as="section" variant="fade-up" className="now-section">
           <h2>Open invitations</h2>
           <ul>
             <li>Open to retainer conversations for AI integration work</li>
@@ -95,7 +93,7 @@ export default function Now() {
               Always interested in talking to people building useful AI products
             </li>
           </ul>
-        </section>
+        </Reveal>
       </div>
     </>
   );

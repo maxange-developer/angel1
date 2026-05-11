@@ -1,18 +1,9 @@
 import type { GetStaticProps } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
-import { MotionSection } from "@/components/MotionSection";
+import Reveal from "@/components/Reveal";
 import { getAllWorkPosts } from "@/lib/mdx";
-import {
-  FADE_UP,
-  STAGGER_CONTAINER,
-  STAGGER_ITEM,
-  HERO_TITLE,
-  HERO_STAGGER,
-  HERO_PHOTO,
-} from "@/lib/motion";
 import { useCountUp } from "@/hooks/useCountUp";
 import Testimonial from "@/components/Testimonial";
 import PageBreak from "@/components/PageBreak";
@@ -105,41 +96,36 @@ export default function Home({ featuredWork }: HomeProps) {
 
       {/* HERO */}
       <section className="container home-hero">
-        <motion.div
-          className="grid"
-          variants={HERO_STAGGER}
-          initial="hidden"
-          animate="visible"
-        >
-          <div>
-            <motion.span className="eyebrow" variants={FADE_UP}>
+        <div className="grid">
+          <div className="mount-stagger">
+            <span className="eyebrow">
               <span className="dot" />
               AI-Enhanced MVP Developer · Available now
-            </motion.span>
-            <motion.h1 variants={HERO_TITLE}>
+            </span>
+            <h1>
               Ship AI-powered
               <br />
               products in <span className="q">weeks,</span>
               <br />
               <span className="q">not months</span>
               <span className="acc">.</span>
-            </motion.h1>
-            <motion.p className="lead" variants={FADE_UP}>
+            </h1>
+            <p className="lead">
               One engineer, fixed price, production-grade.
               <br />
               The agency math, inverted.
-            </motion.p>
-            <motion.div className="ctas" variants={FADE_UP}>
+            </p>
+            <div className="ctas">
               <Link href="/work" className="btn btn-primary">
                 View Work <span className="arr">→</span>
               </Link>
               <Link href="/contact" className="btn btn-secondary">
                 Book a call
               </Link>
-            </motion.div>
+            </div>
           </div>
 
-          <motion.div variants={HERO_PHOTO}>
+          <div className="mount-hero-photo">
             <div className="img-ph photo">
               <Image
                 src="/images/me-5.webp"
@@ -150,19 +136,20 @@ export default function Home({ featuredWork }: HomeProps) {
                 priority
               />
             </div>
-            <div className="photo-cap">[ portrait · tenerife · 2025 ]</div>
             <div className="right-trust">
               <span className="status">Available now</span>
               <div className="right-trust-meta">
                 <span className="rt-line">★ 5.0 · 100% job success</span>
-                <span className="rt-line">Demo portfolio · Open source on npm</span>
+                <span className="rt-line">
+                  Demo portfolio · Open source on npm
+                </span>
               </div>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* HERO INDEX — stats */}
-        <MotionSection className="hero-index" as="div">
+        <Reveal className="hero-index" as="div" variant="stagger">
           <div className="col">
             <div className="k">Earned</div>
             <div className="v">
@@ -187,11 +174,11 @@ export default function Home({ featuredWork }: HomeProps) {
             <div className="v">npm</div>
             <div className="x">claude-mvp-toolkit</div>
           </div>
-        </MotionSection>
+        </Reveal>
       </section>
 
       {/* TRUSTED */}
-      <MotionSection className="trusted" as="div">
+      <Reveal className="trusted" as="div" variant="fade-up">
         <div className="container">
           <div className="grid">
             <span className="label">Trusted by teams at</span>
@@ -259,35 +246,26 @@ export default function Home({ featuredWork }: HomeProps) {
             </div>
           </div>
         </div>
-      </MotionSection>
+      </Reveal>
 
       {/* SERVICES PREVIEW */}
       <div className="container sec">
-        <MotionSection className="sec-head" as="div">
+        <Reveal className="sec-head" as="div" variant="fade-up">
           <span className="eyebrow acc">01 / SERVICES</span>
           <div>
-            <h2>
-              Three productized tracks.
-            </h2>
+            <h2>Three productized tracks.</h2>
             <p className="sub">
               Same workflow, same engineering rigor — different surface area.
               Pick the timeline that matches your stage. I ship.
             </p>
           </div>
-        </MotionSection>
+        </Reveal>
 
-        <motion.div
-          className="svc-grid"
-          variants={STAGGER_CONTAINER}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-        >
+        <Reveal className="svc-grid" as="div" variant="stagger">
           {SVC_CARDS.map((card) => (
-            <motion.div
+            <div
               key={card.name}
               className={`card svc-card${card.featured ? " featured card-featured-glow" : ""}`}
-              variants={STAGGER_ITEM}
             >
               {card.featured && <span className="badge">MOST POPULAR</span>}
               <span className="name">{card.name}</span>
@@ -305,36 +283,28 @@ export default function Home({ featuredWork }: HomeProps) {
               <Link href="/services" className="more">
                 Learn more <span>→</span>
               </Link>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </Reveal>
       </div>
 
       {/* SELECTED WORK */}
       {featured && (
         <div className="container sec" style={{ paddingTop: 0 }}>
-          <MotionSection className="sec-head" as="div">
+          <Reveal className="sec-head" as="div" variant="fade-up">
             <span className="eyebrow acc">02 / SELECTED WORK</span>
             <div>
-              <h2>
-                Recent work.
-              </h2>
+              <h2>Recent work.</h2>
               <p className="sub">
                 Three projects shipped end-to-end. Same person designing,
                 building, deploying. That&apos;s the multiplier.
               </p>
             </div>
-          </MotionSection>
+          </Reveal>
 
-          <motion.div
-            className="work-asym"
-            variants={STAGGER_CONTAINER}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-          >
+          <Reveal className="work-asym" as="div" variant="stagger">
             {/* Featured project */}
-            <motion.div variants={STAGGER_ITEM} style={{ gridRow: "span 2" }}>
+            <div style={{ gridRow: "span 2" }}>
               <Link
                 href={`/work/${featured.slug}`}
                 className="card feat work-feat"
@@ -353,14 +323,18 @@ export default function Home({ featuredWork }: HomeProps) {
                 <div className="body">
                   <div className="meta-line">
                     <span className="chip">FEATURED · {featured.date}</span>
-                    <span className="chip">{featured.package.toUpperCase()}</span>
+                    <span className="chip">
+                      {featured.package.toUpperCase()}
+                    </span>
                   </div>
                   <h3>{featured.title}</h3>
                   <p className="tagline">{featured.tagline}</p>
                   {featured.stack && featured.stack.length > 0 && (
                     <div className="stack">
                       {featured.stack.slice(0, 4).map((s) => (
-                        <span key={s} className="chip">{s.toUpperCase()}</span>
+                        <span key={s} className="chip">
+                          {s.toUpperCase()}
+                        </span>
                       ))}
                     </div>
                   )}
@@ -379,12 +353,16 @@ export default function Home({ featuredWork }: HomeProps) {
                   </span>
                 </div>
               </Link>
-            </motion.div>
+            </div>
 
             {/* Side projects */}
-            <motion.div className="work-side-col" variants={STAGGER_ITEM}>
+            <div className="work-side-col">
               {side.map((w) => (
-                <Link key={w.slug} href={`/work/${w.slug}`} className="card work-side">
+                <Link
+                  key={w.slug}
+                  href={`/work/${w.slug}`}
+                  className="card work-side"
+                >
                   <div className="img-ph">
                     {w.hero && (
                       <Image
@@ -404,8 +382,8 @@ export default function Home({ featuredWork }: HomeProps) {
                   </div>
                 </Link>
               ))}
-            </motion.div>
-          </motion.div>
+            </div>
+          </Reveal>
         </div>
       )}
 
@@ -421,11 +399,11 @@ export default function Home({ featuredWork }: HomeProps) {
       />
 
       {/* PAGE BREAK → ABOUT */}
-      <PageBreak num="05" label="ABOUT" name="angel1.dev — about" />
+      <PageBreak num="03" label="ABOUT" name="" />
 
       {/* ABOUT SPLIT */}
       <div className="container sec" style={{ paddingTop: 0 }}>
-        <MotionSection className="about-split" as="div">
+        <Reveal className="about-split" as="div" variant="fade-up">
           <div className="img-ph photo">
             <Image
               src="/images/me-5.webp"
@@ -436,7 +414,6 @@ export default function Home({ featuredWork }: HomeProps) {
             />
           </div>
           <div className="copy">
-            <span className="eyebrow acc">03 / ABOUT</span>
             <h2 style={{ marginTop: "16px" }}>
               From Ancona to Tenerife,
               <br />
@@ -455,7 +432,7 @@ export default function Home({ featuredWork }: HomeProps) {
               </Link>
             </div>
           </div>
-        </MotionSection>
+        </Reveal>
       </div>
 
       {/* FINAL CTA */}

@@ -4,14 +4,13 @@ import Link from "next/link";
 import { MDXRemote, type MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import rehypeHighlight from "rehype-highlight";
-import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
+import Reveal from "@/components/Reveal";
 import {
   getAllJournalPosts,
   getJournalPost,
   type JournalFrontmatter,
 } from "@/lib/journal";
-import { PULL_QUOTE, STAGGER_CONTAINER, STAGGER_ITEM } from "@/lib/motion";
 
 interface RelatedJournal {
   slug: string;
@@ -32,14 +31,7 @@ interface JournalSlugProps {
 
 const MDX_COMPONENTS = {
   blockquote: (props: React.HTMLAttributes<HTMLQuoteElement>) => (
-    <motion.blockquote
-      className="article-pull"
-      variants={PULL_QUOTE}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.5 }}
-      {...(props as object)}
-    />
+    <Reveal as="blockquote" variant="pull-quote" className="article-pull" {...(props as object)} />
   ),
 };
 
@@ -77,7 +69,7 @@ export default function JournalSlug({
           )}
         </div>
         <div className="overlay">
-          <div className="container">
+          <div className="container mount-stagger">
             <span className="crumbs">Journal / {fm.title}</span>
             <h1>
               {fm.title}
@@ -107,15 +99,9 @@ export default function JournalSlug({
             <h3>
               Continue reading
             </h3>
-            <motion.div
-              className="grid"
-              variants={STAGGER_CONTAINER}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-            >
+            <Reveal className="grid" as="div" variant="stagger">
               {related.map((post) => (
-                <motion.div key={post.slug} variants={STAGGER_ITEM}>
+                <div key={post.slug}>
                   <Link
                     href={`/journal/${post.slug}`}
                     className="card related-card"
@@ -136,9 +122,9 @@ export default function JournalSlug({
                       <p>{post.excerpt}</p>
                     </div>
                   </Link>
-                </motion.div>
+                </div>
               ))}
-            </motion.div>
+            </Reveal>
           </div>
         </div>
       )}

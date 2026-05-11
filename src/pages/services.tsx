@@ -1,9 +1,7 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
-import { MotionSection } from "@/components/MotionSection";
-import { STAGGER_CONTAINER, STAGGER_ITEM, FADE_UP } from "@/lib/motion";
+import Reveal from "@/components/Reveal";
 
 const PACKAGES = [
   {
@@ -198,37 +196,30 @@ export default function Services() {
 
       {/* PAGE HERO */}
       <section className="container page-hero">
-        <MotionSection as="div">
-          <motion.span className="eyebrow" variants={FADE_UP}>
+        <div className="mount-stagger">
+          <span className="eyebrow">
             Packages
-          </motion.span>
-          <motion.h1 variants={FADE_UP}>
+          </span>
+          <h1>
             Choose your
             <br />
             engagement<span className="acc">.</span>
-          </motion.h1>
-          <motion.p className="sub" variants={FADE_UP}>
+          </h1>
+          <p className="sub">
             Three engagement tracks, fixed-price, fixed-scope. Pick the one
             that matches your timeline. If none fits, the last section covers
             custom scopes.
-          </motion.p>
-        </MotionSection>
+          </p>
+        </div>
       </section>
 
       {/* PRICING */}
-      <MotionSection className="container pricing" as="div">
-        <motion.div
-          className="cards"
-          variants={STAGGER_CONTAINER}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-        >
+      <Reveal className="container pricing" as="div" variant="fade-up">
+        <Reveal className="cards" as="div" variant="stagger">
           {PACKAGES.map((pkg) => (
-            <motion.div
+            <div
               key={pkg.id}
               className={`card${pkg.featured ? " featured" : ""}`}
-              variants={STAGGER_ITEM}
             >
               {pkg.featured && <span className="pop">MOST POPULAR</span>}
               <span className="name">{pkg.name}</span>
@@ -251,13 +242,13 @@ export default function Services() {
                   {pkg.cta} <span className="arr">→</span>
                 </Link>
               </div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
-      </MotionSection>
+        </Reveal>
+      </Reveal>
 
       {/* COMPARE */}
-      <MotionSection className="container compare" as="div">
+      <Reveal className="container compare" as="div" variant="fade-up">
         <span className="eyebrow acc">01 / COMPARE</span>
         <h2>
           Compare engagements
@@ -320,39 +311,32 @@ export default function Services() {
             </div>
           ))}
         </div>
-      </MotionSection>
+      </Reveal>
 
       {/* TRACK RECORD */}
-      <MotionSection className="container record" as="div">
+      <Reveal className="container record" as="div" variant="fade-up">
         <div className="head">
           <span className="eyebrow acc">02 / TRACK RECORD</span>
           <h2>
             What&apos;s actually shipped
           </h2>
         </div>
-        <motion.div
-          className="grid"
-          variants={STAGGER_CONTAINER}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-        >
+        <Reveal className="grid" as="div" variant="stagger">
           {RECORD.map((r) => (
-            <motion.div
+            <div
               key={r.k}
               className="card stat"
-              variants={STAGGER_ITEM}
             >
               <div className="v">{r.v}</div>
               <div className="k">{r.k}</div>
               <div className="x">{r.x}</div>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
-      </MotionSection>
+        </Reveal>
+      </Reveal>
 
       {/* FAQ */}
-      <MotionSection className="container faq" as="div">
+      <Reveal className="container faq" as="div" variant="fade-up">
         <span className="eyebrow acc">03 / FAQ</span>
         <h2>
           Frequently asked<span className="acc">.</span>
@@ -373,7 +357,7 @@ export default function Services() {
             </details>
           ))}
         </div>
-      </MotionSection>
+      </Reveal>
 
       {/* CUSTOM CTA */}
       <section className="custom-cta">

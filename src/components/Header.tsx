@@ -3,7 +3,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { useRouter } from "next/router";
 import { Menu, X } from "lucide-react";
-import { motion, AnimatePresence } from "framer-motion";
 
 const NAV_ITEMS = [
   { label: "Work", href: "/work" },
@@ -67,39 +66,29 @@ export default function Header() {
         </div>
       </header>
 
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            className="mobile-menu"
-            initial={{ opacity: 0, y: -8 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -8 }}
-            transition={{ duration: 0.2 }}
-          >
-            <ul>
-              {NAV_ITEMS.map((item) => (
-                <li key={item.href}>
-                  <Link
-                    href={item.href}
-                    onClick={() => setIsMobileMenuOpen(false)}
-                  >
-                    {item.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-            <div className="bottom">
+      <div className={`mobile-menu${isMobileMenuOpen ? " mobile-menu--open" : ""}`}>
+        <ul>
+          {NAV_ITEMS.map((item) => (
+            <li key={item.href}>
               <Link
-                href="/contact"
-                className="cta"
+                href={item.href}
                 onClick={() => setIsMobileMenuOpen(false)}
               >
-                Start a project →
+                {item.label}
               </Link>
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            </li>
+          ))}
+        </ul>
+        <div className="bottom">
+          <Link
+            href="/contact"
+            className="cta"
+            onClick={() => setIsMobileMenuOpen(false)}
+          >
+            Start a project →
+          </Link>
+        </div>
+      </div>
     </>
   );
 }

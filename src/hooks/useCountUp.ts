@@ -1,13 +1,15 @@
 import { useEffect, useState, useRef } from "react";
-import { useReducedMotion } from "framer-motion";
 
 export function useCountUp(target: number, duration = 1200) {
   const ref = useRef<HTMLDivElement>(null);
   const [value, setValue] = useState(0);
   const [hasStarted, setHasStarted] = useState(false);
-  const prefersReduced = useReducedMotion();
 
   useEffect(() => {
+    const prefersReduced =
+      typeof window !== "undefined" &&
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
     if (prefersReduced) {
       setValue(target);
       return;
@@ -35,7 +37,7 @@ export function useCountUp(target: number, duration = 1200) {
 
     observer.observe(ref.current);
     return () => observer.disconnect();
-  }, [target, duration, hasStarted, prefersReduced]);
+  }, [target, duration, hasStarted]);
 
   return { ref, value };
 }

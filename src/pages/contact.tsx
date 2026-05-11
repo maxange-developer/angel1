@@ -2,10 +2,8 @@ import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { z } from "zod";
-import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
-import { MotionSection } from "@/components/MotionSection";
-import { FADE_UP, STAGGER_CONTAINER, STAGGER_ITEM } from "@/lib/motion";
+import Reveal from "@/components/Reveal";
 
 const schema = z.object({
   name: z.string().min(2, "Name is required"),
@@ -57,30 +55,24 @@ export default function Contact() {
       <SEO page="contact" canonicalPath="/contact" />
 
       <section className="page-hero page-hero-contact container">
-        <MotionSection>
+        <div className="mount-stagger">
           <p className="eyebrow">Get in touch</p>
           <h1>Start a project</h1>
           <p className="q">
             Tell me what you&apos;re building. I&apos;ll confirm scope, timeline, and price within 48 hours.
           </p>
-        </MotionSection>
+        </div>
       </section>
 
       <div className="container">
-        <motion.div
-          className="contact-wrap"
-          variants={STAGGER_CONTAINER}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
+        <Reveal className="contact-wrap" as="div" variant="stagger">
           {/* Form col */}
-          <motion.div className="contact-form-col" variants={STAGGER_ITEM}>
+          <div className="contact-form-col">
             {submitted ? (
-              <motion.div className="contact-success" variants={FADE_UP} initial="hidden" animate="visible">
+              <div className="contact-success mount-hero-item">
                 <h2>Got it.</h2>
                 <p>I&apos;ll review your project and get back to you within 48 hours.</p>
-              </motion.div>
+              </div>
             ) : (
               <form onSubmit={handleSubmit(onSubmit)} noValidate>
                 <div className="form-group">
@@ -124,10 +116,10 @@ export default function Contact() {
                 </button>
               </form>
             )}
-          </motion.div>
+          </div>
 
           {/* Info col */}
-          <motion.div className="contact-info-col" variants={STAGGER_ITEM}>
+          <div className="contact-info-col">
             <div className="contact-info-block">
               <p className="eyebrow">Direct line</p>
               <a href="mailto:massiangelone01@gmail.com" className="link-acc">
@@ -157,8 +149,8 @@ export default function Contact() {
                 <li>Fixed-price proposal</li>
               </ul>
             </div>
-          </motion.div>
-        </motion.div>
+          </div>
+        </Reveal>
       </div>
     </>
   );

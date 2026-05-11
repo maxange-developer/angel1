@@ -1,16 +1,12 @@
 import "@/styles/globals.css";
+import "@/styles/animations.css";
 import type { AppProps } from "next/app";
-import { useRouter } from "next/router";
 import Head from "next/head";
-import { AnimatePresence, motion } from "framer-motion";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import Layout from "@/components/Layout";
-import { PAGE_TRANSITION } from "@/lib/motion";
 
 export default function App({ Component, pageProps }: AppProps) {
-  const router = useRouter();
-
   return (
     <>
       <Head>
@@ -19,19 +15,9 @@ export default function App({ Component, pageProps }: AppProps) {
         <link rel="icon" href="/favicon.ico" />
       </Head>
       <Layout>
-        <AnimatePresence mode="wait" initial={false}>
-          <motion.div
-            key={router.pathname}
-            variants={PAGE_TRANSITION}
-            initial="initial"
-            animate="animate"
-            exit="exit"
-          >
-            <Component {...pageProps} />
-            <Analytics />
-            <SpeedInsights />
-          </motion.div>
-        </AnimatePresence>
+        <Component {...pageProps} />
+        <Analytics />
+        <SpeedInsights />
       </Layout>
     </>
   );

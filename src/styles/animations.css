@@ -1,0 +1,149 @@
+/* ==========================================================
+   ANIMATIONS — CSS native, IntersectionObserver-driven
+   Replacement for framer-motion. Zero JS for the animation
+   itself; only IO adds the .in-view class.
+   ========================================================== */
+
+/* ----- Keyframes ----- */
+
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(24px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeUpSmall {
+  from { opacity: 0; transform: translateY(16px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroTitle {
+  from { opacity: 0; transform: translateY(32px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroItem {
+  from { opacity: 0; transform: translateY(20px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes heroPhoto {
+  from { opacity: 0; transform: scale(1.02); }
+  to   { opacity: 1; transform: scale(1); }
+}
+
+@keyframes pullQuote {
+  from { clip-path: inset(0 100% 0 0); opacity: 0.6; }
+  to   { clip-path: inset(0 0%   0 0); opacity: 1;   }
+}
+
+/* ----- Reveal classes (require .in-view to trigger) ----- */
+
+.reveal {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.reveal.in-view {
+  animation: fadeUp 0.65s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.reveal-fade-up {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.reveal-fade-up.in-view {
+  animation: fadeUp 0.6s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.reveal-fade-up-sm {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.reveal-fade-up-sm.in-view {
+  animation: fadeUpSmall 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.reveal-pull-quote {
+  clip-path: inset(0 100% 0 0);
+  opacity: 0.6;
+}
+
+.reveal-pull-quote.in-view {
+  animation: pullQuote 0.8s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+/* ----- Stagger: children get delay via --i CSS variable ----- */
+
+.stagger > * {
+  opacity: 0;
+  will-change: opacity, transform;
+}
+
+.stagger.in-view > * {
+  animation: fadeUpSmall 0.5s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  animation-delay: calc(var(--stagger-base, 100ms) + (var(--i, 0) * 80ms));
+}
+
+/* ----- On-mount animations (hero, no scroll trigger) ----- */
+
+.mount-hero-item {
+  opacity: 0;
+  animation: heroItem 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+}
+
+.mount-hero-photo {
+  opacity: 0;
+  animation: heroPhoto 0.9s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  animation-delay: 0.1s;
+}
+
+.mount-stagger > * {
+  opacity: 0;
+  animation: heroItem 0.7s cubic-bezier(0.22, 0.61, 0.36, 1) both;
+  animation-delay: calc(0.05s + (var(--i, 0) * 80ms));
+}
+
+/* ----- Auto-nth-child --i assignment (sequential stagger up to 14 children) ----- */
+
+.stagger > *:nth-child(1)  { --i: 0; }
+.stagger > *:nth-child(2)  { --i: 1; }
+.stagger > *:nth-child(3)  { --i: 2; }
+.stagger > *:nth-child(4)  { --i: 3; }
+.stagger > *:nth-child(5)  { --i: 4; }
+.stagger > *:nth-child(6)  { --i: 5; }
+.stagger > *:nth-child(7)  { --i: 6; }
+.stagger > *:nth-child(8)  { --i: 7; }
+.stagger > *:nth-child(9)  { --i: 8; }
+.stagger > *:nth-child(10) { --i: 9; }
+.stagger > *:nth-child(11) { --i: 10; }
+.stagger > *:nth-child(12) { --i: 11; }
+.stagger > *:nth-child(13) { --i: 12; }
+.stagger > *:nth-child(14) { --i: 13; }
+
+.mount-stagger > *:nth-child(1) { --i: 0; }
+.mount-stagger > *:nth-child(2) { --i: 1; }
+.mount-stagger > *:nth-child(3) { --i: 2; }
+.mount-stagger > *:nth-child(4) { --i: 3; }
+.mount-stagger > *:nth-child(5) { --i: 4; }
+.mount-stagger > *:nth-child(6) { --i: 5; }
+.mount-stagger > *:nth-child(7) { --i: 6; }
+
+/* ----- Reduced motion ----- */
+
+@media (prefers-reduced-motion: reduce) {
+  .reveal,
+  .reveal-fade-up,
+  .reveal-fade-up-sm,
+  .reveal-pull-quote,
+  .stagger > *,
+  .mount-hero-item,
+  .mount-hero-photo,
+  .mount-stagger > * {
+    opacity: 1 !important;
+    transform: none !important;
+    clip-path: none !important;
+    animation: none !important;
+  }
+}

@@ -1,11 +1,9 @@
 import type { GetStaticProps } from "next";
 import Link from "next/link";
 import Image from "next/image";
-import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
-import { MotionSection } from "@/components/MotionSection";
+import Reveal from "@/components/Reveal";
 import { getAllJournalPosts, type JournalPost } from "@/lib/journal";
-import { STAGGER_CONTAINER, STAGGER_ITEM, FADE_UP } from "@/lib/motion";
 
 interface JournalIndexProps {
   pinned: JournalPost | null;
@@ -19,8 +17,8 @@ export default function JournalIndex({ pinned, others, total }: JournalIndexProp
       <SEO page="journal" canonicalPath="/journal" />
 
       <section className="container page-hero">
-        <MotionSection as="div">
-          <motion.div className="top" variants={FADE_UP}>
+        <div className="mount-stagger">
+          <div className="top">
             <div>
               <span className="eyebrow">Writing</span>
               <h1>
@@ -28,18 +26,18 @@ export default function JournalIndex({ pinned, others, total }: JournalIndexProp
               </h1>
             </div>
             <span className="meta">{String(total).padStart(2, "0")} pieces</span>
-          </motion.div>
-          <motion.p className="sub" variants={FADE_UP}>
+          </div>
+          <p className="sub">
             Notes on building AI products, working solo, and what I&apos;ve
             learned shipping under constraints I didn&apos;t choose.
-          </motion.p>
-        </MotionSection>
+          </p>
+        </div>
       </section>
 
       <div className="container blog-index">
         {/* PINNED */}
         {pinned && (
-          <MotionSection className="blog-pinned" as="article">
+          <Reveal className="blog-pinned" as="article" variant="fade-up">
             <div className="img-ph">
               {pinned.frontmatter.coverImage && (
                 <Image
@@ -67,20 +65,14 @@ export default function JournalIndex({ pinned, others, total }: JournalIndexProp
                 Read full story <span className="arr">→</span>
               </Link>
             </div>
-          </MotionSection>
+          </Reveal>
         )}
 
         {/* OTHERS */}
         {others.length > 0 && (
-          <motion.div
-            className="blog-other"
-            variants={STAGGER_CONTAINER}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
+          <Reveal className="blog-other" as="div" variant="stagger">
             {others.map((post) => (
-              <motion.div key={post.slug} variants={STAGGER_ITEM}>
+              <div key={post.slug}>
                 <Link href={`/journal/${post.slug}`} className="card blog-tile">
                   <div className="meta">
                     {post.frontmatter.date} · {post.frontmatter.category} ·{" "}
@@ -92,9 +84,9 @@ export default function JournalIndex({ pinned, others, total }: JournalIndexProp
                     Read <span>→</span>
                   </span>
                 </Link>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </Reveal>
         )}
       </div>
     </>

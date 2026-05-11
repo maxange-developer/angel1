@@ -5,11 +5,10 @@ import Link from "next/link";
 import { MDXRemote, type MDXRemoteSerializeResult } from "next-mdx-remote";
 import { serialize } from "next-mdx-remote/serialize";
 import rehypeHighlight from "rehype-highlight";
-import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
+import Reveal from "@/components/Reveal";
 import MermaidDiagram from "@/components/MermaidDiagram";
 import { getAllWorkSlugs, getWorkPost, type WorkFrontmatter } from "@/lib/mdx";
-import { PULL_QUOTE, STAGGER_CONTAINER, STAGGER_ITEM, HERO_STAGGER, HERO_ITEM, HERO_TITLE } from "@/lib/motion";
 
 interface RelatedPost {
   slug: string;
@@ -30,14 +29,7 @@ interface WorkSlugProps {
 const MDX_COMPONENTS = {
   MermaidDiagram,
   blockquote: (props: React.HTMLAttributes<HTMLQuoteElement>) => (
-    <motion.blockquote
-      className="pull-quote"
-      variants={PULL_QUOTE}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, amount: 0.5 }}
-      {...(props as object)}
-    />
+    <Reveal as="blockquote" variant="pull-quote" className="pull-quote" {...(props as object)} />
   ),
 };
 
@@ -99,7 +91,6 @@ function TableOfContents({ slug }: { slug: string }) {
 }
 
 function splitStatValue(value: string): { num: string; unit: string } {
-  // Heuristic: split trailing non-digit suffix as unit (e.g. "85s" → "85"+"s", "4.7/5" → "4.7"+"/5")
   const match = value.match(/^([\d.,+]+)([^\d.,+].*)?$/);
   if (match) {
     return { num: match[1], unit: match[2] ?? "" };
@@ -125,17 +116,17 @@ export default function WorkSlug({
 
       {/* CASE HERO */}
       <section className="container case-hero">
-        <motion.div variants={HERO_STAGGER} initial="hidden" animate="visible">
-          <motion.span className="crumbs" variants={HERO_ITEM}>
+        <div className="mount-stagger">
+          <span className="crumbs">
             Work / {fm.title}
-          </motion.span>
-          <motion.h1 variants={HERO_TITLE}>
+          </span>
+          <h1>
             {fm.title}
-          </motion.h1>
-          <motion.p className="tagline" variants={HERO_ITEM}>
+          </h1>
+          <p className="tagline">
             {fm.tagline}
-          </motion.p>
-          <motion.div className="meta" variants={HERO_ITEM}>
+          </p>
+          <div className="meta">
             <div>
               <div className="k">Engagement</div>
               <div className="v">{fm.package}</div>
@@ -156,9 +147,9 @@ export default function WorkSlug({
               <div className="k">Status</div>
               <div className="v">{fm.demo ? "Live" : "Shipped"}</div>
             </div>
-          </motion.div>
+          </div>
           {(fm.demo || fm.github) && (
-            <motion.div className="ctas" variants={HERO_ITEM}>
+            <div className="ctas">
               {fm.demo && (
                 <a
                   href={fm.demo}
@@ -179,9 +170,9 @@ export default function WorkSlug({
                   GitHub
                 </a>
               )}
-            </motion.div>
+            </div>
           )}
-        </motion.div>
+        </div>
       </section>
 
       {/* CASE COVER */}
@@ -203,46 +194,33 @@ export default function WorkSlug({
       {/* CASE STATS */}
       {fm.stats && fm.stats.length > 0 && (
         <div className="container case-stats">
-          <motion.div
-            className="grid"
-            variants={STAGGER_CONTAINER}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true, margin: "-60px" }}
-          >
+          <Reveal className="grid" as="div" variant="stagger">
             {fm.stats.map((stat) => {
               const { num, unit } = splitStatValue(stat.value);
               return (
-                <motion.div
+                <div
                   key={stat.label}
                   className="card case-stat"
-                  variants={STAGGER_ITEM}
                 >
                   <div className="v">
                     {num}
                     {unit && <span className="unit">{unit}</span>}
                   </div>
                   <div className="k">{stat.label}</div>
-                </motion.div>
+                </div>
               );
             })}
-          </motion.div>
+          </Reveal>
         </div>
       )}
 
       {/* CASE BODY */}
-      <motion.div
-        className="container case-body-wrap"
-        variants={STAGGER_CONTAINER}
-        initial="hidden"
-        whileInView="visible"
-        viewport={{ once: true, amount: 0.05 }}
-      >
+      <Reveal className="container case-body-wrap" as="div" variant="fade-up">
         <TableOfContents slug={slug} />
-        <motion.article className="case-body" variants={HERO_ITEM}>
+        <article className="case-body">
           <MDXRemote {...mdxSource} components={MDX_COMPONENTS} />
-        </motion.article>
-      </motion.div>
+        </article>
+      </Reveal>
 
       {/* RELATED */}
       {relatedPosts.length > 0 && (
@@ -251,15 +229,9 @@ export default function WorkSlug({
           <h2>
             Related work
           </h2>
-          <motion.div
-            className="grid"
-            variants={STAGGER_CONTAINER}
-            initial="hidden"
-            whileInView="visible"
-            viewport={{ once: true }}
-          >
+          <Reveal className="grid" as="div" variant="stagger">
             {relatedPosts.map((post) => (
-              <motion.div key={post.slug} variants={STAGGER_ITEM}>
+              <div key={post.slug}>
                 <Link href={`/work/${post.slug}`} className="card related-card">
                   <div className="img-ph">
                     {post.hero && (
@@ -277,9 +249,9 @@ export default function WorkSlug({
                     <p>{post.tagline}</p>
                   </div>
                 </Link>
-              </motion.div>
+              </div>
             ))}
-          </motion.div>
+          </Reveal>
         </section>
       )}
     </>

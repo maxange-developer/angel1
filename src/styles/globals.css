@@ -186,11 +186,19 @@ p { margin: 0; }
 /* Mobile menu */
 .mobile-menu { position: fixed; top: 64px; left: 0; right: 0; z-index: 99;
   background: rgba(0,0,0,0.95); backdrop-filter: blur(18px);
-  border-bottom: 1px solid var(--hairline); padding: 24px var(--container-pad) 32px; }
+  border-bottom: 1px solid var(--hairline); padding: 24px var(--container-pad) 32px;
+  opacity: 0; transform: translateY(-8px); visibility: hidden;
+  transition: opacity 0.2s var(--ease), transform 0.2s var(--ease), visibility 0s linear 0.2s; }
+.mobile-menu--open { opacity: 1; transform: translateY(0); visibility: visible;
+  transition: opacity 0.2s var(--ease), transform 0.2s var(--ease), visibility 0s linear 0s; }
 .mobile-menu ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 20px; }
 .mobile-menu ul a { color: var(--text-2); font-size: 18px; display: block; }
 .mobile-menu .bottom { margin-top: 28px; padding-top: 20px; border-top: 1px solid var(--hairline);
   display: flex; align-items: center; justify-content: flex-end; }
+
+@media (prefers-reduced-motion: reduce) {
+  .mobile-menu, .mobile-menu--open { transition: none !important; transform: none !important; }
+}
 
 /* ─── Page Break ─── */
 .page-break { display: flex; align-items: center; gap: 24px; padding: 28px 0;
@@ -312,7 +320,7 @@ p { margin: 0; }
   padding: 56px 0; border-bottom: 1px solid var(--hairline); }
 .case-row .img-ph { aspect-ratio: 16/10; }
 .case-row .meta-row { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.14em; color: var(--text-3); text-transform: uppercase; }
-.case-row h3 { font-size: 36px; letter-spacing: -0.04em; line-height: 1.05; margin-top: 16px; font-weight: 500; }
+.case-row h2 { font-size: 36px; letter-spacing: -0.04em; line-height: 1.05; margin-top: 16px; font-weight: 500; }
 .case-row .tagline { color: var(--text-2); margin-top: 14px; font-size: 16.5px; line-height: 1.55; max-width: 480px; }
 .case-row .stack { margin-top: 22px; display: flex; gap: 8px; flex-wrap: wrap; }
 .case-row .metrics { margin-top: 28px; display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; padding-top: 22px; border-top: 1px solid var(--hairline); }
@@ -412,7 +420,7 @@ p { margin: 0; }
 .case-related .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 880px; }
 .related-card .img-ph { aspect-ratio: 16/10; border-radius: 12px 12px 0 0; border-bottom: 0; }
 .related-card .body { padding: 22px 24px 26px; }
-.related-card h4 { font-size: 19px; letter-spacing: -0.02em; font-weight: 500; }
+.related-card h3 { font-size: 19px; letter-spacing: -0.02em; font-weight: 500; }
 .related-card p { color: var(--text-2); font-size: 14px; margin-top: 8px; line-height: 1.5; }
 
 /* ─── Services Pricing ─── */
@@ -561,9 +569,9 @@ p { margin: 0; }
 /* ─── Site Footer ─── */
 .site-footer { border-top: 1px solid var(--hairline); padding: 80px 0 40px; }
 .footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
-.site-footer .brand-col h3 { margin: 0; line-height: 1; }
+.site-footer .brand-col .brand-logo { margin: 0; line-height: 1; }
 .site-footer .brand-col p { margin-top: 16px; color: var(--text-2); font-size: 14px; line-height: 1.6; max-width: 320px; }
-.site-footer .col h4 { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.18em; color: var(--text-3); text-transform: uppercase; font-weight: 500; margin-bottom: 18px; }
+.site-footer .col .col-label { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.18em; color: var(--text-3); text-transform: uppercase; font-weight: 500; margin-bottom: 18px; }
 .site-footer .col ul { list-style: none; padding: 0; margin: 0; display: flex; flex-direction: column; gap: 12px; }
 .site-footer .col a { color: var(--text-2); font-size: 14px; transition: color var(--dur) var(--ease); }
 .site-footer .col a:hover { color: var(--text); }
@@ -809,7 +817,7 @@ p { margin: 0; }
   .pricing .name { font-size: 20px; }
   .work-feat h3 { font-size: 26px; }
   .work-side h4 { font-size: 18px; }
-  .case-row h3 { font-size: 26px; }
+  .case-row h2 { font-size: 26px; }
   .blog-pinned h2 { font-size: 32px; }
 
   .hero-index .v { font-size: 24px; }
@@ -987,7 +995,7 @@ p { margin: 0; }
   /* ─── Footer mobile ─────────────────────── */
   .footer-grid { grid-template-columns: 1fr; gap: 32px; }
   .site-footer .brand-col { margin-bottom: 8px; }
-  .site-footer .col h4 {
+  .site-footer .col .col-label {
     font-size: 10px;
     letter-spacing: 0.18em;
     margin-bottom: 14px;

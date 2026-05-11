@@ -1,9 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import SEO from "@/components/SEO";
-import { MotionSection } from "@/components/MotionSection";
-import { STAGGER_CONTAINER, STAGGER_ITEM, HERO_PHOTO, FADE_UP } from "@/lib/motion";
+import Reveal from "@/components/Reveal";
 
 interface TimelineRow {
   yr: string;
@@ -61,12 +59,7 @@ export default function About() {
       {/* ABOUT HERO */}
       <section className="container about-hero">
         <div className="grid">
-          <motion.div
-            className="img-ph photo"
-            variants={HERO_PHOTO}
-            initial="hidden"
-            animate="visible"
-          >
+          <div className="img-ph photo mount-hero-photo">
             <Image
               src="/images/me-15.webp"
               alt="Massimiliano Angelone"
@@ -75,35 +68,35 @@ export default function About() {
               style={{ objectFit: "cover", objectPosition: "center top" }}
               priority
             />
-          </motion.div>
-          <MotionSection as="div">
-            <motion.span className="eyebrow" variants={FADE_UP}>About</motion.span>
-            <motion.span className="role" variants={FADE_UP}>
+          </div>
+          <div className="mount-stagger">
+            <span className="eyebrow">About</span>
+            <span className="role">
               AI-Enhanced MVP Developer · 24 years old
-            </motion.span>
-            <motion.h1 variants={FADE_UP}>
+            </span>
+            <h1>
               Massimiliano
               <br />
               Angelone<span className="acc">.</span>
-            </motion.h1>
-            <motion.p className="lead" variants={FADE_UP}>
+            </h1>
+            <p className="lead">
               Italian engineer, born in Ancona in 2001. Two+ years building
               production systems at Altesia (client: Fileni Group) and Airplay
               Control (clients: RAI, La7, broadcasters). Now building AI MVPs
               for founders worldwide from Tenerife — with Holly the cat and
               Italian espresso.
-            </motion.p>
-            <motion.div className="cta-row" variants={FADE_UP}>
+            </p>
+            <div className="cta-row">
               <Link href="/journal/twelve-silent-years" className="link-acc">
                 Read my full story <span>→</span>
               </Link>
-            </motion.div>
-          </MotionSection>
+            </div>
+          </div>
         </div>
       </section>
 
       {/* TIMELINE */}
-      <MotionSection className="container timeline" as="div">
+      <Reveal className="container timeline" as="div" variant="fade-up">
         <div className="tl-head">
           <span className="eyebrow acc">01 / TIMELINE</span>
           <div>
@@ -117,28 +110,22 @@ export default function About() {
           </div>
         </div>
 
-        <motion.div
-          variants={STAGGER_CONTAINER}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true, margin: "-80px" }}
-        >
+        <Reveal as="div" variant="stagger">
           {TIMELINE.map((row, i) => (
-            <motion.div
+            <div
               key={`${row.yr}-${i}`}
               className={`timeline-row${row.pivot ? " pivot" : ""}`}
-              variants={STAGGER_ITEM}
             >
               <span className="yr">{row.yr}</span>
               <span className="ttl">{row.ttl}</span>
               <p className="desc">{row.desc}</p>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
-      </MotionSection>
+        </Reveal>
+      </Reveal>
 
       {/* CURRENTLY */}
-      <MotionSection className="container currently" as="div">
+      <Reveal className="container currently" as="div" variant="fade-up">
         <div className="curr-head">
           <span className="eyebrow acc">02 / CURRENTLY</span>
           <h2>
@@ -146,26 +133,19 @@ export default function About() {
           </h2>
         </div>
 
-        <motion.div
-          className="curr-grid"
-          variants={STAGGER_CONTAINER}
-          initial="hidden"
-          whileInView="visible"
-          viewport={{ once: true }}
-        >
+        <Reveal className="curr-grid" as="div" variant="stagger">
           {CURRENTLY.map((item) => (
-            <motion.div
+            <div
               key={item.k}
               className="card curr-card"
-              variants={STAGGER_ITEM}
             >
               <div className="k">{item.k}</div>
               <div className="v">{item.v}</div>
               <p className="x">{item.x}</p>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
-      </MotionSection>
+        </Reveal>
+      </Reveal>
     </>
   );
 }

@@ -1,5 +1,4 @@
 import SEO from "@/components/SEO";
-import { MotionSection } from "@/components/MotionSection";
 
 interface UsesItem {
   name: string;
@@ -66,14 +65,14 @@ export default function Uses() {
       <SEO page="uses" canonicalPath="/uses" />
 
       <section className="container page-hero">
-        <MotionSection>
+        <div className="mount-stagger">
           <p className="eyebrow">Uses</p>
           <h1>Tools I use daily<span className="acc">.</span></h1>
           <p className="q">
             Hardware, editor, stack defaults. Updated when something changes
             meaningfully — not when something new comes out.
           </p>
-        </MotionSection>
+        </div>
       </section>
 
       <div className="container">
