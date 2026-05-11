@@ -284,6 +284,42 @@ export default function Services() {
             ))}
           </tbody>
         </table>
+
+        <div className="compare-mobile">
+          {[
+            { id: "sprint" as const, name: "AI Sprint", price: "€2,500", duration: "1 week", featured: false },
+            { id: "lite" as const, name: "AI MVP Lite", price: "€5,000", duration: "2 weeks", featured: true },
+            { id: "full" as const, name: "AI MVP Full", price: "€9,500", duration: "4 weeks", featured: false },
+          ].map((pkg) => (
+            <div key={pkg.id} className={`compare-mobile-card${pkg.featured ? " featured" : ""}`}>
+              {pkg.featured && <span className="pop">MOST POPULAR</span>}
+              <div className="compare-mobile-head">
+                <h3>{pkg.name}</h3>
+                <div className="price">{pkg.price}</div>
+                <div className="duration">{pkg.duration}</div>
+              </div>
+              <ul className="compare-mobile-rows">
+                {COMPARE_ROWS.filter((r) => r.feature !== "Timeline" && r.feature !== "Investment").map((row) => {
+                  const cell = row[pkg.id];
+                  return (
+                    <li key={row.feature}>
+                      <span className="feature">{row.feature}</span>
+                      <span className="value">
+                        {cell === true ? (
+                          <CompareCheckSvg />
+                        ) : cell === false ? (
+                          <span className="dash">—</span>
+                        ) : (
+                          cell
+                        )}
+                      </span>
+                    </li>
+                  );
+                })}
+              </ul>
+            </div>
+          ))}
+        </div>
       </MotionSection>
 
       {/* TRACK RECORD */}
