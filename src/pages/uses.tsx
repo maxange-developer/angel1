@@ -100,7 +100,10 @@ export default function Uses() {
               </div>
             </div>
           ))}
-          <p className="uses-updated">Last updated: May 2026.</p>
+          <div className="uses-item uses-updated-row">
+            <span className="lbl"></span>
+            <p className="uses-updated">Last updated: May 2026.</p>
+          </div>
         </div>
       </div>
     </>

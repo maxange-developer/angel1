@@ -131,9 +131,10 @@ export default function Home({ featuredWork }: HomeProps) {
                 src="/images/me-5.webp"
                 alt="Massimiliano Angelone"
                 fill
-                sizes="(max-width: 768px) 100vw, 480px"
-                style={{ objectFit: "cover", objectPosition: "center top" }}
                 priority
+                fetchPriority="high"
+                sizes="(max-width: 600px) 320px, (max-width: 1024px) 50vw, 600px"
+                style={{ objectFit: "cover", objectPosition: "center top" }}
               />
             </div>
             <div className="right-trust">
