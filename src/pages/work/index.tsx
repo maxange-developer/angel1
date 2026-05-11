@@ -77,7 +77,7 @@ export default function WorkIndex({ posts }: WorkIndexProps) {
                 <span className="meta-row">
                   {post.date} · {post.package} · {post.client}
                 </span>
-                <h3>{post.title}.</h3>
+                <h2>{post.title}.</h2>
                 <p className="tagline">{post.tagline}</p>
                 {post.stack.length > 0 && (
                   <div className="stack">

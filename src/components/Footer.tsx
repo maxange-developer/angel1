@@ -8,7 +8,7 @@ export default function Footer() {
         <div className="footer-grid">
           {/* Brand col */}
           <div className="brand-col">
-            <h3>
+            <div className="brand-logo">
               <Link href="/">
                 <Image
                   src="/logo-angel1.webp"
@@ -17,7 +17,7 @@ export default function Footer() {
                   height={36}
                 />
               </Link>
-            </h3>
+            </div>
             <p>
               One engineer, fixed price, production-grade. AI-Enhanced MVPs for
               founders and scale-ups worldwide.
@@ -26,7 +26,7 @@ export default function Footer() {
 
           {/* Site col */}
           <div className="col">
-            <h4>Site</h4>
+            <p className="col-label">Site</p>
             <ul>
               {[
                 { href: "/", label: "Home" },
@@ -45,7 +45,7 @@ export default function Footer() {
 
           {/* Elsewhere col */}
           <div className="col">
-            <h4>Elsewhere</h4>
+            <p className="col-label">Elsewhere</p>
             <ul>
               {[
                 {
@@ -74,7 +74,7 @@ export default function Footer() {
 
           {/* Contact col */}
           <div className="col">
-            <h4>Get in touch</h4>
+            <p className="col-label">Get in touch</p>
             <ul>
               <li>
                 <a href="mailto:massiangelone01@gmail.com">
