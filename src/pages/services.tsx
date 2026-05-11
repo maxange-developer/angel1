@@ -98,24 +98,32 @@ const RECORD = [
 
 const FAQ = [
   {
+    q: "Have you actually shipped this for paying clients, or are the case studies demos?",
+    a: "Honest answer: the three projects on this site are portfolio engagements — I built them to production specs, not for paying tenants. The technical work is real: multi-tenant RLS, streaming chat, Gmail OAuth, cost tracking, all measurable in the running demos. What's missing is the messiness of an actual customer relationship — adversarial users, edge-case requests, support tickets I had to triage at 11pm. I'm transparent about that distinction, here and in proposals. Five thousand euros for a working MVP from someone who's shipped portfolio at production quality is a reasonable bet for a founder at your stage. Five thousand euros for an MVP from someone pretending to have ten enterprise clients isn't.",
+  },
+  {
     q: "What does fixed-price actually mean?",
-    a: "Scope is locked on day one in a written brief. The price doesn't move unless you decide to add scope mid-engagement, in which case I'll come back with a delta — never a surprise invoice. If something inside the agreed scope takes longer than I expected, that's my problem, not yours.",
+    a: "Scope is locked on day one in a written brief that lists exactly what's in and what isn't. The price doesn't move unless you decide to add scope mid-engagement, in which case I'll come back with a written delta — never a surprise invoice. If something inside the agreed scope takes me longer than I estimated, that's mine to eat. I've eaten the cost on every project so far, and I expect to keep doing so on roughly one in three engagements — that's the cost of being good at estimation, not perfect.",
   },
   {
-    q: "What if my idea doesn't fit one of the three tracks?",
-    a: "Most ideas do — the tracks are about timeline and surface area, not vertical. If yours genuinely doesn't fit, write me a paragraph and I'll come back within 48 hours with a custom scope, or tell you honestly that I'm not the right person.",
+    q: "Who owns the code, and what if I want another developer to take over later?",
+    a: "You own everything. On final invoice payment, full IP transfers to your company — source code, designs, infrastructure config, eval harness, the works. The repository moves to your organization's GitHub or wherever you keep code. I retain nothing except the right to mention the engagement on this site, and only if you give permission. Handover is built into the timeline of every package, not bolted on at the end: by week one I'm writing the architecture doc, and by delivery you have a runnable codebase that any competent Next.js developer can pick up without calling me. That's the test I optimize for.",
   },
   {
-    q: "Who owns the code?",
-    a: "You do. On final invoice payment, full IP transfers to your company — code, designs, infrastructure config, the eval harness, everything. The repository moves to your org. I keep nothing except the right to mention the engagement on this site, and only if you're comfortable with that.",
+    q: "How do we communicate during the project?",
+    a: "Async by default. Daily written updates Monday through Friday on Linear or Notion — whatever your team uses — with screenshots and short Loom videos when something needs visual context. One synchronous call per week, thirty minutes, on Zoom or Google Meet. Most clients tell me a week in that the daily writeup is more useful than the call. I'm based in Tenerife (GMT+1) and my calendar overlaps cleanly with European business hours in the morning and US East Coast in the afternoon. West Coast US: we'll need to find a window.",
   },
   {
-    q: "Why solo? What if you get hit by a bus?",
-    a: "Solo is the multiplier — same person designing, building, deploying, with no agency overhead and no telephone-game between roles. The bus answer: every engagement ships with a written architecture doc, a runnable handover, and CI that doesn't depend on me being alive. If that's still not enough confidence for your stage, I'm probably not the right hire and that's fine.",
+    q: "What happens if the project goes wrong or I need to stop midway?",
+    a: "Two scenarios. If I deliver something that doesn't match the agreed brief, I fix it on my own time until it does — that's what fixed-price means. If you decide to stop the engagement midway for any reason, the terms depend on where we're working. On Upwork or Freelancer.com, the platform's milestone-based escrow handles it: you pay only for milestones already released, and you keep everything I've built up to that point. On direct private contracts, my standard MSA includes a kill-fee of fifteen percent of the remaining scope, plus the work completed — and you still keep everything I've built. Either way: no held-hostage repository, no surprise fees, clean exit on your terms. I've never had a project end this way, but the policy exists because I think you should always know exactly what happens before you sign.",
   },
   {
-    q: "Do you do retainers or maintenance?",
-    a: "Yes — selectively. Retainers start at €2,500 / month for a fixed weekly slot, and I take a maximum of two clients on retainer at a time. Maintenance-only contracts on code I didn't ship are case-by-case; the question is whether the existing codebase is healthy enough that I can be useful in it.",
+    q: "What kinds of projects do you not take?",
+    a: "A few categories where I'm not the right hire. Crypto and Web3 projects — the space moves too fast and my opinions on it are too strong to be useful to founders who believe in it. Mobile-native apps with deep platform integration (Bluetooth, AR, native ML) — I do React Native, but if you need Swift or Kotlin expertise for the core, I'm not your developer. Marketing websites without an application layer — there are people who do that better and cheaper. Anything that asks me to deceive users at the design level — gambling mechanics, dark patterns, fake urgency. The list of things I will do is a lot longer; this is the short list of where I'll honestly say \"I'm not your person, here's who is.\"",
+  },
+  {
+    q: "Why solo? What's the bus-factor answer?",
+    a: "Solo is the multiplier: same person designing, building, deploying, with no agency overhead and no telephone-game between roles. You get a direct line, decisions in hours instead of days, and zero coordination tax. The bus answer is this: every engagement ships with a written architecture document, a runnable handover, CI that doesn't depend on me being alive, and a CLAUDE.md file at the repo root that lets any competent developer or AI assistant pick up where I left off. If your project genuinely needs a team — three engineers, a dedicated PM, a designer — I'll tell you that on the first call and refer you to an agency I trust. For everything else, one engineer who owns the full stack beats three people coordinating across Jira.",
   },
 ];
 
@@ -287,8 +295,13 @@ export default function Services() {
       {/* FAQ */}
       <MotionSection className="container faq" as="div">
         <h2>
-          Frequently asked
+          Frequently asked<span className="acc">.</span>
         </h2>
+        <p className="faq-sub">
+          Seven questions I get most often. If yours isn&apos;t here,{" "}
+          <Link href="/contact" className="link-acc">write me</Link>
+          {" "}— I&apos;ll answer it.
+        </p>
         {FAQ.map((item) => (
           <details key={item.q}>
             <summary>

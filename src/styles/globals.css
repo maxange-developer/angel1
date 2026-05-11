@@ -434,7 +434,8 @@ p { margin: 0; }
 
 /* ─── FAQ ─── */
 .faq { padding: 96px 0; border-top: 1px solid var(--hairline); }
-.faq h2 { font-size: 40px; letter-spacing: -0.035em; font-weight: 500; margin-bottom: 48px; }
+.faq h2 { font-size: 40px; letter-spacing: -0.035em; font-weight: 500; margin-bottom: 0; }
+.faq .faq-sub { margin-top: 16px; margin-bottom: 48px; max-width: 580px; color: var(--text-2); font-size: 17px; line-height: 1.55; }
 .faq details { border-bottom: 1px solid var(--hairline); padding: 28px 0; }
 .faq details:first-of-type { border-top: 1px solid var(--hairline); }
 .faq summary { list-style: none; cursor: pointer; display: flex; justify-content: space-between; align-items: center; gap: 24px; }
