@@ -65,7 +65,7 @@ export default function Uses() {
     <>
       <SEO page="uses" canonicalPath="/uses" />
 
-      <section className="page-hero container">
+      <section className="container page-hero">
         <MotionSection>
           <p className="eyebrow">Uses</p>
           <h1>Tools I use daily<span className="acc">.</span></h1>
@@ -77,34 +77,32 @@ export default function Uses() {
       </section>
 
       <div className="container">
-        <article className="uses-body">
+        <div className="uses-wrap">
           {USES.map((section, i) => (
-            <section key={section.category}>
-              <span className="eyebrow acc">
+            <div key={section.category} className="uses-item">
+              <span className="lbl">
                 {String(i + 1).padStart(2, "0")} /{" "}
                 {section.category.toUpperCase()}
               </span>
-              <h2>{section.category}</h2>
-              {section.note && (
-                <p style={{ fontStyle: "italic" }}>
-                  {section.note}
-                </p>
-              )}
-              {section.items.length > 0 && (
-                <ul>
-                  {section.items.map((item) => (
-                    <li key={item.name}>
-                      <strong>{item.name}</strong> — {item.desc}
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </section>
+              <div>
+                <h2>{section.category}</h2>
+                {section.note && (
+                  <p style={{ fontStyle: "italic" }}>{section.note}</p>
+                )}
+                {section.items.length > 0 && (
+                  <ul>
+                    {section.items.map((item) => (
+                      <li key={item.name}>
+                        <strong>{item.name}</strong> — {item.desc}
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
+            </div>
           ))}
-          <p style={{ marginTop: 64, color: "var(--text-3)", fontSize: 14 }}>
-            Last updated: May 2026.
-          </p>
-        </article>
+          <p className="uses-updated">Last updated: May 2026.</p>
+        </div>
       </div>
     </>
   );

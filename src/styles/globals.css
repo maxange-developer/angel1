@@ -361,26 +361,29 @@ p { margin: 0; }
 .case-body figure figcaption { margin-top: 14px; font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.10em; color: var(--text-3); text-transform: lowercase; }
 
 /* ─── Now / Uses body ─── */
-/* /now — single-column editorial */
-.now-page .container { max-width: 760px; padding-bottom: 120px; }
+/* /now — self-contained 760px editorial column */
+.now-page { max-width: 760px; margin: 0 auto; padding-left: var(--container-pad); padding-right: var(--container-pad); }
+.now-hero { padding: 96px 0 56px; border-bottom: 1px solid var(--hairline); }
+.now-hero h1 { font-size: clamp(40px, 5.5vw, 72px); letter-spacing: -0.04em; line-height: 0.98; font-weight: 500; margin: 16px 0 20px; }
+.now-hero .sub { color: var(--text-2); font-size: 18px; line-height: 1.55; }
 .now-section { padding: 48px 0; border-bottom: 1px solid var(--hairline); }
-.now-section:last-child { border-bottom: none; padding-bottom: 0; }
-.now-section h2 { font-size: 24px; letter-spacing: -0.025em; font-weight: 500; margin: 0 0 24px; color: var(--text); }
+.now-section:last-child { border-bottom: none; padding-bottom: 80px; }
+.now-section h2 { font-size: 22px; letter-spacing: -0.02em; font-weight: 500; margin: 0 0 20px; color: var(--text); }
 .now-section p { color: var(--text-2); font-size: 17px; line-height: 1.7; margin-bottom: 16px; }
 .now-section p:last-child { margin-bottom: 0; }
 .now-section ul { color: var(--text-2); padding-left: 20px; margin-bottom: 16px; line-height: 1.7; }
 .now-section li { margin-bottom: 8px; font-size: 17px; }
 
-/* /uses — sectioned with numbered eyebrows */
-.uses-body { max-width: 680px; margin: 0 auto; padding: 64px 0 120px; }
-.uses-body section { padding-top: 56px; border-top: 1px solid var(--hairline); }
-.uses-body section:first-child { padding-top: 0; border-top: none; }
-.uses-body .eyebrow { display: block; margin-bottom: 10px; }
-.uses-body h2 { font-size: 24px; letter-spacing: -0.025em; font-weight: 500; margin: 0 0 20px; padding: 12px 0 0; }
-.uses-body section:first-child h2 { padding-top: 0; }
-.uses-body p { color: var(--text-2); font-size: 17px; line-height: 1.7; margin-bottom: 16px; }
-.uses-body ul { color: var(--text-2); padding-left: 20px; margin-bottom: 16px; line-height: 1.7; }
-.uses-body li { margin-bottom: 8px; font-size: 17px; }
+/* /uses — two-column label / content layout */
+.uses-wrap { padding: 64px 0 120px; }
+.uses-item { display: grid; grid-template-columns: 200px 1fr; gap: 48px; align-items: baseline; border-top: 1px solid var(--hairline); padding-top: 56px; }
+.uses-item:first-child { border-top: none; padding-top: 0; }
+.uses-item .lbl { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; color: var(--text-3); text-transform: uppercase; }
+.uses-item h2 { font-size: 24px; letter-spacing: -0.025em; font-weight: 500; margin: 0 0 20px; }
+.uses-item p { color: var(--text-2); font-size: 17px; line-height: 1.7; margin-bottom: 16px; }
+.uses-item ul { color: var(--text-2); padding-left: 20px; margin-bottom: 16px; line-height: 1.7; }
+.uses-item li { margin-bottom: 8px; font-size: 17px; }
+.uses-updated { margin-top: 64px; color: var(--text-3); font-size: 14px; font-family: var(--font-mono); letter-spacing: 0.1em; }
 
 .pull-quote { margin: 48px 0; padding: 8px 0 8px 28px; border-left: 2px solid var(--accent); }
 .pull-quote .q { font-family: var(--font-serif); font-size: 26px; letter-spacing: -0.015em; line-height: 1.35; color: var(--text); font-weight: 400; font-style: italic; }
@@ -727,7 +730,8 @@ p { margin: 0; }
   .pricing .cards, .svc-grid, .case-stats .grid, .curr-grid, .case-related .grid,
   .case-hero .meta, .blog-pinned, .blog-other, .article-footer .grid,
   .sec-head, .trusted .grid, .timeline-row,
-  .record .grid, .tl-head, .curr-head { grid-template-columns: 1fr; }
+  .record .grid, .tl-head, .curr-head, .uses-item { grid-template-columns: 1fr; }
+  .uses-item { gap: 12px; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px 24px; }
   .hero-index { grid-template-columns: 1fr 1fr; gap: 0; }
   .hero-index .col { border-right: none; border-bottom: 1px solid var(--hairline); padding: 24px; }
@@ -847,7 +851,7 @@ p { margin: 0; }
     max-width: 360px;
     margin: 0 auto;
   }
-  .blog-pinned .img-ph { aspect-ratio: 1 / 1; max-height: 320px; max-width: 320px; margin: 0 auto; }
+  .blog-pinned .img-ph { aspect-ratio: 1 / 1 !important; max-height: 320px !important; max-width: 320px !important; margin: 0 auto !important; width: 100% !important; }
 
   /* ─── Article cover + case cover ─────────── */
   .article-cover { max-height: 320px; }
