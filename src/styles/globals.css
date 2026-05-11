@@ -378,7 +378,7 @@ p { margin: 0; }
 .uses-wrap { padding: 64px 0 120px; }
 .uses-item { display: grid; grid-template-columns: 200px 1fr; gap: 48px; align-items: baseline; border-top: 1px solid var(--hairline); padding-top: 56px; }
 .uses-item:first-child { border-top: none; padding-top: 0; }
-.uses-item .lbl { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; color: var(--text-3); text-transform: uppercase; }
+.uses-item .lbl { font-family: var(--font-mono); font-size: 11px; font-weight: 500; letter-spacing: 0.18em; color: var(--text-2); text-transform: uppercase; line-height: 1.4; padding-top: 4px; }
 .uses-item h2 { font-size: 24px; letter-spacing: -0.025em; font-weight: 500; margin: 0 0 20px; }
 .uses-item p { color: var(--text-2); font-size: 17px; line-height: 1.7; margin-bottom: 16px; }
 .uses-item ul { color: var(--text-2); padding-left: 20px; margin-bottom: 16px; line-height: 1.7; }
