@@ -78,7 +78,7 @@ export default function JournalSlug({
         </div>
         <div className="overlay">
           <div className="container">
-            <span className="crumbs">Blog / {fm.title}</span>
+            <span className="crumbs">Journal / {fm.title}</span>
             <h1>
               {fm.title}
               <span className="acc">.</span>

@@ -200,7 +200,7 @@ export default function Services() {
       <section className="container page-hero">
         <MotionSection as="div">
           <motion.span className="eyebrow" variants={FADE_UP}>
-            Three engagement tracks · fixed-price · fixed-scope
+            Packages
           </motion.span>
           <motion.h1 variants={FADE_UP}>
             Choose your
@@ -208,9 +208,9 @@ export default function Services() {
             engagement<span className="acc">.</span>
           </motion.h1>
           <motion.p className="sub" variants={FADE_UP}>
-            Three productized tracks with public pricing. Pick the one that
-            matches your timeline. If none fits, the last section covers custom
-            scopes.
+            Three engagement tracks, fixed-price, fixed-scope. Pick the one
+            that matches your timeline. If none fits, the last section covers
+            custom scopes.
           </motion.p>
         </MotionSection>
       </section>
@@ -258,7 +258,7 @@ export default function Services() {
 
       {/* COMPARE */}
       <MotionSection className="container compare" as="div">
-        <div className="lbl">Side by side</div>
+        <span className="eyebrow acc">01 / COMPARE</span>
         <h2>
           Compare engagements
         </h2>
@@ -289,7 +289,7 @@ export default function Services() {
       {/* TRACK RECORD */}
       <MotionSection className="container record" as="div">
         <div className="head">
-          <div className="lbl">Track record · verified</div>
+          <span className="eyebrow acc">02 / TRACK RECORD</span>
           <h2>
             What&apos;s actually shipped
           </h2>
@@ -317,6 +317,7 @@ export default function Services() {
 
       {/* FAQ */}
       <MotionSection className="container faq" as="div">
+        <span className="eyebrow acc">03 / FAQ</span>
         <h2>
           Frequently asked<span className="acc">.</span>
         </h2>
@@ -341,6 +342,7 @@ export default function Services() {
       {/* CUSTOM CTA */}
       <section className="custom-cta">
         <div className="container">
+          <p className="eyebrow">Custom scope</p>
           <h3>
             Need something custom?
           </h3>

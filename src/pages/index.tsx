@@ -264,7 +264,7 @@ export default function Home({ featuredWork }: HomeProps) {
       {/* SERVICES PREVIEW */}
       <div className="container sec">
         <MotionSection className="sec-head" as="div">
-          <span className="lbl">02 / SERVICES</span>
+          <span className="eyebrow acc">01 / SERVICES</span>
           <div>
             <h2>
               Three productized tracks.
@@ -314,7 +314,7 @@ export default function Home({ featuredWork }: HomeProps) {
       {featured && (
         <div className="container sec" style={{ paddingTop: 0 }}>
           <MotionSection className="sec-head" as="div">
-            <span className="lbl">03 / SELECTED WORK</span>
+            <span className="eyebrow acc">02 / SELECTED WORK</span>
             <div>
               <h2>
                 Recent work.
@@ -436,7 +436,7 @@ export default function Home({ featuredWork }: HomeProps) {
             />
           </div>
           <div className="copy">
-            <span className="eyebrow">About</span>
+            <span className="eyebrow acc">03 / ABOUT</span>
             <h2 style={{ marginTop: "16px" }}>
               From Ancona to Tenerife,
               <br />
@@ -461,6 +461,7 @@ export default function Home({ featuredWork }: HomeProps) {
       {/* FINAL CTA */}
       <section className="final-cta">
         <div className="container">
+          <p className="eyebrow">Ready</p>
           <h2>
             Have an idea
             <br />

@@ -9,7 +9,7 @@ export default function NotFound() {
 
       <section className="page-hero container" style={{ minHeight: "70vh", display: "flex", alignItems: "center" }}>
         <MotionSection>
-          <p className="eyebrow acc">404</p>
+          <p className="eyebrow">404</p>
           <h1>Nothing here.</h1>
           <p className="q">
             This page doesn&apos;t exist or was moved. Try one of these instead.

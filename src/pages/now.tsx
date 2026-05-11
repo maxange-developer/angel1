@@ -9,7 +9,7 @@ export default function Now() {
 
       <section className="page-hero container">
         <MotionSection>
-          <p className="eyebrow">Now — May 2026</p>
+          <p className="eyebrow">Now · May 2026</p>
           <h1>What I&apos;m focused on<span className="acc">.</span></h1>
           <p className="q">
             A living document. Last meaningful update: May 2026, from Tenerife.

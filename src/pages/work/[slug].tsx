@@ -247,7 +247,7 @@ export default function WorkSlug({
       {/* RELATED */}
       {relatedPosts.length > 0 && (
         <section className="container case-related">
-          <div className="lbl">Continue exploring</div>
+          <span className="eyebrow">Continue exploring</span>
           <h2>
             Related work
           </h2>

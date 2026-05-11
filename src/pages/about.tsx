@@ -77,6 +77,7 @@ export default function About() {
             />
           </motion.div>
           <MotionSection as="div">
+            <motion.span className="eyebrow" variants={FADE_UP}>About</motion.span>
             <motion.span className="role" variants={FADE_UP}>
               AI-Enhanced MVP Developer · 24 years old
             </motion.span>
@@ -104,7 +105,7 @@ export default function About() {
       {/* TIMELINE */}
       <MotionSection className="container timeline" as="div">
         <div className="tl-head">
-          <span className="lbl">06 / TIMELINE</span>
+          <span className="eyebrow acc">01 / TIMELINE</span>
           <div>
             <h2>
               Timeline
@@ -139,7 +140,7 @@ export default function About() {
       {/* CURRENTLY */}
       <MotionSection className="container currently" as="div">
         <div className="curr-head">
-          <span className="lbl">07 / CURRENTLY</span>
+          <span className="eyebrow acc">02 / CURRENTLY</span>
           <h2>
             Currently
           </h2>
