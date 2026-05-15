@@ -28,12 +28,12 @@ const USES: UsesSection[] = [
   },
   {
     category: "Stack defaults",
-    note: "What every new project starts with, unless there's a specific reason not to.",
+    note: "What every new client project starts with. The portfolio site itself runs on Next.js 14 — stability matters more than version chasing on the site that needs to be always-up.",
     items: [
       { name: "Next.js 16 + TypeScript strict", desc: "App Router by default." },
       { name: "Supabase", desc: "Postgres, auth, storage, RLS — one service." },
       { name: "Tailwind 4 + shadcn", desc: "Utility-first. No custom CSS until there's a real design system to enforce." },
-      { name: "Anthropic SDK or OpenAI SDK", desc: "Model picked per project, not per dogma." },
+      { name: "Anthropic SDK or OpenAI SDK", desc: "Both SDKs ready in angel1-mvp-toolkit. Model picked per project, not per dogma." },
       { name: "Vercel", desc: "Deploy, edge functions, preview environments." },
       { name: "Resend + React Email", desc: "Transactional email with templates that don't look like 2010." },
       { name: "Stripe", desc: "Payments. The docs are actually good." },

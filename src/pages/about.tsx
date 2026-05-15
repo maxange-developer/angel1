@@ -24,7 +24,8 @@ const TIMELINE: TimelineRow[] = [
   { yr: "Apr 2025", ttl: "Freelance · Angel1.", desc: "Started Mobile/Web/AI development independently. First Freelancer.com clients." },
   { yr: "Oct 2025", ttl: "Spain Roadtrip.", desc: "10 days driving the coast with Holly. Barcelona to Cadiz, via Alicante and Malaga." },
   { yr: "Oct 2025", ttl: "Moved to Tenerife.", desc: "No longer a visitor. Co-working in La Laguna, surf in El Médano on weekends.", pivot: true },
-  { yr: "2026", ttl: "claude-mvp-toolkit on npm.", desc: "Open-sourcing the engagement scaffolding I use daily. v0.1 alpha shipped." },
+  { yr: "2026", ttl: "angel1-mvp-toolkit v1.0 on npm.", desc: "Open-source CLI that scaffolds production-ready Next.js + Supabase apps with multi-provider AI. The engagement scaffolding I run on every project, extracted." },
+  { yr: "2026", ttl: "angel1-rag-eval v1.0 on npm.", desc: "Companion CLI that evaluates RAG pipelines — retrieval precision, faithfulness, correctness. Multi-provider judge LLM." },
 ];
 
 interface CurrentlyItem {
@@ -41,8 +42,8 @@ const CURRENTLY: CurrentlyItem[] = [
   },
   {
     k: "Working on",
-    v: "v0.5 of claude-mvp-toolkit.",
-    x: "Adding agent scaffolding and a built-in eval harness. Open-source, MIT licensed.",
+    v: "Two npm tools at v1.0 stable.",
+    x: "angel1-mvp-toolkit (Next.js + Supabase + multi-provider AI scaffolder) and angel1-rag-eval (RAG evaluation CLI). Both MIT licensed, open to contributions.",
   },
   {
     k: "Other",
@@ -104,7 +105,7 @@ export default function About() {
               Timeline
             </h2>
             <p className="sub">
-              Twenty-four years compounding. Fourteen moments that shaped the
+              Twenty-four years compounding. Fifteen moments that shaped the
               engineer.
             </p>
           </div>

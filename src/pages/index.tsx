@@ -172,8 +172,8 @@ export default function Home({ featuredWork }: HomeProps) {
           </div>
           <div className="col">
             <div className="k">Open source</div>
-            <div className="v">npm</div>
-            <div className="x">claude-mvp-toolkit</div>
+            <div className="v">2 npm tools</div>
+            <div className="x">angel1-* series, v1.0 stable</div>
           </div>
         </Reveal>
       </section>
@@ -297,7 +297,7 @@ export default function Home({ featuredWork }: HomeProps) {
             <div>
               <h2>Recent work.</h2>
               <p className="sub">
-                Three projects shipped end-to-end. Same person designing,
+                Recent work shipped end-to-end. Same person designing,
                 building, deploying. That&apos;s the multiplier.
               </p>
             </div>

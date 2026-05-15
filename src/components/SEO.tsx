@@ -84,8 +84,10 @@ export default function SEO({
     image: `${BASE_URL}/images/me-5.webp`,
     sameAs: [
       "https://www.linkedin.com/in/massiangelone/",
-      "https://github.com/massiangelone",
+      "https://github.com/maxange-developer",
       "https://www.instagram.com/massi_angelone/",
+      "https://www.npmjs.com/~massiangelone",
+      "https://www.freelancer.com/u/massiangel1",
     ],
   };
 
