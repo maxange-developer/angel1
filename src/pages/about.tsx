@@ -87,7 +87,7 @@ export default function About() {
               for founders worldwide from Tenerife — and heading to Bali.
             </p>
             <div className="cta-row">
-              <Link href="/journal/twelve-silent-years" className="link-acc">
+              <Link href="/journal/the-long-road" className="link-acc">
                 Read my full story <span>→</span>
               </Link>
             </div>
