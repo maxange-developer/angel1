@@ -70,3 +70,7 @@ logs/
 *.tmp
 *.temp
 .cache/scripts/mobile-audit-screenshots/
+
+# audit / screenshots
+lighthouse-reports/
+scripts/mobile-audit-screenshots/
