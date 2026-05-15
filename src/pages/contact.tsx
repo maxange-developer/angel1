@@ -135,7 +135,7 @@ export default function Contact() {
                   </a>
                 </li>
                 <li>
-                  <a href="https://github.com/massiangelone" target="_blank" rel="noopener noreferrer" className="link-acc">
+                  <a href="https://github.com/maxange-developer" target="_blank" rel="noopener noreferrer" className="link-acc">
                     GitHub →
                   </a>
                 </li>
