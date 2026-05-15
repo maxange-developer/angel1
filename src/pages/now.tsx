@@ -26,73 +26,57 @@ export default function Now() {
         <Reveal as="section" variant="fade-up" className="now-section">
           <h2>Work</h2>
           <p>
-            Building portfolio engagements to bring on Upwork and
-            Freelancer.com — three production-grade AI MVPs shipped in the last
-            three weeks (AI Support Dashboard, Email Triage Tool,
-            claude-mvp-toolkit). The case studies are on{" "}
-            <Link href="/work" className="link-acc">/work</Link>. Booking new
-            client projects now.
+            Just shipped four projects to portfolio: two AI products (Lore —
+            RAG support copilot; Email Triage — Gmail classifier), two
+            open-source tools on npm (angel1-mvp-toolkit; angel1-rag-eval).
+            Case studies on{" "}
+            <Link href="/work" className="link-acc">/work</Link>.
           </p>
           <p>
-            If you&apos;ve got an idea worth shipping,{" "}
+            Going live this week. Booking client projects on Upwork and
+            Freelancer, plus selective direct outreach. Q3 2026 capacity opens
+            with this site.
+          </p>
+          <p>
+            If you&apos;re building something AI-native and want a single
+            engineer who can scope, ship, and operate it —{" "}
             <Link href="/contact" className="link-acc">start here</Link>.
           </p>
         </Reveal>
 
         <Reveal as="section" variant="fade-up" className="now-section">
-          <h2>Learning</h2>
+          <h2>Reading</h2>
           <p>
-            Spending most weekday mornings on Anthropic&apos;s Claude API —
-            specifically tool use, multi-agent orchestration, and how to make
-            agent loops cost-predictable at scale. Same time slot, every day.
-            The compounding is the whole point.
+            Currently: <em>Verrà l&apos;alba, starai bene</em> by Gianluca
+            Gotto. Italian author, digital nomad, novel about leaving the
+            version of yourself that doesn&apos;t fit anymore. The kind of
+            book I read when I&apos;m building, not the kind I read when
+            I&apos;m escaping.
           </p>
           <p>
-            Reading <em>The Pragmatic Programmer</em> again. Third pass.
-            Different book each time.
+            Not reading technical books right now. The compounding is
+            happening through shipping, not through study.
           </p>
         </Reveal>
 
         <Reveal as="section" variant="fade-up" className="now-section">
           <h2>Life</h2>
           <p>
-            Based in Tenerife since October 2025. Co-working in La Laguna most
-            mornings, surf in El Médano on Saturdays when the Atlantic
-            cooperates. Same time zone as London, which means my calendar opens
-            for European clients in the morning and US East Coast in the
-            afternoon.
+            Still in Tenerife. Working from home, sometimes from a café in
+            town. The rhythm has settled: morning training, long walks, the
+            sea most days.
           </p>
           <p>
-            Holly the cat moved here with me. He&apos;s adapted faster than I
-            have.
+            Picked up karting recently — turns out the kind of focus that
+            comes from a tight corner is the same one I need on a hard
+            refactor. Reading a lot. Going out when a good friend&apos;s
+            around. Eating well.
           </p>
-        </Reveal>
-
-        <Reveal as="section" variant="fade-up" className="now-section">
-          <h2>Reading</h2>
-          <ul>
-            <li>
-              <em>The Pragmatic Programmer</em> — Hunt &amp; Thomas
-            </li>
-            <li>
-              <em>Thinking in Bets</em> — Annie Duke
-            </li>
-            <li>
-              Paul Graham&apos;s essays — slowly working back through the
-              archive
-            </li>
-          </ul>
-        </Reveal>
-
-        <Reveal as="section" variant="fade-up" className="now-section">
-          <h2>Open invitations</h2>
-          <ul>
-            <li>Open to retainer conversations for AI integration work</li>
-            <li>Available for short technical reviews (paid, fixed-scope)</li>
-            <li>
-              Always interested in talking to people building useful AI products
-            </li>
-          </ul>
+          <p>
+            Building toward Bali by the end of June. That&apos;s the goal
+            that frames everything else on this page.
+          </p>
+          <p>Quiet life, on purpose.</p>
         </Reveal>
       </div>
     </>

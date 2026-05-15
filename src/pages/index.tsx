@@ -425,7 +425,7 @@ export default function Home({ featuredWork }: HomeProps) {
               changed everything at 14. Self-taught through Start2Impact. Two+
               years at Altesia (client: Fileni Group) and Airplay Control
               (clients: RAI, La7). Now building AI MVPs for founders worldwide
-              from Tenerife, with Holly the cat.
+              from Tenerife — and heading to Bali.
             </p>
             <div className="cta-row">
               <Link href="/journal/twelve-silent-years" className="link-acc">
