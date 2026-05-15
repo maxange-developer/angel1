@@ -11,20 +11,21 @@ interface TimelineRow {
 }
 
 const TIMELINE: TimelineRow[] = [
-  { yr: "2001", ttl: "Born in Ancona, Italy.", desc: "Where it all began. Family, first relationships, the foundation of who I am." },
-  { yr: "2003", ttl: "Diagnosis: profound hearing damage.", desc: "Twelve years of partial silence after a missed diagnosis perforated both eardrums." },
-  { yr: "2015", ttl: "Third surgery succeeds. I hear clearly.", desc: "Dr. Trabalzini's experimental cartilage technique worked. The world had sound again.", pivot: true },
-  { yr: "2022", ttl: "Start2Impact University.", desc: "Full Stack Development — React, Angular, Node.js. Self-taught foundations made formal." },
-  { yr: "Sep 2023", ttl: "First trip to Tenerife.", desc: "A month traveling the island. Promised myself I'd come back to stay." },
-  { yr: "Jan 2024", ttl: "Altesia · Fileni Group.", desc: "Modernizing legacy VB6 systems into Angular + .NET WebApps. Agile team of 7." },
-  { yr: "Sep 2024", ttl: "Barcelona reset.", desc: "A week with my cousin Miki. 15 km daily walks, cold plunges, hard conversations." },
-  { yr: "Dec 2024", ttl: "Vietnam, Phu Quoc.", desc: "20 days alone on the other side of the world. Buddhist philosophy. Inner peace that changed me." },
-  { yr: "Jan 2025", ttl: "Airplay Control.", desc: "Software engineer on broadcasting systems for clients including RAI, La7 and other Italian TV networks. Angular, .NET, Python automation tooling. International team, English daily." },
-  { yr: "Apr 2025", ttl: "Freelance · Angel1.", desc: "Started Mobile/Web/AI development independently. First Freelancer.com clients." },
-  { yr: "Oct 2025", ttl: "Spain Roadtrip.", desc: "10 days driving the coast. Barcelona to Cadiz, via Alicante and Malaga." },
-  { yr: "Oct 2025", ttl: "Moved to Tenerife.", desc: "No longer a visitor. Co-working in La Laguna, surf in El Médano on weekends.", pivot: true },
-  { yr: "2026", ttl: "angel1-mvp-toolkit v1.0 on npm.", desc: "Open-source CLI that scaffolds production-ready Next.js + Supabase apps with multi-provider AI. The engagement scaffolding I run on every project, extracted." },
-  { yr: "2026", ttl: "angel1-rag-eval v1.0 on npm.", desc: "Companion CLI that evaluates RAG pipelines — retrieval precision, faithfulness, correctness. Multi-provider judge LLM." },
+  { yr: "2001", ttl: "Born in Ancona, Italy.", desc: "Ancona. Family, the people who didn't give up later." },
+  { yr: "2003", ttl: "Diagnosis: profound hearing damage.", desc: "Missed diagnosis. Both eardrums perforated. Twelve silent years began here." },
+  { yr: "2015", ttl: "Third surgery succeeds. I hear clearly.", desc: "Third attempt. Dr. Trabalzini's cartilage technique held. The first time I heard the world clearly was at fourteen.", pivot: true },
+  { yr: "2017", ttl: "First flight, Edinburgh.", desc: "After the surgery, finally cleared to fly. First trip abroad." },
+  { yr: "2022", ttl: "Start2Impact University.", desc: "Start2Impact's Full Stack track. React, Angular, Node.js. Code stopped being a hobby." },
+  { yr: "Sep 2023", ttl: "First trip to Tenerife.", desc: "One month, end to end. Left with the decision already made — I'd come back to stay." },
+  { yr: "Jan 2024", ttl: "Altesia · Fileni Group.", desc: "Legacy VB6 → Angular + .NET. First taste of enterprise scale, real users, real consequences." },
+  { yr: "Sep 2024", ttl: "Barcelona reset.", desc: "A week with Miki. Walking, cold water, hours of talking. Came back different." },
+  { yr: "Dec 2024", ttl: "Vietnam, Phu Quoc.", desc: "20 days, alone, on the other side of the world. Buddhist temples, slow mornings, the kind of silence you can't manufacture at home." },
+  { yr: "Jan 2025", ttl: "Airplay Control.", desc: "Broadcasting systems engineer. RAI, La7, other networks. Code that goes live every night, on millions of TVs." },
+  { yr: "Apr 2025", ttl: "Freelance · Angel1.", desc: "Angel1 begins. First Freelancer.com clients, first invoices in my own name." },
+  { yr: "Oct 2025", ttl: "Spain Roadtrip.", desc: "10 days, Barcelona to Cadiz. Coast roads, no agenda. The trip before the move." },
+  { yr: "Oct 2025", ttl: "Moved to Tenerife.", desc: "Tenerife, this time to stay. The decision from 2023 became address, schedule, daily walks to the sea.", pivot: true },
+  { yr: "2026", ttl: "angel1-mvp-toolkit v1.0 on npm.", desc: "Released v1.0 on npm. The scaffolding I'd been copying project-to-project, finally extracted into a tool." },
+  { yr: "2026", ttl: "angel1-rag-eval v1.0 on npm.", desc: "The second tool. Measures whether a RAG pipeline actually works — retrieval, faithfulness, correctness." },
 ];
 
 interface CurrentlyItem {
