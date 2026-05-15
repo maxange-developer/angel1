@@ -1,5 +1,5 @@
 ---
-title: claude-mvp-toolkit
+title: angel1-mvp-toolkit
 client: Open source · Published on npm
 tagline: A CLI that scaffolds production-ready Next.js + Supabase + Claude projects in under two minutes — extracted from the workflow I run on every engagement.
 date: May 2026
@@ -14,28 +14,28 @@ stack:
   - Anthropic SDK
   - OpenAI SDK
 color: blue
-hero: /images/work/claude-mvp-toolkit-cover.webp
-demo: https://www.npmjs.com/package/@massiangelone/claude-mvp-toolkit
-github: https://github.com/maxange-developer/claude-mvp-toolkit
+hero: /images/work/angel1-mvp-toolkit-cover.webp
+demo: https://www.npmjs.com/package/@massiangelone/angel1-mvp-toolkit
+github: https://github.com/maxange-developer/angel1-mvp-toolkit
 stats:
   - label: Version
-    value: v0.1.2-alpha
+    value: v1.0.0
   - label: Setup time
     value: ~90s
   - label: Template files
-    value: "~278"
+    value: "~33"
 ---
 
 ## Why I built it
 
 Every engagement starts the same way. New repository, Next.js 16 with App Router, TypeScript strict, Tailwind 4, Supabase or NextAuth depending on the auth model, Anthropic or OpenAI SDK depending on the model choice, Vitest and Playwright preconfigured because tests are not optional, a `CLAUDE.md` at the root because I work with Claude Code daily and that file is the difference between Claude understanding the project and Claude guessing.
 
-The first three or four engagements, I copied the previous project. The fifth, I realized I was copying my own bugs forward. The sixth, I extracted the scaffolding into a CLI. That's `claude-mvp-toolkit`.
+The first three or four engagements, I copied the previous project. The fifth, I realized I was copying my own bugs forward. The sixth, I extracted the scaffolding into a CLI. That's `angel1-mvp-toolkit`.
 
-It's published on npm at `@massiangelone/claude-mvp-toolkit`, currently `v0.1.2-alpha`. One command:
+It's published on npm at `@massiangelone/angel1-mvp-toolkit`, currently `v1.0.0`. One command:
 
 ```bash
-npx @massiangelone/claude-mvp-toolkit init my-app
+npx @massiangelone/angel1-mvp-toolkit init my-app
 ```
 
 Ninety seconds later you have a working repository with the stack chosen, dependencies installed, environment files stubbed, git initialized, and a first commit ready.
@@ -50,14 +50,14 @@ The CLI is one command, `init <project-name>`, with an optional `--yes` flag for
 - Email (Resend, none)
 - RAG (pgvector + retrieval scaffold, none)
 
-Each answer toggles which dependencies get installed and which template files get included. The template lives at `packages/templates/base` — roughly two hundred and seventy-eight files of Next.js 16 App Router boilerplate that has earned its place by surviving real projects. Conditional dependency injection happens in `init.ts` based on the answer set.
+Each answer toggles which dependencies get installed and which template files get included. The template lives at `packages/templates/base` — roughly thirty-three files of Next.js 16 App Router boilerplate that has earned its place by surviving real projects. Conditional dependency injection happens in `init.ts` based on the answer set.
 
 ## How it's structured
 
 It's a pnpm monorepo with two packages:
 
 - **`packages/cli`** — the interactive scaffolder. Reads the user's answers, copies and templates the base, modifies `package.json` with the right deps, runs `pnpm install`, initializes git, makes the first commit. Roughly a hundred and seventy lines of TypeScript that does one thing and doesn't try to grow into a framework.
-- **`packages/templates/base`** — the actual project template. The two hundred and seventy-eight files that get copied. This is where the engineering opinions live: how the database client is structured, how the API routes are organized, how environment variables are validated at boot, what `CLAUDE.md` says.
+- **`packages/templates/base`** — the actual project template. The thirty-three files that get copied. This is where the engineering opinions live: how the database client is structured, how the API routes are organized, how environment variables are validated at boot, what `CLAUDE.md` says.
 
 The CLI is small on purpose. The interesting part of a scaffolder is never the scaffolder itself — it's the template, because that's what determines whether the projects you build on top of it succeed or rot.
 
@@ -73,16 +73,18 @@ A few decisions that aren't obvious until you've built ten of these:
 
 **No state management library by default.** React state and URL state get you further than people expect. If you need Zustand or Jotai later, install them later. Today they're not in the template, on purpose.
 
-## What I'd do differently (and where it's going)
+## What I'd do differently
 
-The CLI is at `v0.1.2-alpha` for a reason. Three honest limits today:
+Three honest limits at v1.0.
 
-**No template versioning.** The CLI installs the template that ships with that CLI version. That's fine for now, but eventually the template should be versioned independently from the CLI itself, so users can pin a template version while getting CLI bug fixes.
+**No template versioning.** The CLI installs the template bundled with that CLI version. That's fine for now, but a tool that scaffolds production projects should let users pin a template version while still getting CLI bug fixes. Right now they're coupled.
 
-**No update path for existing projects.** If I improve the template, projects scaffolded last month don't see the improvement. A `claude-mvp-toolkit upgrade` command — that diffs the current state against the latest template and offers to apply non-conflicting changes — is on the list for `v0.5`.
+**No update path for existing projects.** If I improve the template, projects scaffolded last month don't see the improvement without manually diffing. A `claude-mvp-toolkit upgrade` command that applies non-conflicting changes is on the list of things real users would justify building.
 
-**No agent scaffolding yet.** Today the template does Claude Code integration via `CLAUDE.md` and the file structure. It doesn't yet scaffold agent loops with tool use, evaluation harnesses, or multi-agent orchestration. That's the headline feature of `v0.5` — the version I'm working on now.
+**Test coverage is thin on the OpenAI variant.** The Anthropic path is exercised by real engagements every week. The OpenAI variant is tested structurally but doesn't have the same depth of production runs behind it. End-to-end smoke tests on both variants are the missing safety net.
 
 ## What's next
 
-`v0.5` adds three things: agent scaffolding (a working tool-use example with proper schema validation), a built-in eval harness (the thing I just admitted was missing from the AI Support Dashboard case study), and template versioning. Open-source, MIT licensed, contributions welcome — the issues tab on GitHub is the right place to start.
+v1.0 ships the foundation: `init` command, multi-provider AI (Claude / OpenAI / Both), Supabase or NextAuth, optional Stripe / Resend / RAG. The roadmap is deliberately empty — no "Planned" features promised in public. The next version of this tool will be whatever real engagements show needs to be there.
+
+The eval harness that earlier drafts of this case study promised? It's been extracted into a separate tool: **[angel1-rag-eval](/work/04-angel1-rag-eval)**. Two tools, one workflow: scaffold with the toolkit, measure with the eval CLI.

@@ -1,0 +1,92 @@
+---
+title: angel1-rag-eval
+client: Open source · Published on npm
+tagline: A companion CLI that measures whether your RAG pipeline actually works — retrieval precision, faithfulness, correctness, multi-provider judge LLM.
+date: May 2026
+duration: 5 days · extracted from production work
+package: Open source
+stack:
+  - TypeScript
+  - Node.js
+  - Anthropic SDK
+  - OpenAI SDK
+  - Commander
+  - Zod
+  - tsup
+color: blue
+hero: /images/work/angel1-rag-eval-cover.webp
+demo: https://www.npmjs.com/package/@massiangelone/angel1-rag-eval
+github: https://github.com/maxange-developer/angel1-rag-eval
+stats:
+  - label: Version
+    value: v1.0.0
+  - label: Judge providers
+    value: "2"
+  - label: Scoring dimensions
+    value: "3"
+---
+
+## Why I built it
+
+Building a RAG system is the easy part. Knowing if it's any good is the hard part.
+
+When I shipped Lore — the multi-tenant RAG support copilot in this same portfolio — the question that wouldn't go away was: *how do I know retrieval is working?* Vector search returns chunks. The LLM writes an answer. The answer looks fine. But "looks fine" isn't a metric, and "fine" isn't a SLA.
+
+The harness I built for Lore's internal evaluation was useful. It was also coupled to Lore's specific endpoint, schema, and chunking strategy. The third time I caught myself copying the eval code into a new project — different endpoint, different response shape — I extracted it into a standalone tool. That's `angel1-rag-eval`.
+
+Same workflow as the toolkit: take the engagement scaffolding I run on every project, polish it, publish it. One tool to scaffold, one tool to measure. Companion CLIs for the same engineer, the same workflow.
+
+## What it does
+
+`angel1-rag-eval` runs your RAG endpoint against a labeled eval-set (JSONL) and reports three numbers:
+
+- **Retrieval precision @K** — did your retriever find the right documents?
+- **Faithfulness** — is the generated answer supported by retrieved context, or did the model hallucinate?
+- **Correctness** — does the answer match the expected ground truth?
+
+Faithfulness and correctness are scored by a judge LLM. Out of the box: Claude (Sonnet 4.6) or OpenAI (gpt-4o-mini), selected by config. The judge runs structured output with strict JSON schemas — so when retrieval drops below threshold, you get a number, not a vibe.
+
+Output: console table, CSV for spreadsheets, JSON for CI. Exit code 0/1 based on overall score threshold. Plug it into a GitHub Action and you'll see RAG quality regressions before they ship.
+
+## Architecture
+
+The tool is small on purpose. One command (`run`), four sub-modules:
+
+- **adapters/endpoint** — calls your RAG endpoint with templated requests, extracts answer + sources + (optional) source contents from configurable response paths. Path syntax supports nested objects and array map (`sources[].id`).
+- **core/scorer** — retrieval precision @K against the labeled `expected_source` set.
+- **providers/{claude,openai}** — judge LLM dispatch. Strict JSON schema validation on output. Provider-agnostic interface — adding a third judge is a single file.
+- **reporters/{table,csv,json}** — three output formats from the same result tree.
+
+Zero state. The whole tool is `argv → fetch → score → render`. No database, no cache, no config server. It's a CLI; CLIs should behave like CLIs.
+
+## The judge decision
+
+Two judge providers, picked deliberately. Faithfulness scoring is the dimension where it actually matters — the judge has to read the retrieved chunks and decide if the answer is grounded.
+
+`gpt-4o-mini` works because the task is constrained: short JSON output, structured schema, low temperature. Cost is negligible — a typical 100-question eval-set costs cents.
+
+`claude-sonnet-4-6` is the option I'd reach for when the retrieval is dense, the context is technical, or the answer is reasoning-heavy. Claude tends to be stricter on faithfulness, which is what you want when the system is shipping to paying users.
+
+Both are interchangeable via config: same `JudgeInput`, same `JudgeOutput`, same schema validation, same `JudgeError` taxonomy. The application code never knows which one is judging.
+
+## What I'd do differently
+
+Three honest limits at v1.0:
+
+**Claude judge not end-to-end tested with a real API key.** The structural validation is in place — schema parsing, error mapping, retry handling. But full end-to-end runs against the Anthropic API have not been completed yet. OpenAI judge is end-to-end validated against real responses. The README says so explicitly; this case study isn't going to pretend otherwise.
+
+**Faithfulness requires `sourceContents` in the endpoint response.** Many RAG implementations return source IDs only (`["doc-42", "doc-87"]`) — efficient for the network, but the judge can't assess faithfulness against opaque IDs. The tool handles this gracefully (returns `null` for faithfulness, redistributes weight to retrieval and correctness) but you lose half the signal. Endpoints that want full evaluation need to return the chunk text alongside the ID.
+
+**No incremental cache.** Re-running an eval after a prompt change re-runs every judge call. For a 500-question eval-set with Claude judge, that's real money and real time. A simple `(question, answer, context) → score` cache keyed on hash would solve it. It's on the list, not in v1.0.
+
+## What's next
+
+Three threads in priority order.
+
+**Recall and nDCG metrics.** Precision @K is the most actionable number, but recall matters for long-tail questions and nDCG handles ordered relevance. Both are one helper function away in the scorer module.
+
+**Streaming output.** Today the tool prints results at the end. For 500-question runs you watch a spinner for 20 minutes. Streaming per-question results to stdout as they complete is a UX fix, not a metric fix, but a real one.
+
+**Better failure mode for malformed configs.** Today's Zod validation catches schema errors but returns one error at a time. A multi-error report would let you fix five config bugs in one round instead of five.
+
+Open source, MIT licensed. The issues tab on GitHub is the right place for feature requests and feedback — especially from anyone running this against a production RAG and wanting a dimension I haven't implemented yet.

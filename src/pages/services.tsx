@@ -92,7 +92,7 @@ const RECORD = [
   { v: "$5,300", k: "Earned", x: "Across Freelancer.com engagements." },
   { v: "100%", k: "Job success", x: "All projects delivered on scope." },
   { v: "5.0 ★", k: "Client rating", x: "Average on Freelancer.com." },
-  { v: "1", k: "Open-source npm", x: "@massiangelone/claude-mvp-toolkit." },
+  { v: "2", k: "Open-source npm", x: "@massiangelone/angel1-mvp-toolkit · @massiangelone/angel1-rag-eval." },
 ];
 
 const FAQ = [
