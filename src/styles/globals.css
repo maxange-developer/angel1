@@ -779,6 +779,14 @@ p { margin: 0; }
   line-height: 1.6;
 }
 
+/* Reinforce container horizontal padding — section classes use padding: X 0 Y shorthand
+   which zeroes left/right, overriding .container (equal specificity, declared later).
+   .layout-main .container has specificity (0,2,0) which beats any single section class. */
+.layout-main .container {
+  padding-left: var(--container-pad);
+  padding-right: var(--container-pad);
+}
+
 /* ─── Responsive ─── */
 @media (max-width: 1180px) {
   .case-body-wrap { flex-direction: column; gap: 0; }
