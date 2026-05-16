@@ -60,7 +60,7 @@ export default function JournalSlug({
               alt={fm.title}
               fill
               sizes="100vw"
-              style={{ objectFit: "cover", objectPosition: "center 15%" }}
+              style={{ objectFit: "cover", objectPosition: "center 45%" }}
               priority
             />
           )}
