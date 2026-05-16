@@ -38,7 +38,7 @@ const CURRENTLY: CurrentlyItem[] = [
   {
     k: "Based in",
     v: "Tenerife, Canary Islands.",
-    x: "Co-working in La Laguna. Same time zone as London, ±0. Available for European and US East Coast hours.",
+    x: "On the island since October 2025. Working from home, sometimes from a café in town. Heading to Bali in early July 2026.",
   },
   {
     k: "Building",
@@ -81,9 +81,7 @@ export default function About() {
               Angelone<span className="acc">.</span>
             </h1>
             <p className="lead">
-              Italian engineer, born in Ancona in 2001. Two+ years building
-              production systems at Altesia (client: Fileni Group) and Airplay
-              Control (clients: RAI, La7, broadcasters). Now building AI MVPs
+              Italian engineer, born in Ancona in 2001. Now building AI MVPs
               for founders worldwide from Tenerife — and heading to Bali.
             </p>
             <div className="cta-row">

@@ -239,9 +239,10 @@ p { margin: 0; }
   color: rgba(245,245,247,0.50); transition: color var(--dur) var(--ease); }
 .trusted .logo:hover { color: var(--text); }
 .trusted .logo.mono { font-family: var(--font-mono); font-size: 16px; letter-spacing: 0; }
-.trusted-logo-link { display: inline-flex; align-items: center; opacity: 0.55; transition: opacity var(--dur) var(--ease); }
+.trusted-logo-link { display: inline-flex; align-items: center; opacity: 0.6; transition: opacity var(--dur) var(--ease); }
 .trusted-logo-link:hover { opacity: 1; }
-.trusted-logo-img { height: 32px; width: auto; object-fit: contain; }
+.trusted-logo-img { height: 32px; width: auto; object-fit: contain; filter: grayscale(100%); transition: filter var(--dur) var(--ease); }
+.trusted-logo-link:hover .trusted-logo-img { filter: grayscale(0%); }
 
 /* ─── Section Head ─── */
 .sec { padding: var(--pad-y) 0; }

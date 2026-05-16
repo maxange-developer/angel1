@@ -83,9 +83,6 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <Link href="/contact">Book a call</Link>
-              </li>
-              <li>
                 <Link href="/contact" className="link-acc">
                   Start a project →
                 </Link>

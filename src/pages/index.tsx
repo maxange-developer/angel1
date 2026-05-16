@@ -88,7 +88,7 @@ function StatCounter({
 
 export default function Home({ featuredWork }: HomeProps) {
   const featured = featuredWork.find((w) => w.featured) ?? featuredWork[0];
-  const side = featuredWork.filter((w) => w !== featured).slice(0, 2);
+  const side = featuredWork.filter((w) => w !== featured).slice(0, 3);
 
   return (
     <>
@@ -120,7 +120,7 @@ export default function Home({ featuredWork }: HomeProps) {
                 View Work <span className="arr">→</span>
               </Link>
               <Link href="/contact" className="btn btn-secondary">
-                Book a call
+                Start a project
               </Link>
             </div>
           </div>
@@ -153,9 +153,7 @@ export default function Home({ featuredWork }: HomeProps) {
         <Reveal className="hero-index" as="div" variant="stagger">
           <div className="col">
             <div className="k">Earned</div>
-            <div className="v">
-              <StatCounter target={5300} prefix="$" />
-            </div>
+            <div className="v">$5k+</div>
             <div className="x">Verified on Freelancer.com</div>
           </div>
           <div className="col">
@@ -416,16 +414,13 @@ export default function Home({ featuredWork }: HomeProps) {
           </div>
           <div className="copy">
             <h2 style={{ marginTop: "16px" }}>
-              From Ancona to Tenerife,
-              <br />
-              <span className="q">via two years in enterprise.</span>
+              From Ancona to Tenerife<span className="acc">.</span>
             </h2>
             <p>
               Born in Ancona in 2001. Twelve silent years before a surgery that
-              changed everything at 14. Self-taught through Start2Impact. Two+
-              years at Altesia (client: Fileni Group) and Airplay Control
-              (clients: RAI, La7). Now building AI MVPs for founders worldwide
-              from Tenerife — and heading to Bali.
+              changed everything at 14. Self-taught through Start2Impact. Now
+              building AI MVPs for founders worldwide from Tenerife — and
+              heading to Bali.
             </p>
             <div className="cta-row">
               <Link href="/journal/the-long-road" className="link-acc">
@@ -449,9 +444,6 @@ export default function Home({ featuredWork }: HomeProps) {
           <div className="ctas">
             <Link href="/contact" className="btn btn-primary">
               Start a project <span className="arr">→</span>
-            </Link>
-            <Link href="/contact" className="btn btn-secondary">
-              Book a call
             </Link>
           </div>
         </div>
