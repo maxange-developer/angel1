@@ -601,7 +601,7 @@ p { margin: 0; }
   .article-cover .article-cover-img { aspect-ratio: 4 / 3; min-height: 360px; }
   .article-cover .overlay { padding-bottom: 32px; }
 }
-.article-body { max-width: 880px; margin: 0 auto; padding: 96px var(--container-pad); font-family: var(--font-serif); }
+.article-body { max-width: 960px; margin: 0 auto; padding: 96px var(--container-pad); font-family: var(--font-serif); }
 .article-body p { font-size: 19px; line-height: 1.8; color: var(--text); margin-bottom: 24px; font-weight: 400; }
 .article-body p:first-of-type::first-letter {
   font-family: var(--font-serif); float: left; font-size: 86px; line-height: 0.85;
