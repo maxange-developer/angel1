@@ -13,11 +13,13 @@ const JOBS = [
     input: path.join(INPUT, 'lore-cover.png'),
     output: path.join(OUT, 'lore-cover.webp'),
     label: 'lore-cover.webp',
+    noResize: true,
   },
   {
     input: path.join(INPUT, 'email-triage-cover.png'),
     output: path.join(OUT, 'email-triage-cover.webp'),
     label: 'email-triage-cover.webp',
+    noResize: true,
   },
   {
     input: path.join(SVG_DIR, 'angel1-mvp-toolkit-cover.svg'),
@@ -36,10 +38,13 @@ const JOBS = [
 (async () => {
   for (const job of JOBS) {
     const opts = job.density ? { density: job.density } : {};
-    await sharp(job.input, opts)
-      .resize(1600, 900, { fit: 'cover' })
-      .webp({ quality: 85 })
-      .toFile(job.output);
+    let pipeline = sharp(job.input, opts);
+
+    if (!job.noResize) {
+      pipeline = pipeline.resize(1600, 900, { fit: 'cover' });
+    }
+
+    await pipeline.webp({ quality: 85 }).toFile(job.output);
     const kb = Math.round(fs.statSync(job.output).size / 1024);
     console.log(`✓ ${job.label} — ${kb} KB`);
   }
