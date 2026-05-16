@@ -72,19 +72,21 @@ export default function JournalIndex({ pinned, others, total }: JournalIndexProp
         {others.length > 0 && (
           <Reveal className="blog-other" as="div" variant="stagger">
             {others.map((post) => (
-              <div key={post.slug}>
-                <Link href={`/journal/${post.slug}`} className="card blog-tile">
-                  <div className="meta">
-                    {post.frontmatter.date} · {post.frontmatter.category} ·{" "}
-                    {post.frontmatter.readTime}
-                  </div>
-                  <h3>{post.frontmatter.title}</h3>
-                  <p>{post.frontmatter.excerpt}</p>
-                  <span className="more link-acc">
-                    Read <span>→</span>
-                  </span>
-                </Link>
-              </div>
+              <Link
+                key={post.slug}
+                href={`/journal/${post.slug}`}
+                className="card blog-tile"
+              >
+                <div className="meta">
+                  {post.frontmatter.date} · {post.frontmatter.category} ·{" "}
+                  {post.frontmatter.readTime}
+                </div>
+                <h3>{post.frontmatter.title}</h3>
+                <p>{post.frontmatter.excerpt}</p>
+                <span className="more link-acc">
+                  Read <span>→</span>
+                </span>
+              </Link>
             ))}
           </Reveal>
         )}

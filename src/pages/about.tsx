@@ -66,7 +66,7 @@ export default function About() {
               alt="Massimiliano Angelone"
               fill
               sizes="(max-width: 768px) 100vw, 480px"
-              style={{ objectFit: "cover", objectPosition: "center top" }}
+              style={{ objectFit: "cover", objectPosition: "center 30%" }}
               priority
             />
           </div>

@@ -240,25 +240,27 @@ export default function WorkSlug({
           </h2>
           <Reveal className="grid" as="div" variant="stagger">
             {relatedPosts.map((post) => (
-              <div key={post.slug}>
-                <Link href={`/work/${post.slug}`} className="card related-card">
-                  <div className="img-ph">
-                    {post.hero && (
-                      <Image
-                        src={post.hero}
-                        alt={post.title}
-                        fill
-                        sizes="440px"
-                        style={{ objectFit: "cover" }}
-                      />
-                    )}
-                  </div>
-                  <div className="body">
-                    <h3>{post.title}</h3>
-                    <p>{post.tagline}</p>
-                  </div>
-                </Link>
-              </div>
+              <Link
+                key={post.slug}
+                href={`/work/${post.slug}`}
+                className="card related-card"
+              >
+                <div className="img-ph">
+                  {post.hero && (
+                    <Image
+                      src={post.hero}
+                      alt={post.title}
+                      fill
+                      sizes="440px"
+                      style={{ objectFit: "cover" }}
+                    />
+                  )}
+                </div>
+                <div className="body">
+                  <h3>{post.title}</h3>
+                  <p>{post.tagline}</p>
+                </div>
+              </Link>
             ))}
           </Reveal>
         </section>

@@ -12,14 +12,15 @@ if (!fs.existsSync(SRC)) {
 
 (async () => {
   const meta = await sharp(SRC).metadata();
-  console.log('Source:', meta.width + 'x' + meta.height, '|', meta.format);
+  console.log('Source:', meta.width + 'x' + meta.height, '|', meta.format, '| aspect:', (meta.width / meta.height).toFixed(2));
 
   await sharp(SRC)
-    .resize({ width: 2000, height: 2500, fit: 'cover', position: 'center' })
-    .webp({ quality: 85 })
+    .resize({ width: 3600, withoutEnlargement: true })
+    .webp({ quality: 92, effort: 6 })
     .toFile(OUT);
 
+  const outMeta = await sharp(OUT).metadata();
   const outSize = fs.statSync(OUT).size;
-  console.log('Output:', OUT);
+  console.log('Output:', outMeta.width + 'x' + outMeta.height);
   console.log('Size:', Math.round(outSize / 1024), 'KB');
 })();

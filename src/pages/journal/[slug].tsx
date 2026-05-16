@@ -51,12 +51,9 @@ export default function JournalSlug({
         canonicalPath={`/journal/${slug}`}
       />
 
-      {/* ARTICLE COVER — edge-to-edge with overlay */}
+      {/* ARTICLE COVER — banner edge-to-edge */}
       <div className="article-cover">
-        <div
-          className="img-ph"
-          style={{ position: "relative", maxHeight: "420px", overflow: "hidden" }}
-        >
+        <div className="article-cover-img">
           {fm.coverImage && (
             <Image
               src={fm.coverImage}
@@ -96,33 +93,33 @@ export default function JournalSlug({
       {related.length > 0 && (
         <div className="article-footer">
           <div className="container">
+            <span className="eyebrow">Continue exploring</span>
             <h3>
               Continue reading
             </h3>
             <Reveal className="grid" as="div" variant="stagger">
               {related.map((post) => (
-                <div key={post.slug}>
-                  <Link
-                    href={`/journal/${post.slug}`}
-                    className="card related-card"
-                  >
-                    <div className="img-ph">
-                      {post.coverImage && (
-                        <Image
-                          src={post.coverImage}
-                          alt={post.title}
-                          fill
-                          sizes="400px"
-                          style={{ objectFit: "cover" }}
-                        />
-                      )}
-                    </div>
-                    <div className="body">
-                      <h4>{post.title}</h4>
-                      <p>{post.excerpt}</p>
-                    </div>
-                  </Link>
-                </div>
+                <Link
+                  key={post.slug}
+                  href={`/journal/${post.slug}`}
+                  className="card related-card"
+                >
+                  <div className="img-ph">
+                    {post.coverImage && (
+                      <Image
+                        src={post.coverImage}
+                        alt={post.title}
+                        fill
+                        sizes="400px"
+                        style={{ objectFit: "cover" }}
+                      />
+                    )}
+                  </div>
+                  <div className="body">
+                    <h4>{post.title}</h4>
+                    <p>{post.excerpt}</p>
+                  </div>
+                </Link>
               ))}
             </Reveal>
           </div>
