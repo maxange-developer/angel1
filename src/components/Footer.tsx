@@ -1,5 +1,5 @@
 import Link from "next/link";
-import Image from "next/image";
+import AngelLogo from "@/components/AngelLogo";
 
 export default function Footer() {
   return (
@@ -9,14 +9,7 @@ export default function Footer() {
           {/* Brand col */}
           <div className="brand-col">
             <div className="brand-logo">
-              <Link href="/">
-                <Image
-                  src="/logo-angel1.webp"
-                  alt="Angel1"
-                  width={120}
-                  height={36}
-                />
-              </Link>
+              <AngelLogo size="footer" />
             </div>
             <p>
               One engineer, fixed price, production-grade. AI-Enhanced MVPs for

@@ -75,3 +75,5 @@ logs/
 lighthouse-reports/
 scripts/mobile-audit-screenshots/
 scripts/responsive-audit/screenshots/
+scripts/work-covers/output/
+scripts/work-covers/svg/

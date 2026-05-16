@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
-import Image from "next/image";
 import { useRouter } from "next/router";
 import { Menu, X } from "lucide-react";
+import AngelLogo from "@/components/AngelLogo";
 
 const NAV_ITEMS = [
   { label: "Work", href: "/work" },
@@ -26,15 +26,7 @@ export default function Header() {
       <header className="nav-shell">
         <div className="container">
           <nav className="nav">
-            <Link href="/" className="brand">
-              <Image
-                src="/logo-angel1.webp"
-                alt="Angel1"
-                width={120}
-                height={28}
-                priority
-              />
-            </Link>
+            <AngelLogo size="header" className="brand" />
 
             <ul className="links">
               {NAV_ITEMS.map((item) => {

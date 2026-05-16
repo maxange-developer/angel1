@@ -70,10 +70,9 @@ export default function SEO({
   const description = customDescription ?? data.description;
   const canonical = `${BASE_URL}${canonicalPath ?? ""}`;
 
-  // Dynamic OG image via /api/og, fallback to static photo
   const ogImageUrl = ogImage
     ? `${BASE_URL}${ogImage}`
-    : `${BASE_URL}/api/og?title=${encodeURIComponent(title)}`;
+    : `${BASE_URL}/og-image.png`;
 
   const personSchema = {
     "@context": "https://schema.org",
