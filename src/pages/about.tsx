@@ -62,11 +62,12 @@ export default function About() {
         <div className="grid">
           <div className="img-ph photo mount-hero-photo">
             <Image
-              src="/images/me-tnf.webp"
+              src="/images/me-tnf-hero.webp"
               alt="Massimiliano Angelone"
               fill
               sizes="(max-width: 768px) 100vw, 480px"
-              style={{ objectFit: "cover", objectPosition: "center 30%" }}
+              quality={95}
+              style={{ objectFit: "cover", objectPosition: "center top" }}
               priority
             />
           </div>
