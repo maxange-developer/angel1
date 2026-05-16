@@ -2,7 +2,7 @@ const { chromium } = require('playwright');
 const fs = require('fs');
 const path = require('path');
 
-const BASE = 'https://angel1-git-v3-magazine-maxange-developers-projects.vercel.app';
+const BASE = 'http://localhost:3000';
 
 const PAGES = [
   { name: 'home', path: '/' },
@@ -45,7 +45,29 @@ if (!fs.existsSync(OUT_DIR)) fs.mkdirSync(OUT_DIR, { recursive: true });
 
       try {
         await page.goto(url, { waitUntil: 'networkidle', timeout: 30000 });
-        await page.waitForTimeout(1000);
+        await page.waitForTimeout(500);
+
+        // Auto-scroll to trigger IntersectionObserver on all Reveal elements
+        await page.evaluate(async () => {
+          await new Promise((resolve) => {
+            let totalHeight = 0;
+            const distance = 200;
+            const timer = setInterval(() => {
+              const scrollHeight = document.body.scrollHeight;
+              window.scrollBy(0, distance);
+              totalHeight += distance;
+              if (totalHeight >= scrollHeight) {
+                clearInterval(timer);
+                resolve();
+              }
+            }, 100);
+          });
+        });
+
+        await page.waitForTimeout(800);
+        await page.evaluate(() => window.scrollTo(0, 0));
+        await page.waitForTimeout(400);
+
         await page.screenshot({ path: filepath, fullPage: true });
       } catch (e) {
         console.error(`  FAILED: ${e.message}`);
