@@ -416,7 +416,7 @@ p { margin: 0; }
 
 /* ─── Now / Uses body ─── */
 /* /now — self-contained 760px editorial column */
-.now-page { max-width: 760px; margin: 0 auto; padding-left: var(--container-pad); padding-right: var(--container-pad); }
+.now-page { max-width: 1020px; margin: 0 auto; padding-left: var(--container-pad); padding-right: var(--container-pad); }
 .now-hero { padding: 96px 0 56px; border-bottom: 1px solid var(--hairline); }
 .now-hero h1 { font-size: clamp(40px, 5.5vw, 72px); letter-spacing: -0.04em; line-height: 0.98; font-weight: 500; margin: 16px 0 20px; }
 .now-hero .sub { color: var(--text-2); font-size: 18px; line-height: 1.55; }
@@ -601,7 +601,7 @@ p { margin: 0; }
   .article-cover .article-cover-img { aspect-ratio: 4 / 3; min-height: 360px; }
   .article-cover .overlay { padding-bottom: 32px; }
 }
-.article-body { max-width: 960px; margin: 0 auto; padding: 96px var(--container-pad); font-family: var(--font-serif); }
+.article-body { max-width: 1020px; margin: 0 auto; padding: 96px var(--container-pad); font-family: var(--font-serif); }
 .article-body p { font-size: 19px; line-height: 1.8; color: var(--text); margin-bottom: 24px; font-weight: 400; }
 .article-body p:first-of-type::first-letter {
   font-family: var(--font-serif); float: left; font-size: 86px; line-height: 0.85;
