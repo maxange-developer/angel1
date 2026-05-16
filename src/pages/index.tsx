@@ -22,7 +22,7 @@ const WORK_CARDS: WorkCard[] = [
     title: "Lore",
     tagline:
       "A multi-tenant RAG copilot with embeddable widget, streaming chat, and per-message cost tracking — shipped end-to-end in nine days.",
-    hero: "/images/work/ai-support-dashboard-cover.webp",
+    hero: "/images/work/lore-cover.webp",
     chips: ["FEATURED", "AI MVP FULL · 3 WEEKS"],
     stack: ["NEXT.JS", "SUPABASE", "CLAUDE", "PGVECTOR"],
     stats: [
