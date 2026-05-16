@@ -31,7 +31,12 @@ interface JournalSlugProps {
 
 const MDX_COMPONENTS = {
   blockquote: (props: React.HTMLAttributes<HTMLQuoteElement>) => (
-    <Reveal as="blockquote" variant="pull-quote" className="article-pull" {...(props as object)} />
+    <Reveal
+      as="blockquote"
+      variant="pull-quote"
+      className="article-pull"
+      {...(props as object)}
+    />
   ),
 };
 
@@ -60,7 +65,7 @@ export default function JournalSlug({
               alt={fm.title}
               fill
               sizes="100vw"
-              style={{ objectFit: "cover", objectPosition: "center 45%" }}
+              style={{ objectFit: "cover", objectPosition: "center 40%" }}
               priority
             />
           )}
@@ -77,9 +82,7 @@ export default function JournalSlug({
               <span>{fm.readTime}</span>
               <span>{fm.date}</span>
             </div>
-            <div className="byline">
-              By Massimiliano Angelone — Tenerife
-            </div>
+            <div className="byline">By Massimiliano Angelone — Tenerife</div>
           </div>
         </div>
       </div>
@@ -94,9 +97,7 @@ export default function JournalSlug({
         <div className="article-footer">
           <div className="container">
             <span className="eyebrow">Continue exploring</span>
-            <h3>
-              Continue reading
-            </h3>
+            <h3>Continue reading</h3>
             <Reveal className="grid" as="div" variant="stagger">
               {related.map((post) => (
                 <Link
