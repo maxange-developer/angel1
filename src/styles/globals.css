@@ -395,7 +395,7 @@ p { margin: 0; }
 .case-stat .k { margin-top: 16px; font-size: 14px; color: var(--text-2); line-height: 1.5; max-width: 240px; }
 
 /* ─── Case Study body layout ─── */
-.case-body-wrap { display: flex; flex-direction: row; gap: 64px; padding: 48px 0 140px; width: 100%; align-items: flex-start; }
+.case-body-wrap { display: flex; flex-direction: row; gap: 64px; padding-top: 48px; padding-bottom: 140px; width: 100%; align-items: flex-start; }
 .case-body-wrap > * { min-width: 0; }
 .case-body { flex: 1; width: 100%; max-width: none; }
 .case-toc { position: sticky; top: 96px; align-self: start; width: 200px; flex-shrink: 0; }
