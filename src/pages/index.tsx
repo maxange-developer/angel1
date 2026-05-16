@@ -1,29 +1,79 @@
-import type { GetStaticProps } from "next";
 import Link from "next/link";
 import Image from "next/image";
 import SEO from "@/components/SEO";
 import Reveal from "@/components/Reveal";
-import { getAllWorkPosts } from "@/lib/mdx";
 import { useCountUp } from "@/hooks/useCountUp";
 import Testimonial from "@/components/Testimonial";
 import PageBreak from "@/components/PageBreak";
 
-interface WorkPreview {
+interface WorkCard {
   slug: string;
   title: string;
   tagline: string;
-  package: string;
-  date: string;
-  client: string;
-  hero: string | null;
-  stats: Array<{ label: string; value: string }> | null;
+  hero: string;
+  chips: string[];
   stack: string[];
-  featured: boolean;
+  stats: Array<{ k: string; v: string }>;
 }
 
-interface HomeProps {
-  featuredWork: WorkPreview[];
-}
+const WORK_CARDS: WorkCard[] = [
+  {
+    slug: "01-lore",
+    title: "Lore",
+    tagline:
+      "A multi-tenant RAG copilot with embeddable widget, streaming chat, and per-message cost tracking — shipped end-to-end in nine days.",
+    hero: "/images/work/ai-support-dashboard-cover.webp",
+    chips: ["FEATURED", "AI MVP FULL · 3 WEEKS"],
+    stack: ["NEXT.JS", "SUPABASE", "CLAUDE", "PGVECTOR"],
+    stats: [
+      { k: "Response", v: "< 800 ms" },
+      { k: "Auto-resolve", v: "64%" },
+      { k: "Per-tenant", v: "< $2 / mo" },
+    ],
+  },
+  {
+    slug: "02-email-triage",
+    title: "Email Triage Tool",
+    tagline:
+      "A Gmail copilot that classifies, prioritizes, and drafts replies across multiple inboxes — with localized analytics in three languages.",
+    hero: "/images/work/email-triage-cover.webp",
+    chips: ["AI MVP LITE · 2 WEEKS"],
+    stack: ["NEXT.JS 16", "REACT 19", "NEXTAUTH", "GMAIL API"],
+    stats: [
+      { k: "Accounts", v: "Multi" },
+      { k: "Locales", v: "IT · EN · ES" },
+      { k: "Surface", v: "Web app" },
+    ],
+  },
+  {
+    slug: "03-angel1-mvp-toolkit",
+    title: "angel1-mvp-toolkit",
+    tagline:
+      "A CLI that scaffolds production-ready Next.js + Supabase + multi-provider AI apps in under two minutes — extracted from the workflow I run on every engagement.",
+    hero: "/images/work/angel1-mvp-toolkit-cover.webp",
+    chips: ["OPEN SOURCE · NPM"],
+    stack: ["TYPESCRIPT", "NODE.JS", "NPM"],
+    stats: [
+      { k: "Version", v: "v1.0.0" },
+      { k: "Setup", v: "~90s" },
+      { k: "Templates", v: "~33" },
+    ],
+  },
+  {
+    slug: "04-angel1-rag-eval",
+    title: "angel1-rag-eval",
+    tagline:
+      "A companion CLI that measures whether your RAG pipeline actually works — retrieval precision, faithfulness, correctness, multi-provider judge LLM.",
+    hero: "/images/work/angel1-rag-eval-cover.webp",
+    chips: ["OPEN SOURCE · NPM"],
+    stack: ["TYPESCRIPT", "ANTHROPIC", "OPENAI"],
+    stats: [
+      { k: "Version", v: "v1.0.0" },
+      { k: "Judges", v: "2" },
+      { k: "Dimensions", v: "3" },
+    ],
+  },
+];
 
 const SVC_CARDS = [
   {
@@ -86,10 +136,7 @@ function StatCounter({
   );
 }
 
-export default function Home({ featuredWork }: HomeProps) {
-  const featured = featuredWork.find((w) => w.featured) ?? featuredWork[0];
-  const side = featuredWork.filter((w) => w !== featured).slice(0, 3);
-
+export default function Home() {
   return (
     <>
       <SEO page="home" canonicalPath="/" />
@@ -288,103 +335,67 @@ export default function Home({ featuredWork }: HomeProps) {
       </div>
 
       {/* SELECTED WORK */}
-      {featured && (
-        <div className="container sec" style={{ paddingTop: 0 }}>
-          <Reveal className="sec-head" as="div" variant="fade-up">
-            <span className="eyebrow acc">02 / SELECTED WORK</span>
-            <div>
-              <h2>Recent work.</h2>
-              <p className="sub">
-                Recent work shipped end-to-end. Same person designing,
-                building, deploying. That&apos;s the multiplier.
-              </p>
-            </div>
-          </Reveal>
+      <div className="container sec" style={{ paddingTop: 0 }}>
+        <Reveal className="sec-head" as="div" variant="fade-up">
+          <span className="eyebrow acc">02 / SELECTED WORK</span>
+          <div>
+            <h2>Recent work.</h2>
+            <p className="sub">
+              Recent work shipped end-to-end. Same person designing,
+              building, deploying. That&apos;s the multiplier.
+            </p>
+          </div>
+        </Reveal>
 
-          <Reveal className="work-asym" as="div" variant="stagger">
-            {/* Featured project */}
-            <div style={{ gridRow: "span 2" }}>
-              <Link
-                href={`/work/${featured.slug}`}
-                className="card feat work-feat"
-              >
-                <div className="img-ph">
-                  {featured.hero && (
-                    <Image
-                      src={featured.hero}
-                      alt={featured.title}
-                      fill
-                      sizes="(max-width: 1024px) 100vw, 700px"
-                      style={{ objectFit: "cover" }}
-                    />
-                  )}
-                </div>
-                <div className="body">
-                  <div className="meta-line">
-                    <span className="chip">FEATURED · {featured.date}</span>
-                    <span className="chip">
-                      {featured.package.toUpperCase()}
+        <Reveal className="work-asym" as="div" variant="stagger">
+          {WORK_CARDS.map((w) => (
+            <Link
+              key={w.slug}
+              href={`/work/${w.slug}`}
+              className="card work-card"
+            >
+              <div className="img-ph">
+                <Image
+                  src={w.hero}
+                  alt={w.title}
+                  fill
+                  sizes="(max-width: 1024px) 100vw, 50vw"
+                  style={{ objectFit: "cover" }}
+                />
+              </div>
+              <div className="body">
+                <div className="meta-line">
+                  {w.chips.map((c) => (
+                    <span key={c} className="chip">
+                      {c}
                     </span>
-                  </div>
-                  <h3>{featured.title}</h3>
-                  <p className="tagline">{featured.tagline}</p>
-                  {featured.stack && featured.stack.length > 0 && (
-                    <div className="stack">
-                      {featured.stack.slice(0, 4).map((s) => (
-                        <span key={s} className="chip">
-                          {s.toUpperCase()}
-                        </span>
-                      ))}
-                    </div>
-                  )}
-                  {featured.stats && featured.stats.length > 0 && (
-                    <div className="stat-row">
-                      {featured.stats.slice(0, 3).map((stat) => (
-                        <div key={stat.label} className="stat">
-                          <div className="k">{stat.label}</div>
-                          <div className="v">{stat.value}</div>
-                        </div>
-                      ))}
-                    </div>
-                  )}
-                  <span className="link-acc read">
-                    Read case study <span>→</span>
-                  </span>
+                  ))}
                 </div>
-              </Link>
-            </div>
-
-            {/* Side projects */}
-            <div className="work-side-col">
-              {side.map((w) => (
-                <Link
-                  key={w.slug}
-                  href={`/work/${w.slug}`}
-                  className="card work-side"
-                >
-                  <div className="img-ph">
-                    {w.hero && (
-                      <Image
-                        src={w.hero}
-                        alt={w.title}
-                        fill
-                        sizes="400px"
-                        style={{ objectFit: "cover" }}
-                      />
-                    )}
-                  </div>
-                  <h4>{w.title}</h4>
-                  <p className="tag">{w.tagline}</p>
-                  <div className="meta">
-                    <span>{w.package.toUpperCase()}</span>
-                    <span>{w.date}</span>
-                  </div>
-                </Link>
-              ))}
-            </div>
-          </Reveal>
-        </div>
-      )}
+                <h3>{w.title}</h3>
+                <p className="tagline">{w.tagline}</p>
+                <div className="stack">
+                  {w.stack.map((s) => (
+                    <span key={s} className="chip">
+                      {s}
+                    </span>
+                  ))}
+                </div>
+                <div className="stat-row">
+                  {w.stats.map((stat) => (
+                    <div key={stat.k} className="stat">
+                      <div className="k">{stat.k}</div>
+                      <div className="v">{stat.v}</div>
+                    </div>
+                  ))}
+                </div>
+                <span className="link-acc read">
+                  Read case study <span>→</span>
+                </span>
+              </div>
+            </Link>
+          ))}
+        </Reveal>
+      </div>
 
       {/* TESTIMONIAL */}
       <Testimonial
@@ -452,20 +463,3 @@ export default function Home({ featuredWork }: HomeProps) {
   );
 }
 
-export const getStaticProps: GetStaticProps = async () => {
-  const posts = getAllWorkPosts();
-  const featuredWork: WorkPreview[] = posts.map((p) => ({
-    slug: p.slug,
-    title: p.frontmatter.title,
-    tagline: p.frontmatter.tagline,
-    package: p.frontmatter.package,
-    date: p.frontmatter.date,
-    client: p.frontmatter.client,
-    hero: p.frontmatter.hero ?? null,
-    stats: p.frontmatter.stats ?? null,
-    stack: p.frontmatter.stack ?? [],
-    featured: p.frontmatter.featured ?? false,
-  }));
-
-  return { props: { featuredWork } };
-};
