@@ -179,14 +179,23 @@ export default function WorkSlug({
       {fm.hero && (
         <div className="case-cover">
           <div className="img-ph">
-            <Image
-              src={fm.hero}
-              alt={fm.title}
-              fill
-              sizes="100vw"
-              style={{ objectFit: "cover" }}
-              priority
-            />
+            {fm.heroFull?.endsWith(".svg") ? (
+              // eslint-disable-next-line @next/next/no-img-element
+              <img
+                src={fm.heroFull}
+                alt={fm.title}
+                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+              />
+            ) : (
+              <Image
+                src={fm.heroFull ?? fm.hero}
+                alt={fm.title}
+                fill
+                sizes="100vw"
+                style={{ objectFit: "cover" }}
+                priority
+              />
+            )}
           </div>
         </div>
       )}
@@ -290,7 +299,7 @@ export const getStaticProps: GetStaticProps = async ({ params }) => {
       };
       return related;
     })
-    .slice(0, 2);
+    .slice(0, 3);
 
   return {
     props: {

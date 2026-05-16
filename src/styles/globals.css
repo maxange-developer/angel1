@@ -464,7 +464,7 @@ p { margin: 0; }
 .case-related { padding: 80px 0 140px; border-top: 1px solid var(--hairline); }
 .case-related .lbl { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; color: var(--text-3); text-transform: uppercase; margin-bottom: 16px; }
 .case-related h2 { font-size: 36px; letter-spacing: -0.035em; font-weight: 500; margin-bottom: 48px; }
-.case-related .grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 16px; max-width: 880px; }
+.case-related .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; max-width: 1200px; }
 .related-card .img-ph { aspect-ratio: 16/10; border-radius: 12px 12px 0 0; border-bottom: 0; }
 .related-card .body { padding: 22px 24px 26px; }
 .related-card h3 { font-size: 19px; letter-spacing: -0.02em; font-weight: 500; }

@@ -62,7 +62,7 @@ export default function About() {
         <div className="grid">
           <div className="img-ph photo mount-hero-photo">
             <Image
-              src="/images/me-15.webp"
+              src="/images/me-tnf.webp"
               alt="Massimiliano Angelone"
               fill
               sizes="(max-width: 768px) 100vw, 480px"

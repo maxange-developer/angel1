@@ -15,6 +15,7 @@ export interface WorkFrontmatter {
   color: "blue" | "pink" | "green";
   featured?: boolean;
   hero?: string;
+  heroFull?: string;
   demo?: string;
   github?: string;
   stats?: Array<{ label: string; value: string }>;

@@ -76,3 +76,9 @@ lighthouse-reports/
 scripts/mobile-audit-screenshots/
 scripts/responsive-audit/screenshots/
 scripts/work-covers/output/
+
+# master image sources (kept locally, regenerate webp via scripts)
+public/images/*.jpeg
+public/images/*.jpg
+public/images/*.JPEG
+public/images/*.JPG
