@@ -30,8 +30,8 @@ const SEO_DATA: Record<string, { title: string; description: string; keywords: s
   },
   contact: {
     title: "Contact — Massimiliano Angelone",
-    description: "Start a project, book a call, or just say hello.",
-    keywords: "contact, hire, freelance, book a call, start a project",
+    description: "Start a project or just say hello.",
+    keywords: "contact, hire, freelance, start a project",
   },
   now: {
     title: "Now — Massimiliano Angelone",

@@ -375,9 +375,6 @@ export default function Services() {
             <Link href="/contact" className="btn btn-primary">
               Start a custom brief <span className="arr">→</span>
             </Link>
-            <Link href="/contact" className="btn btn-secondary">
-              Book a 15-min call
-            </Link>
           </div>
         </div>
       </section>
