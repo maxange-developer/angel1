@@ -9,13 +9,13 @@ const JOBS = [
   {
     input: path.join(INPUT, 'lore-cover.png'),
     output: path.join(OUT, 'lore-cover.webp'),
-    urlText: 'ai-support-dashboard-six.vercel.app',
+    urlText: 'lore.massimilianoangelone.com',
     label: 'lore',
   },
   {
     input: path.join(INPUT, 'email-triage-cover.png'),
     output: path.join(OUT, 'email-triage-cover.webp'),
-    urlText: 'email-triage-lime.vercel.app',
+    urlText: 'email-triage.massimilianoangelone.com',
     label: 'email-triage',
   },
 ];

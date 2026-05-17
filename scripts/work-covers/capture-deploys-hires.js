@@ -9,13 +9,15 @@ if (!fs.existsSync(OUT_DIR)) fs.mkdirSync(OUT_DIR, { recursive: true });
 const TARGETS = [
   {
     name: 'lore-cover',
-    url: 'https://ai-support-dashboard-six.vercel.app',
+    url: 'https://lore.massimilianoangelone.com',
     waitFor: 'networkidle',
-    afterLoad: async () => {},
+    afterLoad: async (_page) => {
+      await _page.waitForTimeout(4000);
+    },
   },
   {
     name: 'email-triage-cover',
-    url: 'https://email-triage-lime.vercel.app',
+    url: 'https://email-triage.massimilianoangelone.com',
     waitFor: 'networkidle',
     afterLoad: async (page) => {
       try {
@@ -26,11 +28,12 @@ const TARGETS = [
         if (demoBtn) {
           await demoBtn.click();
           await page.waitForLoadState('networkidle', { timeout: 15000 });
-          await page.waitForTimeout(2500);
+          await page.waitForTimeout(4000);
           console.log('  → entered demo inbox');
         }
       } catch (e) {
         console.log('  → demo button not found, screenshotting login page');
+        await page.waitForTimeout(4000);
       }
     },
   },
@@ -52,8 +55,6 @@ const TARGETS = [
       await page.waitForTimeout(2000);
 
       await t.afterLoad(page);
-
-      await page.waitForTimeout(1500);
 
       const filepath = path.join(OUT_DIR, `${t.name}.png`);
       await page.screenshot({
