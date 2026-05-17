@@ -40,7 +40,7 @@ const MDX_COMPONENTS = {
   blockquote: (props: React.HTMLAttributes<HTMLQuoteElement>) => (
     <Reveal
       as="blockquote"
-      variant="pull-quote"
+      variant="fade-up"
       className="article-pull"
       {...(props as object)}
     />
