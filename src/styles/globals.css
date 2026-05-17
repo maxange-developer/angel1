@@ -385,7 +385,7 @@ p { margin: 0; }
 .case-hero .meta .v { font-size: 14px; margin-top: 6px; letter-spacing: -0.005em; }
 .case-hero .ctas { margin-top: 32px; display: flex; gap: 12px; }
 
-.case-cover .img-ph { aspect-ratio: 21/9; border-radius: 0; border-left: 0; border-right: 0; }
+.case-cover .img-ph { aspect-ratio: 16/10; border-radius: 0; border-left: 0; border-right: 0; }
 
 .case-stats { padding: 96px 0; }
 .case-stats .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
