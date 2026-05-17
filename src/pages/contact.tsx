@@ -58,7 +58,7 @@ export default function Contact() {
           <p className="eyebrow">Get in touch</p>
           <h1>Start a project</h1>
           <p className="q">
-            Tell me what you&apos;re building. I&apos;ll confirm scope, timeline, and price within 48 hours.
+            Tell me what you&apos;re building. I read every message — you&apos;ll hear back within 48 hours.
           </p>
         </div>
       </section>
@@ -143,9 +143,9 @@ export default function Contact() {
             <div className="contact-info-block">
               <p className="eyebrow">Expect</p>
               <ul>
-                <li>Response within 48h</li>
-                <li>Scope call (30 min)</li>
-                <li>Fixed-price proposal</li>
+                <li>Reply within 48 hours</li>
+                <li>Discovery call — free, 30 minutes</li>
+                <li>Fixed-price proposal, no surprises</li>
               </ul>
             </div>
           </div>

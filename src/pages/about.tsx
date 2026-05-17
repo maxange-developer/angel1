@@ -79,12 +79,12 @@ const TIMELINE: TimelineRow[] = [
     pivot: true,
   },
   {
-    yr: "2026",
+    yr: "May 2026",
     ttl: "angel1-mvp-toolkit v1.0 on npm.",
     desc: "Released v1.0 on npm. The scaffolding I'd been copying project-to-project, finally extracted into a tool.",
   },
   {
-    yr: "2026",
+    yr: "May 2026",
     ttl: "angel1-rag-eval v1.0 on npm.",
     desc: "The second tool. Measures whether a RAG pipeline actually works — retrieval, faithfulness, correctness.",
   },
@@ -110,7 +110,7 @@ const CURRENTLY: CurrentlyItem[] = [
   {
     k: "Other",
     v: "Long walks. Reading. Buddhist philosophy.",
-    x: "Reading Gianluca Gotto. Long walks. Building toward Bali by end of June — the next chapter.",
+    x: "Reading Gianluca Gotto. Long walks. Building toward Bali in early July 2026 — the next chapter.",
   },
 ];
 

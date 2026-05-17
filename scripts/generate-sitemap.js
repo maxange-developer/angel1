@@ -13,7 +13,6 @@ const staticPages = [
   { loc: "/journal", priority: "0.9", changefreq: "weekly" },
   { loc: "/contact", priority: "0.8", changefreq: "monthly" },
   { loc: "/now", priority: "0.6", changefreq: "weekly" },
-  { loc: "/uses", priority: "0.5", changefreq: "monthly" },
 ];
 
 // Work case studies (slugs derived from content/work/ directory)

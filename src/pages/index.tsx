@@ -150,7 +150,7 @@ export default function Home() {
               AI-Enhanced MVP Developer · Available now
             </span>
             <h1>
-              Ship AI-powered
+              Ship AI-Enhanced
               <br />
               products in <span className="q">weeks,</span>
               <br />

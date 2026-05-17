@@ -5,7 +5,7 @@ const BASE_URL = "https://massimilianoangelone.com";
 const SEO_DATA: Record<string, { title: string; description: string; keywords: string }> = {
   home: {
     title: "Massimiliano Angelone — AI-Enhanced MVP Developer",
-    description: "One engineer, fixed price, production-grade. AI-powered MVPs for founders and scale-ups. Ship in weeks, not months.",
+    description: "One engineer, fixed price, production-grade. AI-Enhanced MVPs for founders and scale-ups worldwide. Ship in weeks, not months.",
     keywords: "AI developer, MVP development, Next.js, TypeScript, freelance developer, production-grade, fixed price",
   },
   work: {
