@@ -555,12 +555,14 @@ p {
   cursor: pointer;
   align-items: center;
 }
+@media (max-width: 1024px) {
+  .nav-hamburger {
+    display: flex;
+  }
+}
 @media (max-width: 768px) {
   .nav-cta {
     display: none;
-  }
-  .nav-hamburger {
-    display: flex;
   }
 }
 

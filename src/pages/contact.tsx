@@ -8,18 +8,17 @@ import Reveal from "@/components/Reveal";
 const schema = z.object({
   name: z.string().min(2, "Name is required"),
   email: z.string().email("Valid email required"),
-  projectType: z.enum(["ai-sprint", "mvp-lite", "mvp-full", "custom", "other"]),
+  projectType: z.enum(["validation", "launch", "scale", "custom"]),
   message: z.string().min(20, "Please describe your project (min 20 chars)"),
 });
 
 type FormData = z.infer<typeof schema>;
 
 const PROJECT_TYPES = [
-  { value: "ai-sprint", label: "AI Sprint — €2,500" },
-  { value: "mvp-lite", label: "MVP Lite — €5,000" },
-  { value: "mvp-full", label: "MVP Full — €9,500" },
-  { value: "custom", label: "Custom scope" },
-  { value: "other", label: "Just exploring" },
+  { value: "validation", label: "Validation MVP — $1,500" },
+  { value: "launch", label: "Launch MVP — $3,500" },
+  { value: "scale", label: "Scale MVP — $7,500" },
+  { value: "custom", label: "Custom / not sure yet" },
 ];
 
 export default function Contact() {
