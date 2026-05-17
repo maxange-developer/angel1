@@ -22,10 +22,15 @@ const TIMELINE: TimelineRow[] = [
     desc: "Missed diagnosis. Both eardrums perforated. Twelve silent years began here.",
   },
   {
-    yr: "2015",
+    yr: "2014",
     ttl: "Third surgery succeeds. I hear clearly.",
-    desc: "Third attempt. Dr. Trabalzini's cartilage technique held. The first time I heard the world clearly was at fourteen.",
+    desc: "Third attempt. Dr. Trabalzini's experimental cartilage technique held — first patient in Italy. First time I heard the world clearly, at thirteen.",
     pivot: true,
+  },
+  {
+    yr: "2015",
+    ttl: "Fourth surgery. Both ears working.",
+    desc: "Same technique on the other ear, the following August. At fourteen, the world stopped being a guess.",
   },
   {
     yr: "2017",

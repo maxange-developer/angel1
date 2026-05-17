@@ -23,7 +23,7 @@ const WORK_CARDS: WorkCard[] = [
     tagline:
       "A multi-tenant RAG copilot with embeddable widget, streaming chat, and per-message cost tracking — shipped end-to-end in nine days.",
     hero: "/images/work/lore-cover.webp",
-    chips: ["FEATURED", "AI MVP FULL · 3 WEEKS"],
+    chips: ["FEATURED", "RAG COPILOT · 9 DAYS"],
     stack: ["NEXT.JS", "SUPABASE", "CLAUDE", "PGVECTOR"],
     stats: [
       { k: "Response", v: "< 800 ms" },
@@ -37,7 +37,7 @@ const WORK_CARDS: WorkCard[] = [
     tagline:
       "A Gmail copilot that classifies, prioritizes, and drafts replies across multiple inboxes — with localized analytics in three languages.",
     hero: "/images/work/email-triage-cover.webp",
-    chips: ["AI MVP LITE · 2 WEEKS"],
+    chips: ["GMAIL COPILOT · 9 DAYS"],
     stack: ["NEXT.JS 16", "REACT 19", "NEXTAUTH", "GMAIL API"],
     stats: [
       { k: "Accounts", v: "Multi" },
@@ -77,41 +77,41 @@ const WORK_CARDS: WorkCard[] = [
 
 const SVC_CARDS = [
   {
-    name: "AI Sprint",
-    cur: "€",
-    price: "2,500",
-    duration: "1 week",
-    desc: "A working prototype, end of week. For founders who need to put something in front of users on Monday.",
+    name: "Validation MVP",
+    cur: "$",
+    price: "1,500",
+    duration: "5–7 days",
+    desc: "A working prototype with one core AI feature, live on your domain. For founders who need to put something in front of users this week.",
     deliv: [
-      "Scope locked day 1",
-      "Single core feature, end-to-end",
-      "Deploy + handover doc",
+      "1 AI feature, end-to-end",
+      "Auth + database (Supabase)",
+      "Custom domain + 14-day support",
     ],
     featured: false,
   },
   {
-    name: "AI MVP Lite",
-    cur: "€",
-    price: "5,000",
-    duration: "2 weeks",
-    desc: "A real MVP — auth, data, AI, payments-ready. The version you raise on. The version you sell.",
+    name: "Launch MVP",
+    cur: "$",
+    price: "3,500",
+    duration: "2–3 weeks",
+    desc: "Prototype to revenue. Onboarding, Stripe billing, analytics — the version you invoice the first paying customer for.",
     deliv: [
-      "Full Supabase schema + RLS",
-      "AI integration (Claude / OpenAI)",
-      "3 weeks post-launch support",
+      "3–5 AI features + eval harness",
+      "Stripe billing + onboarding flow",
+      "Admin dashboard + 30-day support",
     ],
     featured: true,
   },
   {
-    name: "AI MVP Full",
-    cur: "€",
-    price: "9,500",
-    duration: "4 weeks",
-    desc: "Production-grade. Multi-tenant, observability, the architecture that survives the first 1,000 paying users.",
+    name: "Scale MVP",
+    cur: "$",
+    price: "7,500",
+    duration: "4–5 weeks",
+    desc: "Production system for 1,000 users. Multi-tenant, observability, cost controls — ready for Series A diligence.",
     deliv: [
-      "Multi-tenant + RBAC + billing",
-      "RAG + agent pipelines, evaluated",
-      "6 weeks post-launch support",
+      "Multi-tenant + RBAC",
+      "RAG + agents (full eval harness)",
+      "Observability + 60-day support",
     ],
     featured: false,
   },
@@ -429,7 +429,7 @@ export default function Home() {
             </h2>
             <p>
               Born in Ancona in 2001. Twelve silent years before a surgery that
-              changed everything at 14. Self-taught through Start2Impact. Now
+              changed everything at 13. Self-taught through Start2Impact. Now
               building AI MVPs for founders worldwide from Tenerife — and
               heading to Bali.
             </p>
@@ -451,7 +451,7 @@ export default function Home() {
             <br />
             worth shipping?
           </h2>
-          <p>Available now. Fixed price. No retainer.</p>
+          <p>Available now. Fixed price.</p>
           <div className="ctas">
             <Link href="/contact" className="btn btn-primary">
               Start a project <span className="arr">→</span>
