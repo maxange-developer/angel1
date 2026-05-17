@@ -11,21 +11,83 @@ interface TimelineRow {
 }
 
 const TIMELINE: TimelineRow[] = [
-  { yr: "2001", ttl: "Born in Ancona, Italy.", desc: "Ancona. Family, the people who didn't give up later." },
-  { yr: "2003", ttl: "Diagnosis: profound hearing damage.", desc: "Missed diagnosis. Both eardrums perforated. Twelve silent years began here." },
-  { yr: "2015", ttl: "Third surgery succeeds. I hear clearly.", desc: "Third attempt. Dr. Trabalzini's cartilage technique held. The first time I heard the world clearly was at fourteen.", pivot: true },
-  { yr: "2017", ttl: "First flight, Edinburgh.", desc: "After the surgery, finally cleared to fly. First trip abroad." },
-  { yr: "2022", ttl: "Start2Impact University.", desc: "Start2Impact's Full Stack track. React, Angular, Node.js. Code stopped being a hobby." },
-  { yr: "Sep 2023", ttl: "First trip to Tenerife.", desc: "One month, end to end. Left with the decision already made — I'd come back to stay." },
-  { yr: "Jan 2024", ttl: "Altesia · Fileni Group.", desc: "Legacy VB6 → Angular + .NET. First taste of enterprise scale, real users, real consequences." },
-  { yr: "Sep 2024", ttl: "Barcelona reset.", desc: "A week with Miki. Walking, cold water, hours of talking. Came back different." },
-  { yr: "Dec 2024", ttl: "Vietnam, Phu Quoc.", desc: "20 days, alone, on the other side of the world. Buddhist temples, slow mornings, the kind of silence you can't manufacture at home." },
-  { yr: "Jan 2025", ttl: "Airplay Control.", desc: "Broadcasting systems engineer. RAI, La7, other networks. Code that goes live every night, on millions of TVs." },
-  { yr: "Apr 2025", ttl: "Freelance · Angel1.", desc: "Angel1 begins. First Freelancer.com clients, first invoices in my own name." },
-  { yr: "Oct 2025", ttl: "Spain Roadtrip.", desc: "10 days, Barcelona to Cadiz. Coast roads, no agenda. The trip before the move." },
-  { yr: "Oct 2025", ttl: "Moved to Tenerife.", desc: "Tenerife, this time to stay. The decision from 2023 became address, schedule, daily walks to the sea.", pivot: true },
-  { yr: "2026", ttl: "angel1-mvp-toolkit v1.0 on npm.", desc: "Released v1.0 on npm. The scaffolding I'd been copying project-to-project, finally extracted into a tool." },
-  { yr: "2026", ttl: "angel1-rag-eval v1.0 on npm.", desc: "The second tool. Measures whether a RAG pipeline actually works — retrieval, faithfulness, correctness." },
+  {
+    yr: "2001",
+    ttl: "Born in Ancona, Italy.",
+    desc: "Ancona. Family, the people who didn't give up later.",
+  },
+  {
+    yr: "2003",
+    ttl: "Diagnosis: profound hearing damage.",
+    desc: "Missed diagnosis. Both eardrums perforated. Twelve silent years began here.",
+  },
+  {
+    yr: "2015",
+    ttl: "Third surgery succeeds. I hear clearly.",
+    desc: "Third attempt. Dr. Trabalzini's cartilage technique held. The first time I heard the world clearly was at fourteen.",
+    pivot: true,
+  },
+  {
+    yr: "2017",
+    ttl: "First flight, Edinburgh.",
+    desc: "After the surgery, finally cleared to fly. First trip abroad.",
+  },
+  {
+    yr: "2022",
+    ttl: "Start2Impact University.",
+    desc: "Start2Impact's Full Stack track. React, Angular, Node.js. Code stopped being a hobby.",
+  },
+  {
+    yr: "Sep 2023",
+    ttl: "First trip to Tenerife.",
+    desc: "One month, end to end. Left with the decision already made — I'd come back to stay.",
+  },
+  {
+    yr: "Jan 2024",
+    ttl: "Altesia · Fileni Group.",
+    desc: "Legacy VB6 → Angular + .NET. First taste of enterprise scale, real users, real consequences.",
+  },
+  {
+    yr: "Sep 2024",
+    ttl: "Barcelona reset.",
+    desc: "A week with Miki. Walking, cold water, hours of talking. Came back different.",
+  },
+  {
+    yr: "Dec 2024",
+    ttl: "Vietnam, Phu Quoc.",
+    desc: "20 days, alone, on the other side of the world. Buddhist temples, slow mornings, the kind of silence you can't manufacture at home.",
+  },
+  {
+    yr: "Jan 2025",
+    ttl: "Airplay Control.",
+    desc: "Broadcasting systems engineer. RAI, La7, other networks. Code that goes live every night, on millions of TVs.",
+  },
+  {
+    yr: "Apr 2025",
+    ttl: "Freelance · Angel1.",
+    desc: "Angel1 begins. First Freelancer.com clients, first invoices in my own name.",
+  },
+  {
+    yr: "Oct 2025",
+    ttl: "Spain Roadtrip.",
+    desc: "10 days, Barcelona to Cadiz. Coast roads, no agenda. The trip before the move.",
+  },
+  {
+    yr: "Oct 2025",
+    ttl: "Moved to Tenerife.",
+    desc: "Tenerife, this time to stay. The decision from 2023 became address, schedule, daily walks to the sea.",
+    pivot: true,
+  },
+  {
+    yr: "2026",
+    ttl: "angel1-mvp-toolkit v1.0 on npm.",
+    desc: "Released v1.0 on npm. The scaffolding I'd been copying project-to-project, finally extracted into a tool.",
+  },
+  {
+    yr: "2026",
+    ttl: "angel1-rag-eval v1.0 on npm.",
+    desc: "The second tool. Measures whether a RAG pipeline actually works — retrieval, faithfulness, correctness.",
+  },
 ];
 
 interface CurrentlyItem {
@@ -67,23 +129,21 @@ export default function About() {
               fill
               sizes="(max-width: 768px) 100vw, 480px"
               quality={95}
-              style={{ objectFit: "cover", objectPosition: "center top" }}
+              style={{ objectFit: "cover", objectPosition: "center 30%" }}
               priority
             />
           </div>
           <div className="mount-stagger">
             <span className="eyebrow">About</span>
-            <span className="role">
-              AI-Enhanced MVP Developer
-            </span>
+            <span className="role">AI-Enhanced MVP Developer</span>
             <h1>
               Massimiliano
               <br />
               Angelone<span className="acc">.</span>
             </h1>
             <p className="lead">
-              Italian engineer, born in Ancona in 2001. Now building AI MVPs
-              for founders worldwide from Tenerife — and heading to Bali.
+              Italian engineer, born in Ancona in 2001. Now building AI MVPs for
+              founders worldwide from Tenerife — and heading to Bali.
             </p>
             <div className="cta-row">
               <Link href="/journal/the-long-road" className="link-acc">
@@ -99,9 +159,7 @@ export default function About() {
         <div className="tl-head">
           <span className="eyebrow acc">01 / TIMELINE</span>
           <div>
-            <h2>
-              Timeline
-            </h2>
+            <h2>Timeline</h2>
             <p className="sub">
               Twenty-four years compounding. The moments that shaped the
               engineer.
@@ -127,17 +185,12 @@ export default function About() {
       <Reveal className="container currently" as="div" variant="fade-up">
         <div className="curr-head">
           <span className="eyebrow acc">02 / CURRENTLY</span>
-          <h2>
-            Currently
-          </h2>
+          <h2>Currently</h2>
         </div>
 
         <Reveal className="curr-grid" as="div" variant="stagger">
           {CURRENTLY.map((item) => (
-            <div
-              key={item.k}
-              className="card curr-card"
-            >
+            <div key={item.k} className="card curr-card">
               <div className="k">{item.k}</div>
               <div className="v">{item.v}</div>
               <p className="x">{item.x}</p>
