@@ -34,8 +34,7 @@ export default function Now() {
           </p>
           <p>
             Going live this week. Booking client projects on Upwork and
-            Freelancer, plus selective direct outreach. Q3 2026 capacity opens
-            with this site.
+            Freelancer, plus selective direct outreach. Available now.
           </p>
           <p>
             If you&apos;re building something AI-native and want a single

@@ -5,61 +5,64 @@ import Reveal from "@/components/Reveal";
 
 const PACKAGES = [
   {
-    id: "sprint",
-    name: "AI Sprint",
-    cur: "€",
-    price: "2,500",
-    duration: "1 week",
+    id: "validation",
+    name: "Validation MVP",
+    cur: "$",
+    price: "1,500",
+    duration: "5–7 days",
     ideal:
-      "For founders who need a working prototype to put in front of users on Monday.",
+      "For founders with an AI idea who need a working prototype to test with real users this week. Outcome: a live webapp on your domain with one core AI feature, ready for investors or beta testers.",
     deliv: [
-      "Discovery, scope locked day 1",
-      "Single core AI feature, end-to-end",
-      "Next.js + Vercel deploy",
-      "Auth + DB scaffolding",
-      "Handover doc + 1 month support",
+      "Discovery call, scope locked day 1",
+      "1 AI feature end-to-end (chat / classification / generation / search)",
+      "Auth + database (Supabase)",
+      "Production deploy on custom domain",
+      "Documented codebase, fully owned by you",
+      "14 days post-launch support",
     ],
-    cta: "Start a Sprint",
+    cta: "Start a Validation MVP",
     btn: "btn-secondary",
     featured: false,
   },
   {
-    id: "lite",
-    name: "AI MVP Lite",
-    cur: "€",
-    price: "5,000",
-    duration: "2 weeks",
+    id: "launch",
+    name: "Launch MVP",
+    cur: "$",
+    price: "3,500",
+    duration: "2–3 weeks",
     ideal:
-      "A real MVP — auth, data, AI, payments-ready. The version you raise on. The version you sell.",
+      "For founders with first users who need to go from prototype to a real SaaS they can charge for. Outcome: a complete product with onboarding, billing, analytics, ready to invoice the first paying customer.",
     deliv: [
-      "Everything in AI Sprint, plus",
-      "Full Supabase schema + RLS",
-      "3–5 AI features, including RAG",
-      "Stripe billing scaffolding",
-      "Eval harness for AI quality",
-      "3 weeks post-launch support",
+      "Everything in Validation, plus:",
+      "3–5 AI features integrated (eval harness if RAG)",
+      "Onboarding flow + transactional emails",
+      "Stripe billing scaffolding (subscriptions or one-time)",
+      "Basic analytics + error monitoring",
+      "Admin dashboard for the founder",
+      "30 days post-launch support",
     ],
-    cta: "Start an MVP Lite",
+    cta: "Start a Launch MVP",
     btn: "btn-primary",
     featured: true,
   },
   {
-    id: "full",
-    name: "AI MVP Full",
-    cur: "€",
-    price: "9,500",
-    duration: "4 weeks",
+    id: "scale",
+    name: "Scale MVP",
+    cur: "$",
+    price: "7,500",
+    duration: "4–5 weeks",
     ideal:
-      "Production-grade. Multi-tenant, observability baked in, ready for the first 1,000 paying users.",
+      "For post-seed startups or B2B SaaS teams who need a production system handling 1,000 users. Outcome: a multi-tenant production system with observability and cost controls, ready for Series A diligence.",
     deliv: [
-      "Everything in MVP Lite, plus",
+      "Everything in Launch, plus:",
       "Multi-tenant + RBAC",
-      "RAG + agent pipelines, evaluated",
-      "Observability (Logfire / OTel)",
+      "RAG + agent pipelines with full eval harness",
+      "Observability (Logfire / OpenTelemetry)",
+      "Per-tenant cost tracking + rate limiting",
       "CI/CD + staging environment",
-      "6 weeks post-launch support",
+      "60 days post-launch support + handover walkthrough",
     ],
-    cta: "Start an MVP Full",
+    cta: "Start a Scale MVP",
     btn: "btn-secondary",
     featured: false,
   },
@@ -69,60 +72,102 @@ type CompareCell = boolean | string;
 
 interface CompareRow {
   feature: string;
-  sprint: CompareCell;
-  lite: CompareCell;
-  full: CompareCell;
+  validation: CompareCell;
+  launch: CompareCell;
+  scale: CompareCell;
 }
 
 const COMPARE_ROWS: CompareRow[] = [
-  { feature: "Timeline", sprint: "1 week", lite: "2 weeks", full: "4 weeks" },
-  { feature: "Investment", sprint: "€2,500", lite: "€5,000", full: "€9,500" },
-  { feature: "Discovery", sprint: true, lite: true, full: true },
-  { feature: "Auth + DB scaffolding", sprint: true, lite: true, full: true },
-  { feature: "AI features", sprint: "1 (core)", lite: "3–5", full: "5+" },
-  { feature: "RAG retrieval", sprint: false, lite: true, full: true },
-  { feature: "Stripe billing", sprint: false, lite: true, full: true },
-  { feature: "Evaluation harness", sprint: false, lite: true, full: true },
-  { feature: "Multi-tenant + RBAC", sprint: false, lite: false, full: true },
-  { feature: "Observability", sprint: false, lite: false, full: true },
-  { feature: "Post-launch support", sprint: "1 month", lite: "3 weeks", full: "6 weeks" },
+  { feature: "Timeline", validation: "5–7 days", launch: "2–3 weeks", scale: "4–5 weeks" },
+  { feature: "Investment", validation: "$1,500", launch: "$3,500", scale: "$7,500" },
+  { feature: "Discovery + scope lock", validation: true, launch: true, scale: true },
+  { feature: "Auth + database", validation: true, launch: true, scale: true },
+  { feature: "AI features", validation: "1 (core)", launch: "3–5", scale: "5+" },
+  { feature: "Custom domain + deploy", validation: true, launch: true, scale: true },
+  { feature: "Stripe billing", validation: false, launch: true, scale: true },
+  { feature: "Eval harness", validation: false, launch: "✓ (if RAG)", scale: true },
+  { feature: "Multi-tenant + RBAC", validation: false, launch: false, scale: true },
+  { feature: "Observability", validation: false, launch: false, scale: true },
+  { feature: "CI/CD + staging", validation: false, launch: false, scale: true },
+  { feature: "Post-launch support", validation: "14 days", launch: "30 days", scale: "60 days" },
+];
+
+const HOW_I_WORK = [
+  {
+    num: "01",
+    ttl: "Discovery",
+    timing: "Free · 30 min",
+    desc: "We define scope, success criteria, and deliverables. You leave with a written brief, even if we don't work together.",
+  },
+  {
+    num: "02",
+    ttl: "Kickoff",
+    timing: "50% deposit",
+    desc: "Scope locked in writing. Slack/Linear access. Daily async updates start from day one.",
+  },
+  {
+    num: "03",
+    ttl: "Build",
+    timing: "Daily updates",
+    desc: "Staging URL updated daily. You see real progress, not slide decks.",
+  },
+  {
+    num: "04",
+    ttl: "Launch",
+    timing: "50% on delivery",
+    desc: "Production deploy. Custom domain. Codebase walkthrough video. Full IP transfer on final invoice.",
+  },
+  {
+    num: "05",
+    ttl: "Support",
+    timing: "14–60 days",
+    desc: "Bug fixes, small tweaks, refinement. After that, optional retainer.",
+  },
 ];
 
 const RECORD = [
-  { v: "$5k+", k: "Earned", x: "Across Freelancer.com engagements." },
-  { v: "100%", k: "Job success", x: "All projects delivered on scope." },
-  { v: "5.0 ★", k: "Client rating", x: "Average on Freelancer.com." },
-  { v: "2", k: "Open-source npm", x: "@massiangelone/angel1-mvp-toolkit · @massiangelone/angel1-rag-eval." },
+  { v: "5.0 ★", k: "Rating", x: "Freelancer.com — 100% job success score." },
+  { v: "$5k+", k: "Earnings", x: "Verified across freelance engagements." },
+  { v: "2", k: "npm packages", x: "@massiangelone — open source, MIT licensed." },
+  { v: "2+ years", k: "Engineering", x: "Altesia, Airplay Control — broadcasting & enterprise." },
 ];
 
 const FAQ = [
   {
     q: "Have you actually shipped this for paying clients, or are the case studies demos?",
-    a: "Honest answer: the three projects on this site are portfolio engagements — I built them to production specs, not for paying tenants. The technical work is real: multi-tenant RLS, streaming chat, Gmail OAuth, cost tracking, all measurable in the running demos. What's missing is the messiness of an actual customer relationship — adversarial users, edge-case requests, support tickets I had to triage at 11pm. I'm transparent about that distinction, here and in proposals. Five thousand euros for a working MVP from someone who's shipped portfolio at production quality is a reasonable bet for a founder at your stage. Five thousand euros for an MVP from someone pretending to have ten enterprise clients isn't.",
+    a: "Honest answer: the projects on this site are portfolio engagements — I built them to production specs, not for paying tenants. The technical work is real: multi-tenant RLS, streaming chat, Gmail OAuth, cost tracking, all measurable in the running demos. What's missing is the messiness of an actual customer relationship — adversarial users, edge-case requests, support tickets at 11pm. I'm transparent about that distinction, here and in proposals. Real client engagements are covered by NDA; references are available on request.",
   },
   {
     q: "What does fixed-price actually mean?",
-    a: "Scope is locked on day one in a written brief that lists exactly what's in and what isn't. The price doesn't move unless you decide to add scope mid-engagement, in which case I'll come back with a written delta — never a surprise invoice. If something inside the agreed scope takes me longer than I estimated, that's mine to eat. I've eaten the cost on every project so far, and I expect to keep doing so on roughly one in three engagements — that's the cost of being good at estimation, not perfect.",
+    a: "Scope is locked on day one in a written brief that lists exactly what's in and what isn't. The price doesn't move unless you decide to add scope mid-engagement, in which case I'll come back with a written delta — never a surprise invoice. If something inside the agreed scope takes me longer than I estimated, that's mine to eat.",
   },
   {
     q: "Who owns the code, and what if I want another developer to take over later?",
-    a: "You own everything. On final invoice payment, full IP transfers to your company — source code, designs, infrastructure config, eval harness, the works. The repository moves to your organization's GitHub or wherever you keep code. I retain nothing except the right to mention the engagement on this site, and only if you give permission. Handover is built into the timeline of every package, not bolted on at the end: by week one I'm writing the architecture doc, and by delivery you have a runnable codebase that any competent Next.js developer can pick up without calling me. That's the test I optimize for.",
+    a: "You own everything. On final invoice payment, full IP transfers to your company — source code, designs, infrastructure config, eval harness, the works. The repository moves to your organization's GitHub. I retain nothing except the right to mention the engagement on this site, and only if you give permission. Handover is built into every timeline: by delivery you have a runnable codebase that any competent Next.js developer can pick up without calling me.",
   },
   {
     q: "How do we communicate during the project?",
-    a: "Async by default. Daily written updates Monday through Friday on Linear or Notion — whatever your team uses — with screenshots and short Loom videos when something needs visual context. One synchronous call per week, thirty minutes, on Zoom or Google Meet. Most clients tell me a week in that the daily writeup is more useful than the call. I'm based in Tenerife (GMT+1) and my calendar overlaps cleanly with European business hours in the morning and US East Coast in the afternoon. West Coast US: we'll need to find a window.",
+    a: "Async by default. Daily written updates Monday through Friday — with screenshots and short Loom videos when something needs visual context. One synchronous call per week, thirty minutes. I'm based in Tenerife (GMT+1): clean overlap with European business hours in the morning and US East Coast in the afternoon.",
   },
   {
     q: "What happens if the project goes wrong or I need to stop midway?",
-    a: "Two scenarios. If I deliver something that doesn't match the agreed brief, I fix it on my own time until it does — that's what fixed-price means. If you decide to stop the engagement midway for any reason, the terms depend on where we're working. On Upwork or Freelancer.com, the platform's milestone-based escrow handles it: you pay only for milestones already released, and you keep everything I've built up to that point. On direct private contracts, my standard MSA includes a kill-fee of fifteen percent of the remaining scope, plus the work completed — and you still keep everything I've built. Either way: no held-hostage repository, no surprise fees, clean exit on your terms. I've never had a project end this way, but the policy exists because I think you should always know exactly what happens before you sign.",
+    a: "If I deliver something that doesn't match the agreed brief, I fix it on my own time until it does. If you decide to stop midway, on Upwork or Freelancer.com the platform's milestone-based escrow handles it — you pay only for milestones already released and keep everything I've built. On direct contracts, my standard MSA includes a kill-fee of fifteen percent of remaining scope, plus work completed. Either way: no held-hostage repository, no surprise fees.",
   },
   {
     q: "What kinds of projects do you not take?",
-    a: "A few categories where I'm not the right hire. Crypto and Web3 projects — the space moves too fast and my opinions on it are too strong to be useful to founders who believe in it. Mobile-native apps with deep platform integration (Bluetooth, AR, native ML) — I do React Native, but if you need Swift or Kotlin expertise for the core, I'm not your developer. Marketing websites without an application layer — there are people who do that better and cheaper. Anything that asks me to deceive users at the design level — gambling mechanics, dark patterns, fake urgency. The list of things I will do is a lot longer; this is the short list of where I'll honestly say \"I'm not your person, here's who is.\"",
+    a: "Crypto and Web3 projects. Mobile-native apps with deep platform integration (Bluetooth, AR, native ML). Marketing websites without an application layer. Anything that asks me to deceive users at the design level — gambling mechanics, dark patterns, fake urgency.",
   },
   {
     q: "Why solo? What's the bus-factor answer?",
-    a: "Solo is the multiplier: same person designing, building, deploying, with no agency overhead and no telephone-game between roles. You get a direct line, decisions in hours instead of days, and zero coordination tax. The bus answer is this: every engagement ships with a written architecture document, a runnable handover, CI that doesn't depend on me being alive, and a CLAUDE.md file at the repo root that lets any competent developer or AI assistant pick up where I left off. If your project genuinely needs a team — three engineers, a dedicated PM, a designer — I'll tell you that on the first call and refer you to an agency I trust. For everything else, one engineer who owns the full stack beats three people coordinating across Jira.",
+    a: "Solo is the multiplier: same person designing, building, deploying, with no agency overhead and no telephone-game between roles. The bus answer: every engagement ships with a written architecture document, a runnable handover, CI that doesn't depend on me, and a CLAUDE.md file that lets any developer or AI assistant pick up where I left off.",
+  },
+  {
+    q: "Why USD pricing?",
+    a: "Most clients reference USD as baseline. Invoices are issued in EUR at the day-of-invoice ECB rate via SEPA bank transfer (no Stripe fees).",
+  },
+  {
+    q: "What payment methods do you accept?",
+    a: "SEPA bank transfer or Wise (recommended for non-EU clients). 50% deposit at kickoff, 50% on final delivery. Invoices include EU VAT where applicable.",
   },
 ];
 
@@ -206,9 +251,9 @@ export default function Services() {
             engagement<span className="acc">.</span>
           </h1>
           <p className="sub">
-            Three engagement tracks, fixed-price, fixed-scope. Pick the one
-            that matches your timeline. If none fits, the last section covers
-            custom scopes.
+            Three productized tracks. Public pricing in USD. Pick the one that
+            matches your timeline; if none fit, the last section covers custom
+            scopes.
           </p>
         </div>
       </section>
@@ -257,20 +302,20 @@ export default function Services() {
           <thead>
             <tr>
               <th>&nbsp;</th>
-              <th>Sprint</th>
-              <th className="featured-col">MVP Lite</th>
-              <th>MVP Full</th>
+              <th>Validation</th>
+              <th className="featured-col">Launch</th>
+              <th>Scale</th>
             </tr>
           </thead>
           <tbody>
             {COMPARE_ROWS.map((row) => (
               <tr key={row.feature}>
                 <td>{row.feature}</td>
-                <td>{renderCompareCell(row.sprint, false)}</td>
-                <td className={typeof row.lite === "string" ? "featured-col" : ""}>
-                  {typeof row.lite === "string" ? row.lite : renderCompareCell(row.lite, false)}
+                <td>{renderCompareCell(row.validation, false)}</td>
+                <td className={typeof row.launch === "string" ? "featured-col" : ""}>
+                  {typeof row.launch === "string" ? row.launch : renderCompareCell(row.launch, false)}
                 </td>
-                <td>{renderCompareCell(row.full, false)}</td>
+                <td>{renderCompareCell(row.scale, false)}</td>
               </tr>
             ))}
           </tbody>
@@ -278,9 +323,9 @@ export default function Services() {
 
         <div className="compare-mobile">
           {[
-            { id: "sprint" as const, name: "AI Sprint", price: "€2,500", duration: "1 week", featured: false },
-            { id: "lite" as const, name: "AI MVP Lite", price: "€5,000", duration: "2 weeks", featured: true },
-            { id: "full" as const, name: "AI MVP Full", price: "€9,500", duration: "4 weeks", featured: false },
+            { id: "validation" as const, name: "Validation MVP", price: "$1,500", duration: "5–7 days", featured: false },
+            { id: "launch" as const, name: "Launch MVP", price: "$3,500", duration: "2–3 weeks", featured: true },
+            { id: "scale" as const, name: "Scale MVP", price: "$7,500", duration: "4–5 weeks", featured: false },
           ].map((pkg) => (
             <div key={pkg.id} className={`compare-mobile-card${pkg.featured ? " featured" : ""}`}>
               {pkg.featured && <span className="pop">MOST POPULAR</span>}
@@ -313,12 +358,32 @@ export default function Services() {
         </div>
       </Reveal>
 
+      {/* HOW I WORK */}
+      <Reveal className="container how-i-work" as="div" variant="fade-up">
+        <div className="head">
+          <div className="lbl">HOW I WORK · 5 STEPS</div>
+          <h2>
+            From brief to production<span className="acc">.</span>
+          </h2>
+        </div>
+        <Reveal className="steps" as="div" variant="stagger">
+          {HOW_I_WORK.map((step) => (
+            <div key={step.num} className="step">
+              <div className="num">{step.num}</div>
+              <div className="ttl">{step.ttl}</div>
+              <div className="timing">{step.timing}</div>
+              <p className="desc">{step.desc}</p>
+            </div>
+          ))}
+        </Reveal>
+      </Reveal>
+
       {/* TRACK RECORD */}
       <Reveal className="container record" as="div" variant="fade-up">
         <div className="head">
-          <span className="eyebrow acc">02 / TRACK RECORD</span>
+          <span className="eyebrow acc">03 / TRACK RECORD · VERIFIED</span>
           <h2>
-            What&apos;s actually shipped
+            What&apos;s actually shipped<span className="acc">.</span>
           </h2>
         </div>
         <Reveal className="grid" as="div" variant="stagger">
@@ -337,12 +402,12 @@ export default function Services() {
 
       {/* FAQ */}
       <Reveal className="container faq" as="div" variant="fade-up">
-        <span className="eyebrow acc">03 / FAQ</span>
+        <span className="eyebrow acc">04 / FAQ</span>
         <h2>
           Frequently asked<span className="acc">.</span>
         </h2>
         <p className="faq-sub">
-          Seven questions I get most often. If yours isn&apos;t here,{" "}
+          Nine questions I get most often. If yours isn&apos;t here,{" "}
           <Link href="/contact" className="link-acc">write me</Link>
           {" "}— I&apos;ll answer it.
         </p>

@@ -15,7 +15,7 @@ const SEO_DATA: Record<string, { title: string; description: string; keywords: s
   },
   services: {
     title: "Services — Massimiliano Angelone",
-    description: "Choose your engagement: AI Sprint €2,500 · MVP Lite €5,000 · MVP Full €9,500. Fixed price, no surprises.",
+    description: "Three productized AI MVP packages in USD: Validation ($1,500/5-7 days), Launch ($3,500/2-3 weeks), Scale ($7,500/4-5 weeks). Fixed price, fixed scope, available now.",
     keywords: "freelance services, MVP packages, fixed price, AI development, Next.js",
   },
   about: {

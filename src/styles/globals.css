@@ -503,6 +503,18 @@ p { margin: 0; }
 .compare .dash { color: var(--text-3); }
 .compare .featured-col { color: var(--text) !important; font-weight: 600; }
 
+/* ─── How I Work ─── */
+.how-i-work { padding: 96px 0; border-top: 1px solid var(--hairline); }
+.how-i-work .head { margin-bottom: 48px; }
+.how-i-work .head .lbl { font-family: var(--font-mono); font-size: 11px; letter-spacing: 0.18em; color: var(--text-3); text-transform: uppercase; margin-bottom: 12px; }
+.how-i-work .head h2 { font-size: 40px; letter-spacing: -0.035em; font-weight: 500; }
+.how-i-work .steps { display: grid; grid-template-columns: repeat(5, 1fr); gap: 16px; }
+.how-i-work .step { padding: 28px 24px; border: 1px solid var(--hairline); border-radius: 12px; }
+.how-i-work .step .num { font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.14em; color: var(--accent); text-transform: uppercase; }
+.how-i-work .step .ttl { margin-top: 14px; font-size: 15px; font-weight: 600; letter-spacing: -0.01em; }
+.how-i-work .step .timing { margin-top: 4px; font-family: var(--font-mono); font-size: 10.5px; letter-spacing: 0.08em; color: var(--text-3); }
+.how-i-work .step .desc { margin-top: 10px; color: var(--text-2); font-size: 13.5px; line-height: 1.55; }
+
 /* ─── Track Record ─── */
 .record { padding: 96px 0; border-top: 1px solid var(--hairline); }
 .record .head { margin-bottom: 48px; }
@@ -799,6 +811,7 @@ p { margin: 0; }
   .case-hero .meta, .blog-pinned, .blog-other, .article-footer .grid,
   .sec-head, .trusted .grid, .timeline-row,
   .record .grid, .tl-head, .curr-head, .uses-item { grid-template-columns: 1fr; }
+  .how-i-work .steps { grid-template-columns: repeat(3, 1fr); }
   .uses-item { gap: 12px; }
   .footer-grid { grid-template-columns: 1fr 1fr; gap: 40px 24px; }
   .hero-index { grid-template-columns: 1fr 1fr; gap: 0; }
@@ -969,6 +982,8 @@ p { margin: 0; }
     font-size: 10px;
     word-spacing: 0.05em;
   }
+
+  .how-i-work .steps { grid-template-columns: 1fr; }
 
   /* ─── Compare table → stacked cards ───────── */
   .compare table { display: none; }
