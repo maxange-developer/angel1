@@ -7,7 +7,7 @@ interface PageBreakProps {
 export default function PageBreak({ num, label, name }: PageBreakProps) {
   return (
     <div className="container">
-      <div className="page-break">
+      <div className="page-break page-break-no-border">
         <span className="label">
           <span className="num">{num}</span> / {label}
         </span>

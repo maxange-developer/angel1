@@ -341,8 +341,8 @@ export default function Home() {
           <div>
             <h2>Recent work.</h2>
             <p className="sub">
-              Recent work shipped end-to-end. Same person designing,
-              building, deploying. That&apos;s the multiplier.
+              Recent work shipped end-to-end. Same person designing, building,
+              deploying. That&apos;s the multiplier.
             </p>
           </div>
         </Reveal>
@@ -462,4 +462,3 @@ export default function Home() {
     </>
   );
 }
-
