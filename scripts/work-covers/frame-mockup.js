@@ -21,10 +21,10 @@ const JOBS = [
 ];
 
 async function frameScreenshot({ input, output, urlText }) {
-  const canvasWidth = 1600;
-  const canvasHeight = 1000;
-  const framePadding = 60;
-  const chromeHeight = 56;
+  const canvasWidth = 3600;
+  const canvasHeight = 2250;
+  const framePadding = 120;
+  const chromeHeight = 112;
   const chromeBg = '#1a1a1a';
   const urlBarBg = '#2a2a2a';
 
@@ -32,7 +32,7 @@ async function frameScreenshot({ input, output, urlText }) {
   const innerHeight = canvasHeight - framePadding * 2 - chromeHeight;
 
   const resizedScreenshot = await sharp(input)
-    .resize(innerWidth * 2, innerHeight * 2, { fit: 'cover', position: 'top' })
+    .resize(innerWidth, innerHeight, { fit: 'cover', position: 'top' })
     .png()
     .toBuffer();
 
@@ -43,39 +43,40 @@ async function frameScreenshot({ input, output, urlText }) {
         <stop offset="100%" stop-color="#0a0a0a"/>
       </linearGradient>
       <filter id="shadow" x="-5%" y="-5%" width="110%" height="115%">
-        <feDropShadow dx="0" dy="6" stdDeviation="20" flood-color="#1F8BFF" flood-opacity="0.15"/>
-        <feDropShadow dx="0" dy="2" stdDeviation="6" flood-color="#000" flood-opacity="0.6"/>
+        <feDropShadow dx="0" dy="12" stdDeviation="40" flood-color="#1F8BFF" flood-opacity="0.15"/>
+        <feDropShadow dx="0" dy="4" stdDeviation="12" flood-color="#000" flood-opacity="0.6"/>
       </filter>
     </defs>
 
     <rect width="${canvasWidth}" height="${canvasHeight}" fill="url(#bgGrad)"/>
 
     <g filter="url(#shadow)">
-      <rect x="${framePadding}" y="${framePadding}" width="${innerWidth}" height="${innerHeight + chromeHeight}" rx="12" ry="12" fill="${chromeBg}" stroke="rgba(255,255,255,0.08)" stroke-width="1"/>
+      <rect x="${framePadding}" y="${framePadding}" width="${innerWidth}" height="${innerHeight + chromeHeight}" rx="24" ry="24" fill="${chromeBg}" stroke="rgba(255,255,255,0.08)" stroke-width="2"/>
     </g>
 
-    <rect x="${framePadding}" y="${framePadding}" width="${innerWidth}" height="${chromeHeight}" rx="12" ry="12" fill="${chromeBg}"/>
-    <rect x="${framePadding}" y="${framePadding + chromeHeight - 12}" width="${innerWidth}" height="12" fill="${chromeBg}"/>
+    <rect x="${framePadding}" y="${framePadding}" width="${innerWidth}" height="${chromeHeight}" rx="24" ry="24" fill="${chromeBg}"/>
+    <rect x="${framePadding}" y="${framePadding + chromeHeight - 24}" width="${innerWidth}" height="24" fill="${chromeBg}"/>
 
-    <circle cx="${framePadding + 24}" cy="${framePadding + chromeHeight / 2}" r="8" fill="#FF5F57"/>
-    <circle cx="${framePadding + 48}" cy="${framePadding + chromeHeight / 2}" r="8" fill="#FEBC2E"/>
-    <circle cx="${framePadding + 72}" cy="${framePadding + chromeHeight / 2}" r="8" fill="#28C840"/>
+    <circle cx="${framePadding + 48}" cy="${framePadding + chromeHeight / 2}" r="16" fill="#FF5F57"/>
+    <circle cx="${framePadding + 96}" cy="${framePadding + chromeHeight / 2}" r="16" fill="#FEBC2E"/>
+    <circle cx="${framePadding + 144}" cy="${framePadding + chromeHeight / 2}" r="16" fill="#28C840"/>
 
-    <rect x="${framePadding + 110}" y="${framePadding + 14}" width="${innerWidth - 220}" height="${chromeHeight - 28}" rx="6" ry="6" fill="${urlBarBg}"/>
-    <text x="${framePadding + 130}" y="${framePadding + chromeHeight / 2 + 5}" font-family="JetBrains Mono, monospace" font-size="13" fill="rgba(245,245,247,0.5)">${urlText}</text>
+    <rect x="${framePadding + 220}" y="${framePadding + 28}" width="${innerWidth - 440}" height="${chromeHeight - 56}" rx="12" ry="12" fill="${urlBarBg}"/>
+    <text x="${framePadding + 260}" y="${framePadding + chromeHeight / 2 + 10}" font-family="JetBrains Mono, monospace" font-size="26" fill="rgba(245,245,247,0.5)">${urlText}</text>
 
-    <line x1="${framePadding}" y1="${framePadding + chromeHeight}" x2="${framePadding + innerWidth}" y2="${framePadding + chromeHeight}" stroke="rgba(255,255,255,0.06)" stroke-width="1"/>
+    <line x1="${framePadding}" y1="${framePadding + chromeHeight}" x2="${framePadding + innerWidth}" y2="${framePadding + chromeHeight}" stroke="rgba(255,255,255,0.06)" stroke-width="2"/>
 
-    <image x="${framePadding}" y="${framePadding + chromeHeight}" width="${innerWidth}" height="${innerHeight}" href="data:image/png;base64,${resizedScreenshot.toString('base64')}" preserveAspectRatio="xMidYMid slice"/>
+    <image x="${framePadding}" y="${framePadding + chromeHeight}" width="${innerWidth}" height="${innerHeight}" href="data:image/png;base64,${resizedScreenshot.toString('base64')}" preserveAspectRatio="xMidYMin slice"/>
   </svg>`;
 
-  await sharp(Buffer.from(frameSvg), { density: 200 })
+  await sharp(Buffer.from(frameSvg), { density: 300 })
     .resize(canvasWidth, canvasHeight, { fit: 'cover' })
     .webp({ quality: 90 })
     .toFile(output);
 
   const kb = Math.round(fs.statSync(output).size / 1024);
-  return kb;
+  const meta = await sharp(output).metadata();
+  return { kb, width: meta.width, height: meta.height };
 }
 
 (async () => {
@@ -84,7 +85,7 @@ async function frameScreenshot({ input, output, urlText }) {
       console.error(`  Input not found: ${job.input}`);
       continue;
     }
-    const kb = await frameScreenshot(job);
-    console.log(`✓ ${job.label}-cover.webp — ${kb} KB`);
+    const r = await frameScreenshot(job);
+    console.log(`✓ ${job.label}-cover.webp — ${r.width}×${r.height} — ${r.kb} KB`);
   }
 })();

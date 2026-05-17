@@ -2,7 +2,7 @@ const { chromium } = require('playwright');
 const path = require('path');
 const fs = require('fs');
 
-const VIEWPORT = { width: 3200, height: 2000 };
+const VIEWPORT = { width: 1800, height: 1125 };
 const OUT_DIR = path.join(__dirname, 'output');
 if (!fs.existsSync(OUT_DIR)) fs.mkdirSync(OUT_DIR, { recursive: true });
 
@@ -40,10 +40,10 @@ const TARGETS = [
   const browser = await chromium.launch();
 
   for (const t of TARGETS) {
-    console.log(`Capturing: ${t.url}`);
+    console.log(`Capturing: ${t.url} @ ${VIEWPORT.width}×${VIEWPORT.height}`);
     const context = await browser.newContext({
       viewport: VIEWPORT,
-      deviceScaleFactor: 1,
+      deviceScaleFactor: 2,
     });
     const page = await context.newPage();
 
