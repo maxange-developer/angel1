@@ -38,11 +38,6 @@ const SEO_DATA: Record<string, { title: string; description: string; keywords: s
     description: "What I'm focused on right now.",
     keywords: "now, current projects, focus, what I'm doing",
   },
-  uses: {
-    title: "Uses — Massimiliano Angelone",
-    description: "Tools, gear, and software I use daily.",
-    keywords: "uses, tools, setup, gear, software, developer setup",
-  },
   "404": {
     title: "404 — Massimiliano Angelone",
     description: "Page not found.",

@@ -1425,7 +1425,7 @@ p {
   text-transform: lowercase;
 }
 
-/* ─── Now / Uses body ─── */
+/* ─── Now page body ─── */
 /* /now — self-contained 760px editorial column */
 .now-page {
   max-width: 1020px;
@@ -1484,68 +1484,6 @@ p {
   font-size: 17px;
 }
 
-/* /uses — two-column label / content layout */
-.uses-wrap {
-  padding: 64px 0 120px;
-}
-.uses-item {
-  display: grid;
-  grid-template-columns: 200px 1fr;
-  gap: 48px;
-  align-items: baseline;
-  border-top: 1px solid var(--hairline);
-  padding-top: 56px;
-}
-.uses-item:first-child {
-  border-top: none;
-  padding-top: 0;
-}
-.uses-item .lbl {
-  font-family: var(--font-mono);
-  font-size: 11px;
-  font-weight: 500;
-  letter-spacing: 0.18em;
-  color: var(--text-2);
-  text-transform: uppercase;
-  line-height: 1.4;
-  padding-top: 4px;
-}
-.uses-item h2 {
-  font-size: 24px;
-  letter-spacing: -0.025em;
-  font-weight: 500;
-  margin: 0 0 20px;
-}
-.uses-item p {
-  color: var(--text-2);
-  font-size: 17px;
-  line-height: 1.7;
-  margin-bottom: 16px;
-}
-.uses-item ul {
-  color: var(--text-2);
-  padding-left: 20px;
-  margin-bottom: 16px;
-  line-height: 1.7;
-}
-.uses-item li {
-  margin-bottom: 8px;
-  font-size: 17px;
-}
-.uses-updated-row {
-  margin-top: 48px;
-  padding-top: 24px;
-  border-top: 1px solid var(--hairline);
-  padding-bottom: 0;
-}
-.uses-updated {
-  color: var(--text-3);
-  font-family: var(--font-mono);
-  font-size: 11px;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  margin: 0;
-}
 
 .pull-quote {
   margin: 48px 0;
@@ -2797,15 +2735,11 @@ p {
   .timeline-row,
   .record .grid,
   .tl-head,
-  .curr-head,
-  .uses-item {
+  .curr-head {
     grid-template-columns: 1fr;
   }
   .how-i-work .steps {
     grid-template-columns: repeat(3, 1fr);
-  }
-  .uses-item {
-    gap: 12px;
   }
   .footer-grid {
     grid-template-columns: 1fr 1fr;
