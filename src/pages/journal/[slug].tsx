@@ -29,6 +29,13 @@ interface JournalSlugProps {
   slug: string;
 }
 
+type FigureProps = {
+  src: string;
+  alt: string;
+  caption?: string;
+  aspect?: string;
+};
+
 const MDX_COMPONENTS = {
   blockquote: (props: React.HTMLAttributes<HTMLQuoteElement>) => (
     <Reveal
@@ -37,6 +44,23 @@ const MDX_COMPONENTS = {
       className="article-pull"
       {...(props as object)}
     />
+  ),
+  Figure: ({ src, alt, caption, aspect = "16 / 9" }: FigureProps) => (
+    <Reveal as="figure" variant="fade-up" className="article-figure">
+      <div
+        className="article-figure-img"
+        style={{ aspectRatio: aspect, position: "relative" }}
+      >
+        <Image
+          src={src}
+          alt={alt}
+          fill
+          sizes="(max-width: 1020px) 100vw, 1020px"
+          style={{ objectFit: "cover" }}
+        />
+      </div>
+      {caption && <figcaption>{caption}</figcaption>}
+    </Reveal>
   ),
 };
 

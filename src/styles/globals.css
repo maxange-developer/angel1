@@ -2461,6 +2461,28 @@ p {
   color: var(--text-3);
   text-transform: lowercase;
 }
+.article-body .article-figure {
+  margin: 56px 0;
+}
+.article-body .article-figure .article-figure-img {
+  width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  background: var(--surface-2, #111113);
+}
+.article-body .article-figure figcaption {
+  margin-top: 14px;
+  font-family: var(--font-mono);
+  font-size: 11px;
+  letter-spacing: 0.1em;
+  color: var(--text-3);
+  text-transform: lowercase;
+}
+@media (max-width: 768px) {
+  .article-body .article-figure {
+    margin: 40px 0;
+  }
+}
 .article-pull {
   margin: 56px 0;
   padding: 8px 0 8px 28px;
