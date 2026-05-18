@@ -260,7 +260,7 @@ export default function Home() {
                 />
               </a>
               <a
-                href="https://www.upwork.com"
+                href="https://www.upwork.com/freelancers/~01d8f7eaf267b741d8"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="trusted-logo-link"

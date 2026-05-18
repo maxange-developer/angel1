@@ -138,6 +138,11 @@ export default function Contact() {
                     GitHub →
                   </a>
                 </li>
+                <li>
+                  <a href="https://www.upwork.com/freelancers/~01d8f7eaf267b741d8" target="_blank" rel="noopener noreferrer" className="link-acc">
+                    Upwork →
+                  </a>
+                </li>
               </ul>
             </div>
             <div className="contact-info-block">
