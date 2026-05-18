@@ -2,6 +2,20 @@ import Head from "next/head";
 
 const BASE_URL = "https://massimilianoangelone.com";
 
+function humanDateToISO(humanDate: string | undefined): string | undefined {
+  if (!humanDate) return undefined;
+  const months: Record<string, string> = {
+    January: '01', February: '02', March: '03', April: '04',
+    May: '05', June: '06', July: '07', August: '08',
+    September: '09', October: '10', November: '11', December: '12',
+  };
+  const match = humanDate.match(/^(\w+)\s+(\d{4})$/);
+  if (!match) return humanDate;
+  const [, monthName, year] = match;
+  const month = months[monthName] ?? '01';
+  return `${year}-${month}-01`;
+}
+
 const SEO_DATA: Record<string, { title: string; description: string; keywords: string }> = {
   home: {
     title: "AI MVP Developer · Massimiliano Angelone",
@@ -52,6 +66,7 @@ interface SEOProps {
   ogImage?: string;
   canonicalPath?: string;
   isArticle?: boolean;
+  customDate?: string;
 }
 
 export default function SEO({
@@ -61,6 +76,7 @@ export default function SEO({
   ogImage,
   canonicalPath,
   isArticle,
+  customDate,
 }: SEOProps) {
   const data = SEO_DATA[page] ?? SEO_DATA.home;
   const title = customTitle ?? data.title;
@@ -74,18 +90,82 @@ export default function SEO({
   const personSchema = {
     "@context": "https://schema.org",
     "@type": "Person",
+    "@id": `${BASE_URL}/#person`,
     name: "Massimiliano Angelone",
+    alternateName: "Massi Angelone",
     jobTitle: "AI-Enhanced MVP Developer",
     url: BASE_URL,
     image: `${BASE_URL}/images/me-5.webp`,
+    address: {
+      "@type": "PostalAddress",
+      addressLocality: "Tenerife",
+      addressRegion: "Canary Islands",
+      addressCountry: "ES",
+    },
     sameAs: [
       "https://www.linkedin.com/in/massiangelone/",
       "https://github.com/maxange-developer",
-      "https://www.instagram.com/massi_angelone/",
       "https://www.npmjs.com/~massiangelone",
       "https://www.freelancer.com/u/massiangel1",
+      "https://www.upwork.com/freelancers/~01d8f7eaf267b741d8",
+      "https://www.instagram.com/massi_angelone/",
+    ],
+    knowsAbout: [
+      "Next.js",
+      "TypeScript",
+      "Supabase",
+      "OpenAI",
+      "Anthropic Claude",
+      "AI MVP Development",
+      "RAG",
+      "Multi-tenant SaaS",
     ],
   };
+
+  const websiteSchema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${BASE_URL}/#website`,
+    name: "Angel1 — Massimiliano Angelone",
+    alternateName: "Angel1",
+    url: BASE_URL,
+    description: "AI-Enhanced MVP Developer. Productized engagements, fixed price, full ownership transfer.",
+    publisher: { "@id": `${BASE_URL}/#person` },
+    inLanguage: "en",
+  };
+
+  const techArticleSchema =
+    page === 'work' && customTitle && customDescription && ogImage && customDate
+      ? {
+          "@context": "https://schema.org",
+          "@type": "TechArticle",
+          headline: customTitle.replace(' · Massimiliano Angelone', ''),
+          description: customDescription,
+          image: `${BASE_URL}${ogImage}`,
+          datePublished: humanDateToISO(customDate),
+          author: { "@id": `${BASE_URL}/#person` },
+          publisher: { "@id": `${BASE_URL}/#person` },
+          url: `${BASE_URL}${canonicalPath ?? ''}`,
+          proficiencyLevel: "Expert",
+          inLanguage: "en",
+        }
+      : null;
+
+  const articleSchema =
+    page === 'journal' && isArticle && customTitle && customDescription && ogImage && customDate
+      ? {
+          "@context": "https://schema.org",
+          "@type": "Article",
+          headline: customTitle.replace(' · Massimiliano Angelone', ''),
+          description: customDescription,
+          image: `${BASE_URL}${ogImage}`,
+          datePublished: humanDateToISO(customDate),
+          author: { "@id": `${BASE_URL}/#person` },
+          publisher: { "@id": `${BASE_URL}/#person` },
+          url: `${BASE_URL}${canonicalPath ?? ''}`,
+          inLanguage: "en",
+        }
+      : null;
 
   return (
     <Head>
@@ -117,6 +197,24 @@ export default function SEO({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
+        />
+      )}
+      {page === "home" && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(websiteSchema) }}
+        />
+      )}
+      {techArticleSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(techArticleSchema) }}
+        />
+      )}
+      {articleSchema && (
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(articleSchema) }}
         />
       )}
     </Head>

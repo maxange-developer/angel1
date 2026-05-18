@@ -55,6 +55,10 @@ export default function Footer() {
                   href: "https://www.freelancer.com/u/massiangel1",
                   label: "Freelancer.com",
                 },
+                {
+                  href: "https://www.upwork.com/freelancers/~01d8f7eaf267b741d8",
+                  label: "Upwork",
+                },
               ].map((item) => (
                 <li key={item.href}>
                   <a href={item.href} target="_blank" rel="noopener noreferrer">

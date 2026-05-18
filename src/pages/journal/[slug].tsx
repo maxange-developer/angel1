@@ -79,6 +79,7 @@ export default function JournalSlug({
         ogImage={fm.coverImage}
         canonicalPath={`/journal/${slug}`}
         isArticle={true}
+        customDate={fm.date}
       />
 
       {/* ARTICLE COVER — banner edge-to-edge */}

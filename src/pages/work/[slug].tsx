@@ -112,6 +112,7 @@ export default function WorkSlug({
         customDescription={fm.tagline}
         ogImage={fm.hero}
         canonicalPath={`/work/${slug}`}
+        customDate={fm.date}
       />
 
       {/* CASE HERO */}
