@@ -1,381 +1,85 @@
-# 🚀 Massimiliano Angelone - Portfolio
+# Angel1
 
-[![Next.js](https://img.shields.io/badge/Next.js-14.2-black?style=for-the-badge&logo=next.js)](https://nextjs.org/)
-[![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
-[![Tailwind CSS](https://img.shields.io/badge/Tailwind-3.4-38bdf8?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
-[![Three.js](https://img.shields.io/badge/Three.js-Latest-black?style=for-the-badge&logo=three.js)](https://threejs.org/)
-[![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)](LICENSE)
+Personal site for Massimiliano Angelone — AI-Enhanced MVP Developer based in Tenerife. Productized engagements, public pricing, work case studies, journal essays. Built as a Next.js + MDX portfolio.
 
-> Modern, responsive portfolio website showcasing my journey as a Full Stack Developer, built with cutting-edge web technologies and optimized for performance.
+**Live →** [massimilianoangelone.com](https://massimilianoangelone.com)
 
-**🌐 Live Site**: [massimilianoangelone.com](https://massimilianoangelone.com)
+![Angel1 home](docs/hero.webp)
 
----
+## What it is
 
-## ✨ Features
+A statically-rendered portfolio site that ships marketing copy, productized pricing, four MDX case studies, a personal essay, and a Resend-powered contact endpoint. Editorial-tech aesthetic — true black, Inter + Newsreader + JetBrains Mono, asymmetric grids — and everything is Lighthouse-greenable on a mid-range laptop.
 
-### 🎨 Design & UX
+The site is the lead funnel: visitors land on the home, read the work, read the long-form essay, and reach out via the contact form. Tooling that I use on client engagements ships from here: [Lore](https://github.com/maxange-developer/lore), [Email Triage](https://github.com/maxange-developer/email-triage), [angel1-mvp-toolkit](https://github.com/maxange-developer/angel1-mvp-toolkit), [angel1-rag-eval](https://github.com/maxange-developer/angel1-rag-eval).
 
-- **3D Interactive Background** - Immersive Three.js particle system with mouse interaction
-- **Glassmorphism UI** - Modern glass effect components with backdrop blur
-- **Neon Aesthetics** - Custom neon color palette with smooth transitions
-- **Responsive Design** - Fully optimized for mobile, tablet, and desktop
-- **Custom Breakpoints** - Advanced height and width-based responsive logic
-- **Smooth Animations** - Framer Motion-like transitions and micro-interactions
+## Features
 
-### 🌍 Multi-language Support
+- **Productized work index** — four MDX case studies under `/work/[slug]`, each with hero, stats, body, and CTA footer
+- **Long-form journal** — MDX essays under `/journal/[slug]` with editorial typography, figures, and pull quotes
+- **Public services page** — three pricing tiers in USD, side-by-side comparison table, FAQ
+- **Contact form** — qualifying form with project type / budget / timeline, sent via Resend API
+- **Custom error pages** — editorial 404 + 500 consistent with site aesthetic
+- **i18n IT/EN/ES** — locale-aware copy across home, services, contact, journal
+- **SEO + manifest** — OG/Twitter cards, sitemap, PWA manifest, favicons
+- **`/now` page** — current state of work, updated every 1–2 months
 
-- **3 Languages**: Italian (IT), English (EN), Spanish (ES)
-- **Dynamic Translation** - Context-based language switching
-- **SEO Optimized** - Hreflang tags and language-specific meta tags
+## Stack
 
-### 📱 Pages & Sections
+```
+Framework    Next.js 16 (App Router) + React 19 + TypeScript strict
+Styling      Tailwind CSS v4 + Newsreader + Inter + JetBrains Mono
+Content      MDX with next-mdx-remote (work case studies + journal)
+Animation    framer-motion (Reveal component, scroll-aware)
+Email        Resend (transactional contact form)
+i18n         Custom locale provider (en / it / es)
+Tests        Vitest (unit)
+Hosting      Vercel (production on main, preview on develop)
+```
 
-#### **Home**
+## Repo structure
 
-- Hero section with dynamic typewriter effect
-- Professional photo showcase
-- Call-to-action buttons (Services, Story)
-- Social media integration
+```
+content/
+  work/                Four case study MDX files (lore, email-triage, mvp-toolkit, rag-eval)
+  journal/             Long-form essays (the-long-road, ...)
+src/
+  pages/               Routes (home, services, contact, /work/[slug], /journal/[slug], /now)
+  components/          Layout, Footer, Reveal, Figure, page-specific sections
+  lib/
+    mdx.ts             Frontmatter parsing + slug routing
+    resend.ts          Contact form transport
+public/
+  images/              Site imagery (work covers, journal figures, hero, /about)
+  site.webmanifest     PWA manifest
+  favicons             Multi-resolution favicon set
+docs/                  This README's hero image
+```
 
-#### **Timeline**
-
-- Interactive professional journey
-- Work experiences with company logos
-- Travel experiences with photo galleries
-- Horizontal carousel (desktop) / Vertical scroll (mobile)
-- Custom 3-slide mode for tablet devices
-- Modal lightbox for detailed views
-
-#### **Blog**
-
-- Featured article: "La Mia Storia" (My Story)
-- Multi-chapter storytelling format
-- Responsive image galleries
-- Category and date metadata
-
-#### **Services**
-
-- Full Stack Development
-- Mobile Development (iOS/Android)
-- AI Chatbot Development
-- Feature lists with icons
-- Contact modal with close functionality
-
-### ⚡ Performance Optimizations
-
-- **Static Site Generation (SSG)** - Pre-rendered pages for instant loading
-- **Image Optimization** - Next.js Image component with AVIF/WebP formats
-- **Aggressive Preloading** - Timeline images prefetched for smooth transitions
-- **Code Splitting** - Dynamic imports for Three.js and heavy components
-- **Compression** - Gzip/Brotli enabled in production
-- **Bundle Size**: 92-106kB First Load JS, 1.96-12kB per page
-
-### 🔍 SEO & Analytics Ready
-
-- **Comprehensive Meta Tags** - Title, description, keywords for each page
-- **OpenGraph & Twitter Cards** - Optimized for social media sharing
-- **JSON-LD Schema** - Person and Website structured data
-- **Sitemap.xml** - Complete sitemap with hreflang alternates
-- **Robots.txt** - Search engine crawling configuration
-- **Geo-targeting** - Italy and Tenerife location tags
-- **Mobile-friendly** - Google Mobile-First indexing compliant
-
----
-
-## 🛠️ Tech Stack
-
-### Frontend
-
-- **Framework**: [Next.js 14.2](https://nextjs.org/) (React 18)
-- **Language**: [TypeScript 5.0](https://www.typescriptlang.org/)
-- **Styling**: [Tailwind CSS 3.4](https://tailwindcss.com/)
-- **3D Graphics**: [Three.js](https://threejs.org/)
-- **Icons**: [Lucide React](https://lucide.dev/)
-
-### Build & Deploy
-
-- **Package Manager**: npm
-- **Hosting**: [Vercel](https://vercel.com) (Recommended)
-- **Domain**: [Namecheap](https://www.namecheap.com)
-- **CDN**: Vercel Edge Network
-
-### Development Tools
-
-- **ESLint**: Code quality and consistency
-- **PostCSS**: CSS processing
-- **Autoprefixer**: Cross-browser compatibility
-
----
-
-## 📦 Installation & Setup
-
-### Prerequisites
-
-- **Node.js**: 18.x or higher
-- **npm**: 9.x or higher
-
-### Quick Start
+## Run locally
 
 ```bash
-# Clone the repository
 git clone https://github.com/maxange-developer/angel1.git
 cd angel1
-
-# Install dependencies
-npm install
-
-# Run development server
-npm run dev
+pnpm install
+cp .env.example .env.local
+# fill in RESEND_API_KEY for contact form (optional for dev)
+pnpm dev   # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) in your browser.
+`pnpm build` for production build, `pnpm start` to serve the build locally.
 
-### Available Scripts
+## Deployment
 
-```bash
-# Development mode with hot reload
-npm run dev
+The repo is wired to Vercel. `main` is the production branch (serves [massimilianoangelone.com](https://massimilianoangelone.com)), `develop` is the integration branch (auto-deployed to a preview URL). Push to `develop`, validate the preview, merge to `main` for production rollout.
 
-# Production build
-npm run build
+## Scope
 
-# Start production server
-npm start
+This is my personal site. The code is MIT-licensed and the structure is fork-friendly, but the branding, copy, photographs, and case study content are mine — don't republish them as your own. Use the structural patterns (work index, productized pricing, editorial typography) freely.
 
-# Lint code
-npm run lint
-```
+## License
 
----
+MIT.
 
-## 🎯 Project Structure
+## Author
 
-```
-angel1/
-├── public/                   # Static assets
-│   ├── images/              # Images (logo, photos, timeline)
-│   ├── robots.txt           # Search engine crawling rules
-│   └── sitemap.xml          # SEO sitemap
-├── src/
-│   ├── components/          # React components
-│   │   ├── Footer.tsx
-│   │   ├── Header.tsx
-│   │   ├── Layout.tsx
-│   │   ├── SEO.tsx          # SEO meta tags component
-│   │   ├── ThreeBackground.tsx
-│   │   └── Typewriter.tsx
-│   ├── contexts/            # React contexts
-│   │   └── LanguageContext.tsx
-│   ├── data/                # JSON data files
-│   │   ├── blog-posts.json
-│   │   ├── blog-translations.json
-│   │   ├── la-mia-storia.json
-│   │   ├── seo.json         # SEO metadata (IT/EN/ES)
-│   │   ├── services.json
-│   │   ├── timeline.json
-│   │   ├── timeline-translations.json
-│   │   └── translations.json
-│   ├── hooks/               # Custom React hooks
-│   │   └── useTranslation.ts
-│   ├── pages/               # Next.js pages
-│   │   ├── blog/
-│   │   │   ├── [slug].tsx   # Dynamic blog article
-│   │   │   └── index.tsx    # Blog listing
-│   │   ├── _app.tsx
-│   │   ├── _document.tsx
-│   │   ├── index.tsx        # Home page
-│   │   ├── services.tsx
-│   │   └── timeline.tsx
-│   └── styles/
-│       └── globals.css      # Global styles + Tailwind
-├── next.config.js           # Next.js configuration
-├── tailwind.config.js       # Tailwind + custom breakpoints
-├── tsconfig.json            # TypeScript configuration
-└── package.json
-```
-
----
-
-## 🎨 Custom Tailwind Breakpoints
-
-This project uses advanced responsive breakpoints for precise control:
-
-```javascript
-// Height-based
-'max-h-820': '(max-height: 820px)',     // Home/blog scroll mode
-'max-h-948': '(max-height: 948px)',     // Timeline vertical mode
-
-// Width + Height combinations
-'tablet-range': '(min-width: 1024px) and (max-width: 1280px)',
-'tablet-compact': '(max-width: 1278px) and (max-height: 948px)',
-'blog-vertical': '(max-width: 1024px) and (min-height: 948px) and (max-height: 1440px)',
-'timeline-vertical': '((max-width: 1023px)) or ((min-width: 1024px) and (max-width: 1280px) and (max-height: 1440px))'
-```
-
----
-
-## 🌐 SEO Configuration
-
-SEO metadata is managed in `src/data/seo.json` with support for 3 languages:
-
-```json
-{
-  "it": {
-    "home": {
-      "title": "Massimiliano Angelone | Full Stack Developer | Italia & Tenerife",
-      "description": "...",
-      "keywords": "full stack developer, React, Next.js, ...",
-      "og:title": "...",
-      "og:description": "..."
-    }
-  }
-}
-```
-
-Each page has dedicated SEO meta tags, OpenGraph images, and structured data.
-
----
-
-## 🚀 Deployment
-
-### Deploy to Vercel (Recommended)
-
-```bash
-# Install Vercel CLI
-npm i -g vercel
-
-# Login to Vercel
-vercel login
-
-# Deploy
-vercel
-
-# Deploy to production
-vercel --prod
-```
-
-### Custom Domain Setup
-
-1. Add domain in Vercel Dashboard → Settings → Domains
-2. Configure DNS records on your domain registrar:
-   ```
-   A     @    76.76.21.21
-   CNAME www  cname.vercel-dns.com
-   ```
-3. Wait for SSL certificate (automatic, ~5-30 minutes)
-
-For detailed instructions, see [DEPLOYMENT.md](DEPLOYMENT.md)
-
----
-
-## 📊 Performance Metrics
-
-### Lighthouse Scores (Target)
-
-- ⚡ Performance: **90+**
-- ♿ Accessibility: **95+**
-- ✅ Best Practices: **95+**
-- 🔍 SEO: **100**
-
-### Bundle Analysis
-
-```
-Route                   Size       First Load JS
-/                       1.96 kB    98.7 kB
-/blog                   7.55 kB    104 kB
-/blog/[slug]            2.21 kB    99 kB
-/services               2.14 kB    98.9 kB
-/timeline               9.51 kB    106 kB
-```
-
----
-
-## 🎯 Key Features Implementation
-
-### Image Preloading Strategy
-
-Timeline images are aggressively prefetched on page load:
-
-```typescript
-useEffect(() => {
-  const timer = setTimeout(() => {
-    events.forEach((event) => {
-      event.images?.forEach((imageUrl) => {
-        const link = document.createElement("link");
-        link.rel = "prefetch";
-        link.as = "image";
-        link.href = imageUrl;
-        document.head.appendChild(link);
-      });
-    });
-  }, 1000);
-  return () => clearTimeout(timer);
-}, [events]);
-```
-
-### Dynamic Language Switching
-
-```typescript
-const { currentLang, setCurrentLang } = useLanguage();
-const { t } = useTranslation();
-
-// Usage
-<h1>{t("navbar.home")}</h1>;
-```
-
-### Responsive Timeline Logic
-
-- **Desktop (>1280px)**: Horizontal carousel with 5 cards
-- **Tablet (1024-1280px)**: 3-card carousel
-- **Mobile (<1024px)**: Vertical scrollable timeline
-- **Low height devices**: Automatic vertical mode
-
----
-
-## 📝 License
-
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
----
-
-## 👨‍💻 Author
-
-**Massimiliano Angelone**
-
-- Portfolio: [massimilianoangelone.com](https://massimilianoangelone.com)
-- LinkedIn: [massimiliano-angelone](https://www.linkedin.com/in/massimiliano-angelone)
-- Instagram: [@massi_angelone](https://www.instagram.com/massi_angelone/)
-- Email: [contact@massimilianoangelone.com](mailto:contact@massimilianoangelone.com)
-
----
-
-## 🙏 Acknowledgments
-
-- **Three.js** - For the amazing 3D graphics library
-- **Next.js Team** - For the incredible React framework
-- **Vercel** - For seamless deployment and hosting
-- **Tailwind CSS** - For the utility-first CSS framework
-
----
-
-## 📈 Future Enhancements
-
-- [ ] Blog CMS integration (Contentful/Sanity)
-- [ ] Dark/Light theme toggle
-- [ ] Contact form with email integration
-- [ ] Project showcase section
-- [ ] Testimonials from clients
-- [ ] Analytics dashboard (Google Analytics/Plausible)
-- [ ] Newsletter subscription
-- [ ] PWA support
-
----
-
-<div align="center">
-
-**⭐ If you like this project, give it a star! ⭐**
-
-Made with ❤️ and ☕ by [Massimiliano Angelone](https://massimilianoangelone.com)
-
-</div>
+Built by [Massimiliano Angelone](https://massimilianoangelone.com) — AI-Enhanced MVP Developer, Tenerife.
