@@ -74,10 +74,11 @@ export default function JournalSlug({
     <>
       <SEO
         page="journal"
-        customTitle={`${fm.title} — Massimiliano Angelone`}
+        customTitle={`${fm.title} · Massimiliano Angelone`}
         customDescription={fm.excerpt}
         ogImage={fm.coverImage}
         canonicalPath={`/journal/${slug}`}
+        isArticle={true}
       />
 
       {/* ARTICLE COVER — banner edge-to-edge */}

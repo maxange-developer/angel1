@@ -108,7 +108,7 @@ export default function WorkSlug({
     <>
       <SEO
         page="work"
-        customTitle={`${fm.title} — Massimiliano Angelone`}
+        customTitle={`${fm.title} · Massimiliano Angelone`}
         customDescription={fm.tagline}
         ogImage={fm.hero}
         canonicalPath={`/work/${slug}`}
