@@ -86,4 +86,5 @@ public/images/*.JPG
 # Security audit reports (local only, never commit)
 /gitleaks-report.json
 /trufflehog-report.json
+/.knip-report.txt
 /*-audit.json
