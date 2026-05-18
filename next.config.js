@@ -21,6 +21,10 @@ const nextConfig = {
       { source: '/timeline', destination: '/about', permanent: true },
       { source: '/blog', destination: '/journal', permanent: true },
       { source: '/blog/:slug', destination: '/journal/:slug', permanent: true },
+      { source: '/work/01-lore', destination: '/work/lore', permanent: true },
+      { source: '/work/02-email-triage', destination: '/work/email-triage', permanent: true },
+      { source: '/work/03-angel1-mvp-toolkit', destination: '/work/angel1-mvp-toolkit', permanent: true },
+      { source: '/work/04-angel1-rag-eval', destination: '/work/angel1-rag-eval', permanent: true },
     ];
   },
   async headers() {

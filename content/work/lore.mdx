@@ -1,5 +1,6 @@
 ---
 title: Lore
+order: 1
 client: Methodology demonstration · same approach for client work
 tagline: A multi-tenant RAG copilot with embeddable widget, streaming chat, and per-message cost tracking — shipped end-to-end in nine days.
 date: May 2026
@@ -24,7 +25,7 @@ stats:
   - label: Cost per message
     value: tracked
   - label: Lines of TypeScript
-    value: 5.6k
+    value: 6.7k
 ---
 
 ## The brief
@@ -45,7 +46,7 @@ Tenancy is enforced by Postgres RLS at the database boundary. Every query agains
 
 ## The model decision
 
-The first decision was the model, and it was decided by unit economics. Anthropic's Claude was the obvious starting point — it's what I reach for on most projects. But the math didn't close at projected volume: per-tenant inference cost on Claude put the steady state at six to eight dollars a month against a target ceiling of three.
+The first decision was the model, and the framing was unit economics — even for a portfolio engagement, I wanted the answer to survive contact with real numbers. If this were shipping to paying tenants under a $3/tenant/month cost ceiling, the math wouldn't close on Anthropic's Claude — it's what I reach for on most projects, but projected steady state on this shape of workload would land at six to eight dollars per tenant per month.
 
 So I started where the math worked: `gpt-4o-mini` for generation, `text-embedding-3-small` for encoding. The trade-off question was whether quality would hold for grounded retrieval with short, citation-anchored answers. For this specific shape of problem — short factual responses backed by retrieved context, not open-ended reasoning — the smaller model held. Faithfulness on test conversations stayed high, citation accuracy held above ninety percent on the hand-tested set.
 
@@ -85,4 +86,8 @@ Three things, all small, all worth saying out loud.
 
 ## What's next
 
-Three threads, in priority order. An agent layer that can act, not just answer — file a ticket on the user's behalf, escalate, draft a reply for an agent to ship. A formal eval harness with three hundred labelled questions running on every PR. And an export pipeline that lets a tenant pull their corpus and embeddings if they ever want to leave. The last one is non-negotiable for me — if you can't leave a system you don't trust it, and tenants who don't trust the system don't pay for it.
+Three threads, in priority order. An agent layer that can act, not just answer — file a ticket on the user's behalf, escalate, draft a reply for an agent to ship. Continuous evaluation in CI via [angel1-rag-eval](/work/angel1-rag-eval) — the companion tool that came out of this build. A labelled question set scoped to this domain, scored on retrieval precision, faithfulness, and correctness on every PR. And an export pipeline that lets a tenant pull their corpus and embeddings if they ever want to leave. The last one is non-negotiable — if you can't leave a system you don't trust it.
+
+---
+
+Live at [lore.massimilianoangelone.com](https://lore.massimilianoangelone.com) · Code on [GitHub](https://github.com/maxange-developer/lore)

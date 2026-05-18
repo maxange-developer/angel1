@@ -1,5 +1,6 @@
 ---
 title: angel1-mvp-toolkit
+order: 3
 client: Open source · Published on npm
 tagline: A CLI that scaffolds production-ready Next.js + Supabase + multi-provider AI projects in under two minutes — extracted from the workflow I run on every engagement.
 date: May 2026
@@ -68,7 +69,7 @@ A few decisions that aren't obvious until you've built ten of these:
 
 **Environment validation at boot, not at first use.** The template includes a Zod schema for `process.env` that runs at startup. Misconfigured deployments fail at deploy time, not three hours later when a user hits the auth endpoint.
 
-**`CLAUDE.md` is a first-class file.** The template ships with a project-specific `CLAUDE.md` that describes the file structure, conventions, and the kinds of questions Claude Code should ask before changing things. It's the single highest-leverage file in the repository for working effectively with Claude Code.
+**A project-specific `CLAUDE.md` ships by default.** The template includes a `CLAUDE.md` at the root that describes the file structure, conventions, and the kinds of questions an AI coding assistant should ask before changing things. It's primarily tuned for Claude Code — the tool I run on every engagement — but the same file works as a baseline for Cursor, Aider, or any AI assistant that reads project context files. If you scaffold an OpenAI-only project, the file is still useful; rename or delete if it doesn't fit your workflow.
 
 **Tests are scaffolded, not promised.** Vitest config, Playwright config, and example tests in both — committed to the first commit. Empty test directories age into "we'll add tests later." Tests with one example aging into ten.
 
@@ -76,11 +77,11 @@ A few decisions that aren't obvious until you've built ten of these:
 
 ## What I'd do differently
 
-Three honest limits at v1.0.
+Three honest limits at v1.0:
 
 **No template versioning.** The CLI installs the template bundled with that CLI version. That's fine for now, but a tool that scaffolds production projects should let users pin a template version while still getting CLI bug fixes. Right now they're coupled.
 
-**No update path for existing projects.** If I improve the template, projects scaffolded last month don't see the improvement without manually diffing. A `claude-mvp-toolkit upgrade` command that applies non-conflicting changes is on the list of things real users would justify building.
+**No update path for existing projects.** If I improve the template, projects scaffolded last month don't see the improvement without manually diffing. An `angel1-mvp-toolkit upgrade` command that applies non-conflicting changes is on the list of things real users would justify building.
 
 **Test coverage is thin on the OpenAI variant.** The Anthropic path is exercised by real engagements every week. The OpenAI variant is tested structurally but doesn't have the same depth of production runs behind it. End-to-end smoke tests on both variants are the missing safety net.
 
@@ -88,4 +89,8 @@ Three honest limits at v1.0.
 
 v1.0 ships the foundation: `init` command, multi-provider AI (Claude / OpenAI / Both), Supabase or NextAuth, optional Stripe / Resend / RAG. The roadmap is deliberately empty — no "Planned" features promised in public. The next version of this tool will be whatever real engagements show needs to be there.
 
-The eval harness that earlier drafts of this case study promised? It's been extracted into a separate tool: **[angel1-rag-eval](/work/04-angel1-rag-eval)**. Two tools, one workflow: scaffold with the toolkit, measure with the eval CLI.
+The eval harness that earlier drafts of this case study promised? It's been extracted into a separate tool: **[angel1-rag-eval](/work/angel1-rag-eval)**. Two tools, one workflow: scaffold with the toolkit, measure with the eval CLI.
+
+---
+
+Install via `npx @massiangelone/angel1-mvp-toolkit init my-app` · [npm](https://www.npmjs.com/package/@massiangelone/angel1-mvp-toolkit) · [GitHub](https://github.com/maxange-developer/angel1-mvp-toolkit)

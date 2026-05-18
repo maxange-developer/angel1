@@ -1,5 +1,6 @@
 ---
 title: angel1-rag-eval
+order: 4
 client: Open source · Published on npm
 tagline: A companion CLI that measures whether your RAG pipeline actually works — retrieval precision, faithfulness, correctness, multi-provider judge LLM.
 date: May 2026
@@ -51,12 +52,12 @@ Output: console table, CSV for spreadsheets, JSON for CI. Exit code 0/1 based on
 
 ## Architecture
 
-The tool is small on purpose. One command (`run`), four sub-modules:
+The tool is small on purpose — under 1.3k lines of TypeScript. One command (`run`), four conceptual modules:
 
 - **adapters/endpoint** — calls your RAG endpoint with templated requests, extracts answer + sources + (optional) source contents from configurable response paths. Path syntax supports nested objects and array map (`sources[].id`).
-- **core/scorer** — retrieval precision @K against the labeled `expected_source` set.
+- **core/scorer** — retrieval precision @K against the labeled `expected_source` set, plus the orchestration glue in `core/runner.ts` and `core/judge.ts`.
 - **providers/{claude,openai}** — judge LLM dispatch. Strict JSON schema validation on output. Provider-agnostic interface — adding a third judge is a single file.
-- **reporters/{table,csv,json}** — three output formats from the same result tree.
+- **formatters/{table,csv,json}** — three output formats. Table renders to stdout via `cli-table3`. CSV and JSON are written to disk when `--output <dir>` is set, producing `eval-<timestamp>.csv` and `eval-<timestamp>.json` side by side.
 
 Zero state. The whole tool is `argv → fetch → score → render`. No database, no cache, no config server. It's a CLI; CLIs should behave like CLIs.
 
@@ -74,7 +75,7 @@ Both are interchangeable via config: same `JudgeInput`, same `JudgeOutput`, same
 
 Three honest limits at v1.0:
 
-**Claude judge not end-to-end tested with a real API key.** The structural validation is in place — schema parsing, error mapping, retry handling. But full end-to-end runs against the Anthropic API have not been completed yet. OpenAI judge is end-to-end validated against real responses. The README says so explicitly; this case study isn't going to pretend otherwise.
+**Claude judge end-to-end testing scheduled for v1.1.** The structural pipeline is in place — schema parsing, error mapping, retry handling, all unit-tested. End-to-end validation against the Anthropic API is intentionally held for v1.1, after the first round of real-world feedback informs which edge cases the test set should actually cover. OpenAI judge is fully end-to-end validated. The README documents the gap; this case study doesn't paper over it either.
 
 **Faithfulness requires `sourceContents` in the endpoint response.** Many RAG implementations return source IDs only (`["doc-42", "doc-87"]`) — efficient for the network, but the judge can't assess faithfulness against opaque IDs. The tool handles this gracefully (returns `null` for faithfulness, redistributes weight to retrieval and correctness) but you lose half the signal. Endpoints that want full evaluation need to return the chunk text alongside the ID.
 

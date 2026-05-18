@@ -18,7 +18,7 @@ interface WorkCard {
 
 const WORK_CARDS: WorkCard[] = [
   {
-    slug: "01-lore",
+    slug: "lore",
     title: "Lore",
     tagline:
       "A multi-tenant RAG copilot with embeddable widget, streaming chat, and per-message cost tracking — shipped end-to-end in nine days.",
@@ -32,7 +32,7 @@ const WORK_CARDS: WorkCard[] = [
     ],
   },
   {
-    slug: "02-email-triage",
+    slug: "email-triage",
     title: "Email Triage Tool",
     tagline:
       "A Gmail copilot that classifies, prioritizes, and drafts replies across multiple inboxes — with localized analytics in three languages.",
@@ -46,7 +46,7 @@ const WORK_CARDS: WorkCard[] = [
     ],
   },
   {
-    slug: "03-angel1-mvp-toolkit",
+    slug: "angel1-mvp-toolkit",
     title: "angel1-mvp-toolkit",
     tagline:
       "A CLI that scaffolds production-ready Next.js + Supabase + multi-provider AI apps in under two minutes — extracted from the workflow I run on every engagement.",
@@ -60,7 +60,7 @@ const WORK_CARDS: WorkCard[] = [
     ],
   },
   {
-    slug: "04-angel1-rag-eval",
+    slug: "angel1-rag-eval",
     title: "angel1-rag-eval",
     tagline:
       "A companion CLI that measures whether your RAG pipeline actually works — retrieval precision, faithfulness, correctness, multi-provider judge LLM.",

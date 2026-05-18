@@ -38,9 +38,9 @@ export default function Now() {
           <h2>Building</h2>
           <p>
             Two open-source tools on npm:{" "}
-            <Link href="/work/03-angel1-mvp-toolkit" className="link-acc">angel1-mvp-toolkit</Link>{" "}
+            <Link href="/work/angel1-mvp-toolkit" className="link-acc">angel1-mvp-toolkit</Link>{" "}
             (scaffolding) and{" "}
-            <Link href="/work/04-angel1-rag-eval" className="link-acc">angel1-rag-eval</Link>{" "}
+            <Link href="/work/angel1-rag-eval" className="link-acc">angel1-rag-eval</Link>{" "}
             (RAG evaluation). Both v1.0, iterated in v0.x increments based on
             usage.
           </p>

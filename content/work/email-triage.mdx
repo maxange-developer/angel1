@@ -1,5 +1,6 @@
 ---
 title: Email Triage Tool
+order: 2
 client: Methodology demonstration · same approach for client work
 tagline: A Gmail copilot that classifies, prioritizes, and drafts replies across multiple inboxes — with localized analytics in three languages.
 date: May 2026
@@ -29,7 +30,7 @@ stats:
 
 ## The brief
 
-A solo founder running multiple email accounts — personal, work, support — drowning in tier-1 noise. Newsletters, notifications, sales pitches, real client requests, all landing in the same inbox with the same visual weight. The ask was triage: classify automatically, surface what matters, draft reply candidates for the legitimate threads, and do it across all three accounts at once.
+A solo founder, three Gmail accounts, no team to delegate to. Personal inbox, work inbox, support inbox — all collapsing into the same daily attention budget. Newsletters next to real client requests, sales pitches next to billing receipts, all with identical visual weight. The ask wasn't to reduce volume, it was to make the volume legible: classify automatically, surface what matters, draft replies for what's worth replying to, and do it across all three accounts at once.
 
 This was built as a portfolio engagement targeting that workflow — Gmail API integration is real, the classification pipeline is real, the streaming reply generation is real. Mock mode is available for demo without OAuth, but the production path uses live Gmail.
 
@@ -70,3 +71,7 @@ The localization runs deeper than the UI labels. Mock email bodies are stored wi
 ## What's next
 
 A unified inbox view that merges the three accounts into a single chronological stream with account-of-origin badges. Smart digest — once a day, the tool drafts a summary of what arrived in the low-priority bucket so it doesn't get ignored entirely. And a small Chrome extension that lets you trigger triage on a single message from the Gmail UI itself, without leaving the inbox.
+
+---
+
+Live at [email-triage.massimilianoangelone.com](https://email-triage.massimilianoangelone.com) · Code on [GitHub](https://github.com/maxange-developer/email-triage)

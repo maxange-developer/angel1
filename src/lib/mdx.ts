@@ -19,6 +19,7 @@ export interface WorkFrontmatter {
   demo?: string;
   github?: string;
   stats?: Array<{ label: string; value: string }>;
+  order?: number;
 }
 
 export interface WorkPost {
@@ -28,11 +29,15 @@ export interface WorkPost {
 }
 
 export function getAllWorkSlugs(): string[] {
-  return fs
+  const slugs = fs
     .readdirSync(WORK_DIR)
     .filter((f) => f.endsWith(".mdx"))
-    .map((f) => f.replace(/\.mdx$/, ""))
-    .sort();
+    .map((f) => f.replace(/\.mdx$/, ""));
+  return slugs.sort((a, b) => {
+    const orderA = getWorkPost(a).frontmatter.order ?? 999;
+    const orderB = getWorkPost(b).frontmatter.order ?? 999;
+    return orderA - orderB;
+  });
 }
 
 export function getWorkPost(slug: string): WorkPost {
