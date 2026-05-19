@@ -121,8 +121,8 @@ export default function Contact() {
           <div className="contact-info-col">
             <div className="contact-info-block">
               <p className="eyebrow">Direct line</p>
-              <a href="mailto:massiangelone01@gmail.com" className="link-acc">
-                massiangelone01@gmail.com
+              <a href="mailto:hello@massimilianoangelone.com" className="link-acc">
+                hello@massimilianoangelone.com
               </a>
             </div>
             <div className="contact-info-block">

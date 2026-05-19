@@ -3,7 +3,7 @@ import { Resend } from "resend";
 import { z } from "zod";
 
 const FROM_ADDRESS = "Angel1 <noreply@massimilianoangelone.com>";
-const TO_ADDRESS = "massiangelone01@gmail.com";
+const TO_ADDRESS = "hello@massimilianoangelone.com";
 
 const contactSchema = z.object({
   name: z.string().min(2),
@@ -93,6 +93,6 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
   } catch (err) {
     const message = err instanceof Error ? err.message : String(err);
     console.error("[contact API] Email send failed:", message);
-    return res.status(500).json({ error: "Email failed to send. Try writing directly to massiangelone01@gmail.com" });
+    return res.status(500).json({ error: "Email failed to send. Try writing directly to hello@massimilianoangelone.com" });
   }
 }

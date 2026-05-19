@@ -74,8 +74,8 @@ export default function Footer() {
             <p className="col-label">Get in touch</p>
             <ul>
               <li>
-                <a href="mailto:massiangelone01@gmail.com">
-                  massiangelone01@gmail.com
+                <a href="mailto:hello@massimilianoangelone.com">
+                  hello@massimilianoangelone.com
                 </a>
               </li>
               <li>
