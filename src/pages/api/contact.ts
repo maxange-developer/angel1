@@ -2,7 +2,7 @@ import type { NextApiRequest, NextApiResponse } from "next";
 import { Resend } from "resend";
 import { z } from "zod";
 
-const FROM_ADDRESS = "Angel1 <noreply@massimilianoangelone.com>";
+const FROM_ADDRESS = "Angel1 <hello@massimilianoangelone.com>";
 const TO_ADDRESS = "hello@massimilianoangelone.com";
 
 const contactSchema = z.object({
