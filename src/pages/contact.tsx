@@ -139,7 +139,7 @@ export default function Contact() {
                   </a>
                 </li>
                 <li>
-                  <a href="https://www.upwork.com/freelancers/~01d8f7eaf267b741d8" target="_blank" rel="noopener noreferrer" className="link-acc">
+                  <a href="https://www.upwork.com/freelancers/massiangelone" target="_blank" rel="noopener noreferrer" className="link-acc">
                     Upwork →
                   </a>
                 </li>

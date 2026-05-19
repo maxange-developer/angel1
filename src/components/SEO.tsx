@@ -107,7 +107,7 @@ export default function SEO({
       "https://github.com/maxange-developer",
       "https://www.npmjs.com/~massiangelone",
       "https://www.freelancer.com/u/massiangel1",
-      "https://www.upwork.com/freelancers/~01d8f7eaf267b741d8",
+      "https://www.upwork.com/freelancers/massiangelone",
       "https://www.instagram.com/massi_angelone/",
     ],
     knowsAbout: [

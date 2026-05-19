@@ -56,7 +56,7 @@ export default function Footer() {
                   label: "Freelancer.com",
                 },
                 {
-                  href: "https://www.upwork.com/freelancers/~01d8f7eaf267b741d8",
+                  href: "https://www.upwork.com/freelancers/massiangelone",
                   label: "Upwork",
                 },
               ].map((item) => (
